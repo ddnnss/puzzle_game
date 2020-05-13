@@ -1,0 +1,5 @@
+django-ckeditor
+pillow
+pytils
+segno
+faker

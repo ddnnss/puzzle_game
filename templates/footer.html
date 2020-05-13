@@ -1,0 +1,64 @@
+{% load static%}
+ <footer class="footer">
+        <div class="footer-wrapper">
+            <div class="footer-timer"><p>00:30</p></div>
+            <div class="footer-button"><span class="btn btn-orange">CONCIDE</span></div>
+        </div>
+    </footer>
+    <div  class="modal " v-bind:class="{ modalActive:reg_modal }">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="close"  v-on:click="openRegModal"><img src="{% static 'images/close-btn.svg' %}" alt=""></div>
+                <div v-if="modal_login_body" >
+                     <div class="modal-header">
+                    <p>LOG IN</p>
+                </div>
+                <div class="modal-body">
+                    <div class="toggleButton">
+                        <p   v-bind:class="{ toggleButtonActiveLeft: modal_login_body }">LOG IN</p>
+                        <p  v-on:click="modal_login_body=false">SIGN UP</p>
+                    </div>
+                    <div class="form-row">
+                        <label>Username:</label>
+                        <input type="text">
+                    </div>
+                    <div class="form-row mb-40">
+                        <label>Password:</label>
+                        <input type="password">
+                    </div>
+                    <span class="btn btn-blue btn-center">LOG IN</span>
+
+                </div>
+                </div>
+                 <div v-else>
+                     <div class="modal-header">
+                    <p>SIGN UP</p>
+                </div>
+                <div class="modal-body">
+                    <div class="toggleButton">
+                        <p  v-on:click="modal_login_body=true">LOG IN</p>
+                        <p  v-bind:class="{ toggleButtonActiveRight: !modal_login_body }">SIGN UP</p>
+                    </div>
+                    <div class="form-row">
+                        <label>E-Mail:</label>
+                        <input type="text" v-model="email">
+                    </div>
+                    <div class="form-row">
+                        <label>Username:</label>
+                        <input type="text" v-model="name">
+                    </div>
+                    <div class="form-row ">
+                        <label>Password:</label>
+                        <input type="password" v-model="password1">
+                    </div>
+                    <div class="form-row mb-40">
+                        <label>Password:</label>
+                        <input type="password" v-model="password2">
+                    </div>
+                    <span class="btn btn-blue btn-center" v-on:click="sendSignUp">SIGN UP</span>
+
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>

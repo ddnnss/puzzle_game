@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>title</title>
+
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+<div id="app" class="app">
+{% csrf_token %}
+{% include 'header.html' %}
+    {% block content %}
+    {% endblock %}
+{% include 'footer.html' %}
+
+
+
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/app.js' %}"></script>
+<script src="{% static 'js/puzzle.js' %}"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            mobile_menu : false,
+            mobile_sub_menu : '',
+            desktop_user_menu :false,
+            header_sub_text: '',
+            header_sub_menu: '',
+            side_bar_menu: true,
+            drop_down_menu: '',
+            reg_modal: false,
+            modal_login_body: true,
+            email:'',
+            name:'',
+            password1:'',
+            password2:'',
+        },
+        computed: {
+
+        },
+        methods: {
+            open_mobile_menu: function (event) {
+                if(this.mobile_menu ){
+                    this.mobile_menu = false
+                }else (
+                    this.mobile_menu = true
+                )
+            },
+            open_mobile_sub_menu: function (event) {
+                this.mobile_sub_menu = event
+            },
+            close_mobile_sub_menu: function (event) {
+                this.mobile_sub_menu = ''
+            },
+            openUserMenu: function () {
+                if(this.desktop_user_menu ){
+                    this.desktop_user_menu = false
+                }else {
+                    this.desktop_user_menu = true
+                    this.header_sub_menu = event
+                    this.header_sub_text = ''
+                }
+            },
+            closeUserMenu: function () {
+                this.desktop_user_menu = false
+            },
+            openHeaderSubText:function (event) {
+                if(this.header_sub_text === event ){
+                    this.header_sub_text = ''
+                }else {
+                    this.header_sub_text = event
+                    this.header_sub_menu = ''
+                    this.desktop_user_menu = false
+                }
+            },
+            openHeaderSubMenu:function (event) {
+                if (this.header_sub_menu === event) {
+                    this.header_sub_menu = ''
+                } else {
+
+                    this.header_sub_menu = event
+                    this.header_sub_text = ''
+                    this.desktop_user_menu = false
+                }
+            },
+            openSideBarMenu: function () {
+                console.log(this.side_bar_menu)
+                if(this.side_bar_menu ){
+                    this.side_bar_menu = false
+                }else {
+                    this.side_bar_menu = true
+                }
+            },
+            openDropDown:function (event) {
+                if (this.drop_down_menu === event) {
+                    this.drop_down_menu = ''
+                } else {
+                    this.drop_down_menu = event
+                }
+            },
+            openRegModal: function () {
+                if (this.reg_modal) {
+                    this.reg_modal = false
+                } else {
+                    this.reg_modal = true
+                }
+            },
+            sendSignUp: function () {
+                console.log(this.name,this.email,this.password1,this.password2)
+
+            let body = {'email':this.email,
+                        'name':this.name,
+                        'password1':this.password1,
+                        'password2':this.password2}
+
+            fetch('{% url 'register' %}', {
+                method: 'post',
+                body: JSON.stringify(body),
+                headers: { "X-CSRFToken": '{{  csrf_token }}' },
+                credentials: 'same-origin'
+            }).then(res=>res.json())
+                .then(res => {
+
+                   console.log(res)
+
+                })
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

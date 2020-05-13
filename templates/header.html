@@ -1,0 +1,281 @@
+{% load static %}
+<header class="header">
+        <div class="header-wrapper">
+            <div class="header-mobile-left visible-768" v-on:click="open_mobile_menu">
+                <img src="{% static 'images/header-mobile-left.svg' %}" alt="">
+                <div class="mobile-user-panel" v-bind:class="{ secondaryPanelActive: mobile_menu == true }"><!--notlogged user -->
+                    <div class="mobile-user-panel-info">
+                        <div class="mobile-user-panel-name">
+                            <p class="mobile-user-panel-username">Lorem ipsum.</p>
+                            <p class="mobile-user-panel-balance">767777</p>
+                        </div>
+                        <div class="mobile-user-panel-avatar">
+                            <img src="http://placehold.it/60" alt="">
+                        </div>
+                    </div>
+                    <div class="mobile-user-panel-menu">
+                        <ul>
+                            <li class="header-user-menu-item"><span class="header-user-menu-link arrow-link" v-on:click="open_mobile_sub_menu('choose')">Game</span></li>
+                            <li class="header-user-menu-item"><span class="header-user-menu-link arrow-link" v-on:click="open_mobile_sub_menu('rules')">Game rules</span></li>
+                            <li class="header-user-menu-item"><span class="header-user-menu-link arrow-link" v-on:click="open_mobile_sub_menu('about')">About us & Contacts</span></li>
+                            <li class="header-user-menu-item"><span class="header-user-menu-link arrow-link" v-on:click="open_mobile_sub_menu('gameselect')">Choose game level</span></li>
+                            <li class="header-user-menu-item"><span class="header-user-menu-link lang-ru-link" v-on:click="open_mobile_sub_menu('lang')">Switch language</span></li>
+                            <li class="header-user-menu-item"><span class="header-user-menu-link theme-link-l" v-on:click="open_mobile_sub_menu('theme')">Switch theme</span></li>
+                        </ul>
+                    </div>
+                    <div class="mobile-user-panel-button">
+                        <span class="btn btn-blue btn-center">LOG IN / SIGN UP</span>
+                    </div>
+                </div>
+                <div class="mobile-user-panel secondary-panel " v-bind:class="{ secondaryPanelActive: mobile_sub_menu == 'choose' }"><!--Game switch secondaryPanelActive-->
+                    <div v-on:click="close_mobile_sub_menu" class="mobile-user-panel-header">
+                        <img src="{% static 'images/side-bar-toggle.svg' %}" alt="">
+                        <p>Game switch</p>
+                    </div>
+                    <div class="mobile-user-panel-menu">
+                        <ul>
+                            <li class="header-user-menu-item"><a class="header-user-menu-link game-select-link" href="">Game 1</a></li>
+                            <li class="header-user-menu-item"><a class="header-user-menu-link game-select-link" href="">Game 1</a></li>
+                            <li class="header-user-menu-item"><a class="header-user-menu-link game-select-link" href="">Game 1</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="mobile-user-panel secondary-panel " v-bind:class="{ secondaryPanelActive: mobile_sub_menu == 'rules' }"><!--Game rules -->
+                    <div v-on:click="close_mobile_sub_menu" class="mobile-user-panel-header">
+                        <img src="images/side-bar-toggle.svg" alt="">
+                        <p>Game rules</p>
+                    </div>
+                    <div class="mobile-user-panel-menu">
+                        <div class="mobile-user-panel-text-wrapper">
+                            <p class="mobile-user-panel-text-header"> 1.  Необходимо правильно собрать QR Puzzle одного из трех уровней. </p>
+                            <p class="mobile-user-panel-text">- Выберите один из уровней,
+                                нажмите на него и получите
+                                разбросанные по полю элементы.
+                                - Наведите курсор на любой элемент,  левой кнопкой мышки захватите элемент и, удерживая
+                                его, подведите к любому другому элементу, если какая либо...
+                                - Выберите один из уровней,
+                                нажмите на него и получите
+                                разбросанные по полю элементы.
+                                - Наведите курсор на любой элемент,  левой кнопкой мышки захватите элемент и, удерживая
+                                его, подведите к любому другому элементу, если какая либо...</p>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="mobile-user-panel secondary-panel " v-bind:class="{ secondaryPanelActive: mobile_sub_menu == 'about' }"><!--About us & Contacts -->
+                    <div v-on:click="close_mobile_sub_menu" class="mobile-user-panel-header">
+                        <img src="images/side-bar-toggle.svg" alt="">
+                        <p>About us & Contacts</p>
+                    </div>
+                    <div class="mobile-user-panel-menu">
+                        <div class="mobile-user-panel-text-wrapper">
+                            <p class="mobile-user-panel-text-header"> 1.  Необходимо правильно собрать QR Puzzle одного из трех уровней. </p>
+                            <p class="mobile-user-panel-text">...</p>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="mobile-user-panel secondary-panel " v-bind:class="{ secondaryPanelActive: mobile_sub_menu == 'gameselect' }"><!--Level switch -->
+                    <div v-on:click="close_mobile_sub_menu" class="mobile-user-panel-header">
+                        <img src="images/side-bar-toggle.svg" alt="">
+                        <p>Level switch</p>
+                    </div>
+                    <div class="mobile-user-panel-menu">
+                        <div class="mobile-user-panel-levels">
+                            <div class="mobile-user-panel-level-item level1 complexity_btn radio" data-type="radio" data-puzle="100" data-level="1">
+                                <p class="mobile-user-panel-level-item-number">1</p>
+                                <p class="mobile-user-panel-level-item-text">4x4 | 16 elements <br>
+                                    10 minutes to assembly<br>
+                                    10% to balance</p>
+
+                            </div>
+                            <div class="mobile-user-panel-level-item level2">
+                                <p class="mobile-user-panel-level-item-number">2</p>
+                                <p class="mobile-user-panel-level-item-text">5x5 | 25 elements<br>
+                                    20 minutes to assembly<br>
+                                    20% to balance</p>
+
+                            </div>
+                            <div class="mobile-user-panel-level-item level3">
+                                <p class="mobile-user-panel-level-item-number">3</p>
+                                <p class="mobile-user-panel-level-item-text">6x6 | 36 elements<br>
+                                    30 minutes to assembly<br>
+                                    30% to balance</p>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="mobile-user-panel secondary-panel " v-bind:class="{ secondaryPanelActive: mobile_sub_menu == 'lang' }"><!--Language switch secondaryPanelActive-->
+                    <div v-on:click="close_mobile_sub_menu" class="mobile-user-panel-header">
+                        <img src="images/side-bar-toggle.svg" alt="">
+                        <p>Language switch</p>
+                    </div>
+                    <div class="mobile-user-panel-menu">
+                        <ul>
+                            <li class="header-user-menu-item"><a class="header-user-menu-link lang-uk-link" href="">ENGLISH</a></li>
+                            <li class="header-user-menu-item"><a class="header-user-menu-link lang-ch-link" href="">CHINESE</a></li>
+                            <li class="header-user-menu-item"><a class="header-user-menu-link lang-ru-link" href="">RUSSIAN</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="mobile-user-panel secondary-panel " v-bind:class="{ secondaryPanelActive: mobile_sub_menu == 'theme' }"><!--Theme switch secondaryPanelActive-->
+                    <div v-on:click="close_mobile_sub_menu" class="mobile-user-panel-header">
+                        <img src="images/side-bar-toggle.svg" alt="">
+                        <p>Theme switch</p>
+                    </div>
+                    <div class="mobile-user-panel-menu">
+                        <ul>
+                            <li class="header-user-menu-item"><a class="header-user-menu-link theme-link-l" href="">LIGHT</a></li>
+                            <li class="header-user-menu-item"><a class="header-user-menu-link theme-link-d" href="">DARK</a></li>
+
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="header-logo">
+                <img src="{% static 'images/logo.svg' %}" alt="">
+            </div>
+            <div class="header-mobile-right visible-768">
+                <img src="{% static 'images/header-mobile-right.svg' %}" alt="">
+                <!--logged user -->
+                <!--div class="mobile-user-panel">
+                    <div class="mobile-user-panel-info">
+                        <div class="mobile-user-panel-name">
+                            <p class="mobile-user-panel-username">Lorem ipsum.</p>
+                            <p class="mobile-user-panel-balance">767777</p>
+                        </div>
+                        <div class="mobile-user-panel-avatar">
+                            <img src="http://placehold.it/60" alt="">
+                        </div>
+                    </div>
+                    <div class="mobile-user-panel-menu">
+                        <ul>
+                             <li class="header-user-menu-item"><a class="header-user-menu-link link-games" href="">Games</a></li>
+                            <li class="header-user-menu-item"><a class="header-user-menu-link link-support" href="">Support</a></li>
+                            <li class="header-user-menu-item"><a class="header-user-menu-link link-cash" href="">Cash Flow</a></li>
+                            <li class="header-user-menu-item"><a class="header-user-menu-link link-settings" href="">Settings</a></li>
+                            <li class="header-user-menu-item"><a class="header-user-menu-link link-logout" href="">Log out</a></li>
+                        </ul>
+                    </div>
+
+                </div-->
+
+            </div>
+            <div class="header-nav not-visible-768">
+                <ul class="header-nav-wrapper">
+                    <li class="header-nav-item has-sub-menu"><span v-on:click="openHeaderSubMenu('game')">GAME</span>
+                        <div class="header-sub-menu "
+                             v-bind:class="{ subMenuActive: header_sub_menu == 'game' }"
+                             v-on:mouseleave="openHeaderSubMenu('game')"><!-- subMenuActive-->
+                            <ul class="header-sub-menu-wrapper">
+                                <li class="header-sub-menu-item"><a class="header-sub-menu-link" href="">GAME 1</a></li>
+                                <li class="header-sub-menu-item"><a class="header-sub-menu-link" href="">GAME 1</a></li>
+                                <li class="header-sub-menu-item"><a class="header-sub-menu-link" href="">GAME 1</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="header-nav-item has-sub-text"><a href="">GAME RULES</a>
+
+                    </li>
+                    <li class="header-nav-item has-sub-text"><span v-on:click="openHeaderSubText('about')">ABOUT US  & CONTACTS</span>
+                        <div class="header-nav-sub-text "
+                             v-bind:class="{ headerNavSubTextActive: header_sub_text == 'about' }"
+                             v-on:mouseleave="openHeaderSubText('about')"><!-- headerNavSubTextActive-->
+                            <h3 class="header-nav-sub-text-header header-about">About us & Contacts</h3>
+                            <p class="header-nav-sub-text-title"> 1.  Необходимо правильно собрать QR Puzzle одного из трех уровней. </p>
+                            <p class="header-nav-sub-text-info">
+                                - Выберите один из уровней, нажмите на него и получите разбросанные по полю элементы. <br>
+                                - Наведите курсор на любой элемент,  левой кнопкой мышки захватите элемент и, удерживая его, подведите к любому другому элементу, если какая либо из сторон этих элементов совпадает, то при отпускании кнопки мыши они сами соединятся друг с другом.   <br>
+                                - Методом последующего подбора элементов, при правильном варианте они все соединяются и образуют единый QR Puzzle. <br>
+                                - Для каждого уровня определено свое время на сбор - чем сложней уровень, тем больше дается времени на сбор. <br>
+                                - Если Вы правильно и вовремя собрали выбранный уровень, то появится надпись на игровом поле “YOU WON” и Вы получаете бонус  в RАTING и BALANCE, если не смогли вовремя собрать, то появится надпись “YOU LOSE”, тогда у Вас есть возможность собрать любой уровень заново, при этом вы ничего не теряете.  <br>
+                                - Имея на BALANCE любую сумму, Вы в любое время можете вывести ее на свой банковский счет, через личный кабинет, нажав кнопку SETTINGS. <br>
+                                - Каждый правильно собранный QR Puzzle, при сканировании любым устройством, несет в себе определенную информацию. <br>
+                            </p>
+                            <div class="header-nav-sub-text-buttons"><span class="btn btn-blue">DOCUMENTS</span><span class="btn btn-orange">SUPPORT</span></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="header-buttons not-visible-768">
+            <ul class="header-nav-wrapper">
+            <!--&lt;!&ndash;not-visible-1320 &ndash;&gt;                    <li class="header-nav-item-button has-sub-menu "><span><img src="images/theme-icon.svg" alt=""> DARK MODE <img src="images/settings-icon.svg" alt=""></span>-->
+            <!--<div class="header-sub-menu  button-sub-menu">-->
+            <!--<ul class="header-sub-menu-wrapper">-->
+            <!--<li class="header-sub-menu-item"><a class="header-sub-menu-link" href="">GAME 1</a></li>-->
+            <!--<li class="header-sub-menu-item"><a class="header-sub-menu-link" href="">GAME 1</a></li>-->
+            <!--<li class="header-sub-menu-item"><a class="header-sub-menu-link" href="">GAME 1</a></li>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--&lt;!&ndash;not-visible-1500 &ndash;&gt;-->
+            <!--<li class="header-nav-item-button has-sub-menu "><span><img src="images/lang-uk-icon.svg" alt=""> ENGLISH <img src="images/arrow_down.svg" alt=""></span>-->
+            <!--<div class="header-sub-menu  button-sub-menu">-->
+            <!--<form class="header-sub-menu-wrapper">-->
+            <!--<label class="header-sub-menu-item header-sub-menu-item-lang lang-uk"><input type="radio" name="l">ENGLISH</label>-->
+            <!--<label class="header-sub-menu-item header-sub-menu-item-lang lang-ch"><input type="radio" name="l">CHINESE</label>-->
+            <!--<label class="header-sub-menu-item header-sub-menu-item-lang lang-ru"><input type="radio" name="l">RUSSIAN</label>-->
+            <!--</form>-->
+            <!--</div>-->
+            <!--</li>-->
+            <!--<li class="header-nav-item-button not-visible-1024"><span><img src="images/wallet-icon.svg" alt=""> 78 150.10 QR </span></li>-->
+                {% if not request.user.is_authenticated %}
+            <li class="header-nav-item-button"><span class="btn btn-blue" v-on:click="openRegModal">LOG IN / SIGN UP</span></li>
+                <li class="header-nav-item-toggle"> <div class="header-user-toggle"><img src="{% static 'images/user-menu-icon.svg' %}" alt=""></div></li>
+                {% endif %}
+
+            </ul>
+            </div>
+            {% if request.user.is_authenticated %}
+            <div  class="header-user not-visible-768">
+                <div class="header-user-wrapper">
+                    <div class="header-user-info">
+                        <p class="header-user-info-name">{{ request.user.name }}</p>
+                        <p class="header-user-info-rating">Rating: {{ request.user.rating }}</p>
+                    </div>
+                    <div class="header-user-avatar" v-on:click="openUserMenu"><img src="http://placehold.it/50" alt=""></div>
+
+                </div>
+                <div class="header-user-menu " v-bind:class="{ headerUserMenuActive:desktop_user_menu }" v-on:mouseleave="closeUserMenu"><!-- headerUserMenuActive-->
+                    <ul class="header-user-menu-wrapper">
+                        <!--<li class="header-user-menu-item visible-1024"><a class="header-user-menu-link " href="">78 150.10 QR</a></li>-->
+                        <!--<li class="header-user-menu-item visible-1320"><a class="header-user-menu-link " href="">THEME SELECT</a></li>-->
+                        <!--<li class="header-user-menu-item visible-1500"><a class="header-user-menu-link " href="">LANG SELECT</a></li>-->
+                        <li class="header-user-menu-item has-dropdown " v-bind:class="{ dropDownActive:drop_down_menu == 'lang' }"> <!-- dropDownActive-->
+                            <span class="header-user-menu-link lang-ru-link" v-on:click="openDropDown('lang')">Language</span>
+                            <ul class="header-user-menu-dropdown ">
+                                <form class="header-sub-menu-wrapper">
+                                    <label class="header-user-menu-link lang-uk-link header-user-menu-dropdown-item"><input type="radio" name="l">ENGLISH</label>
+                                    <label class="header-user-menu-link lang-ch-link header-user-menu-dropdown-item"><input type="radio" name="l">CHINESE</label>
+                                    <label class="header-user-menu-link lang-ru-link header-user-menu-dropdown-item"><input type="radio" name="l">RUSSIAN</label>
+                                </form>
+                            </ul>
+                        </li>
+                        <li class="header-user-menu-item has-dropdown " v-bind:class="{ dropDownActive:drop_down_menu == 'theme' }"> <!-- dropDownActive-->
+                            <span class="header-user-menu-link theme-link-d" v-on:click="openDropDown('theme')">Theme</span>
+                            <ul class="header-user-menu-dropdown ">
+                                 <li class="header-user-menu-item"><a class="header-user-menu-link theme-link-l" href="">LIGHT</a></li>
+                                <li class="header-user-menu-item"><a class="header-user-menu-link theme-link-d" href="">DARK</a></li>
+                            </ul>
+                        </li>
+                        <li class="header-user-menu-item"><a class="header-user-menu-link link-support" href="">Support</a></li>
+                        <li class="header-user-menu-item"><a class="header-user-menu-link link-cash" href="">Cash Flow</a></li>
+                        <li class="header-user-menu-item"><a class="header-user-menu-link link-settings" href="">Settings</a></li>
+                        <li class="header-user-menu-item"><a class="header-user-menu-link link-logout" href="">Log out</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+    </header>
