@@ -43,6 +43,7 @@ $('.complexity_btn').on('click', function(e){
       if (response.code == 200)
       {
         var level = response.level;
+        app.current_game_id = response.game_id
         var parAmt = level * 10;
         if (typeof timeloop !== 'undefined')
           if (timeloop)

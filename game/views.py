@@ -16,9 +16,14 @@ def start(request):
     else:
         game = Game()
         print('game',game)
-        # game.level_id = level
+        game.level = level
         if request.user.is_authenticated:
-            game.user = request.user
+            game.player = request.user
         game.save()
+        print('game info', game.id)
 
-        return JsonResponse({'code': 200, 'image': game.image.url, 'game': game.id, 'level': level})
+        return JsonResponse({'code': 200, 'image': game.image.url, 'game_id': game.id, 'level': level})
+
+
+def win(request):
+    pass

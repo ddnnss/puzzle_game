@@ -41,17 +41,23 @@ class Image(models.Model):
 
 
 class Game(models.Model):
-    player = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    player = models.ForeignKey(User, blank=True, on_delete=models.CASCADE, null=True)
     # lev = models.ForeignKey(Level, on_delete=models.PROTECT, null=True, blank=True)
     # image = models.ForeignKey(Image, on_delete=models.PROTECT)
+    level = models.IntegerField(default=0)
     image = models.ImageField(blank=True, upload_to='games/')
     date = models.DateTimeField(auto_now_add=True, blank=True)
     start = models.DateTimeField(auto_now_add=True, blank=True)
-    end = models.DateTimeField(auto_now_add=True, blank=True)
-    time = models.IntegerField(default=0)
+    result = models.BooleanField(default=False)
 
     def __str__(self):
         return '{id}: {user}'.format(id=self.id, user=self.player)
+
+    def get_result(self):
+        if self.result:
+            return 'WIN'
+        else:
+            return 'LOSE'
 
     def save(self, *args, **kwargs):
         if not self.image:

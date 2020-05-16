@@ -147,7 +147,7 @@ function timeSet() {
     if(seconds < 10)
         seconds = "0"+seconds;
 
-    $('#id_timer').val(minutes + ":" + seconds);
+    $('#id_timer').text(minutes + ":" + seconds);
 
     timeloop = setTimeout(timeSet, 1000);
 }
@@ -913,10 +913,11 @@ function concide() {
       clearTimeout(timeloop)
 
     $('#puzzle-board').fadeOut(function(){
-        $('.lose').css('display', 'flex');
-        $('.lose').fadeIn();
+        document.getElementsByClassName('lose-label')[0].classList.toggle('loseLabelActive')
+
+        // $('.lose').fadeIn();
         let size = sessionStorage.getItem('puzzle_size')
-        $('#puzzle-board').before('<div id="concide_image" style="margin:auto"><img style="image-rendering: ' + image_rendering + '" "width="' + size + '" height="' + size + '" class="img_end" src="' + image_url + '"></div>')
+        $('#puzzle-board').before('<div id="concide_image" style="margin:auto"><img class="img_end" src="' + image_url + '"></div>')
     })
   }
 }

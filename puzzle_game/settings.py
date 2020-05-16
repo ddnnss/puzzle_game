@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ckeditor',
     'customuser.apps.CustomuserConfig',
-    'game'
+    'game',
+    'chat'
 ]
 
 MIDDLEWARE = [

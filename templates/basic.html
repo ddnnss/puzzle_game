@@ -8,135 +8,215 @@
 
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
-<body>
+<body style="background: #2A2E54">
 <div id="app" class="app">
-{% csrf_token %}
-{% include 'header.html' %}
+    {% csrf_token %}
+    {% include 'header.html' %}
     {% block content %}
     {% endblock %}
-{% include 'footer.html' %}
-
-
-
-
 
 </div>
+{% block js %}
 
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script src="{% static 'js/jquery.min.js' %}"></script>
-<script src="{% static 'js/app.js' %}"></script>
-<script src="{% static 'js/puzzle.js' %}"></script>
-<script>
-    var app = new Vue({
-        el: '#app',
-        data: {
-            mobile_menu : false,
-            mobile_sub_menu : '',
-            desktop_user_menu :false,
-            header_sub_text: '',
-            header_sub_menu: '',
-            side_bar_menu: true,
-            drop_down_menu: '',
-            reg_modal: false,
-            modal_login_body: true,
-            email:'',
-            name:'',
-            password1:'',
-            password2:'',
-        },
-        computed: {
 
-        },
-        methods: {
-            open_mobile_menu: function (event) {
-                if(this.mobile_menu ){
-                    this.mobile_menu = false
-                }else (
-                    this.mobile_menu = true
-                )
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/puzzle.js' %}"></script>
+    <script>
+        var app = new Vue({
+            delimiters: ['[[', ']]'],
+            el: '#app',
+            data: {
+                current_game_id:0,
+                mobile_menu : false,
+                mobile_sub_menu : '',
+                desktop_user_menu :false,
+                header_sub_text: '',
+                header_sub_menu: '',
+                side_bar_menu: true,
+                drop_down_menu: '',
+                reg_modal: false,
+                modal_login_body: true,
+                email:'',
+                name:'',
+                password1:'',
+                password2:'',
+                login_email:'',
+                login_password:'',
+                lk_tab: 'games',
+                chat_messages:[],
+                new_msg:'',
+
             },
-            open_mobile_sub_menu: function (event) {
-                this.mobile_sub_menu = event
+            watch: {
+                lk_tab: function (val) {
+                    console.log(val)
+                    if (val==='support'){
+                        this.getChats()
+                    }
+                },
+
             },
-            close_mobile_sub_menu: function (event) {
-                this.mobile_sub_menu = ''
+            computed: {
+
             },
-            openUserMenu: function () {
-                if(this.desktop_user_menu ){
+            methods: {
+                open_mobile_menu: function (event) {
+                    if(this.mobile_menu ){
+                        this.mobile_menu = false
+                    }else (
+                        this.mobile_menu = true
+                    )
+                },
+                open_mobile_sub_menu: function (event) {
+                    this.mobile_sub_menu = event
+                },
+                close_mobile_sub_menu: function (event) {
+                    this.mobile_sub_menu = ''
+                },
+                openUserMenu: function () {
+                    if(this.desktop_user_menu ){
+                        this.desktop_user_menu = false
+                    }else {
+                        this.desktop_user_menu = true
+                        this.header_sub_menu = event
+                        this.header_sub_text = ''
+                    }
+                },
+                closeUserMenu: function () {
                     this.desktop_user_menu = false
-                }else {
-                    this.desktop_user_menu = true
-                    this.header_sub_menu = event
-                    this.header_sub_text = ''
-                }
-            },
-            closeUserMenu: function () {
-                this.desktop_user_menu = false
-            },
-            openHeaderSubText:function (event) {
-                if(this.header_sub_text === event ){
-                    this.header_sub_text = ''
-                }else {
-                    this.header_sub_text = event
-                    this.header_sub_menu = ''
-                    this.desktop_user_menu = false
-                }
-            },
-            openHeaderSubMenu:function (event) {
-                if (this.header_sub_menu === event) {
-                    this.header_sub_menu = ''
-                } else {
+                },
+                openHeaderSubText:function (event) {
+                    if(this.header_sub_text === event ){
+                        this.header_sub_text = ''
+                    }else {
+                        this.header_sub_text = event
+                        this.header_sub_menu = ''
+                        this.desktop_user_menu = false
+                    }
+                },
+                openHeaderSubMenu:function (event) {
+                    if (this.header_sub_menu === event) {
+                        this.header_sub_menu = ''
+                    } else {
 
-                    this.header_sub_menu = event
-                    this.header_sub_text = ''
-                    this.desktop_user_menu = false
-                }
-            },
-            openSideBarMenu: function () {
-                console.log(this.side_bar_menu)
-                if(this.side_bar_menu ){
-                    this.side_bar_menu = false
-                }else {
-                    this.side_bar_menu = true
-                }
-            },
-            openDropDown:function (event) {
-                if (this.drop_down_menu === event) {
-                    this.drop_down_menu = ''
-                } else {
-                    this.drop_down_menu = event
-                }
-            },
-            openRegModal: function () {
-                if (this.reg_modal) {
-                    this.reg_modal = false
-                } else {
-                    this.reg_modal = true
-                }
-            },
-            sendSignUp: function () {
-                console.log(this.name,this.email,this.password1,this.password2)
+                        this.header_sub_menu = event
+                        this.header_sub_text = ''
+                        this.desktop_user_menu = false
+                    }
+                },
+                openSideBarMenu: function () {
+                    console.log(this.side_bar_menu)
+                    if(this.side_bar_menu ){
+                        this.side_bar_menu = false
+                    }else {
+                        this.side_bar_menu = true
+                    }
+                },
+                openDropDown:function (event) {
+                    if (this.drop_down_menu === event) {
+                        this.drop_down_menu = ''
+                    } else {
+                        this.drop_down_menu = event
+                    }
+                },
+                openRegModal: function () {
+                    if (this.reg_modal) {
+                        this.reg_modal = false
+                    } else {
+                        this.reg_modal = true
+                    }
+                },
+                sendSignUp: function () {
+                    console.log(this.name,this.email,this.password1,this.password2)
 
-            let body = {'email':this.email,
+                    let body = {'email':this.email,
                         'name':this.name,
                         'password1':this.password1,
                         'password2':this.password2}
 
-            fetch('{% url 'register' %}', {
-                method: 'post',
-                body: JSON.stringify(body),
-                headers: { "X-CSRFToken": '{{  csrf_token }}' },
-                credentials: 'same-origin'
-            }).then(res=>res.json())
-                .then(res => {
+                    fetch('{% url 'register' %}', {
+                        method: 'post',
+                        body: JSON.stringify(body),
+                        headers: { "X-CSRFToken": '{{  csrf_token }}' },
+                        credentials: 'same-origin'
+                    }).then(res=>res.json())
+                        .then(res => {
 
-                   console.log(res)
+                            console.log(res)
 
-                })
+                        })
+                },
+                sendLogin: function () {
+                    let body = {'email':this.login_email,
+                        'password':this.login_password}
+
+                    fetch('{% url 'login_req' %}', {
+                        method: 'post',
+                        body: JSON.stringify(body),
+                        headers: { "X-CSRFToken": '{{  csrf_token }}' },
+                        credentials: 'same-origin'
+                    }).then(res=>res.json())
+                        .then(res => {
+
+                            console.log(res)
+                            if(res['status']==='success'){
+                                window.location.reload()
+                            }
+
+                        })
+                },
+                getChats: function () {
+                    let msgDiv = document.getElementsByClassName('lk-support-messages')[0]
+                    let body = {}
+                    fetch('{% url 'get_chats' %}', {
+                        method: 'post',
+                        body: JSON.stringify(body),
+                        headers: { "X-CSRFToken": '{{  csrf_token }}' },
+                        credentials: 'same-origin'
+                    }).then(res=>res.json())
+                        .then(res => {
+
+                            console.log(res)
+                            if (res.length >0 ){
+                                this.chat_messages=[]
+                                for (x of res){
+                                    console.log(x)
+                                    this.chat_messages.push(x)
+                                }
+
+                            }
+
+                        }).then(()=> {
+                        msgDiv.scrollTo(0,(msgDiv.scrollTop+2000))
+                    })
+                },
+                newMsg: function () {
+                    if (this.new_msg ===''){
+                        return
+                    }
+                    console.log('send new msg')
+                    let body = {'text':this.new_msg}
+                    fetch('{% url 'new_msg' %}', {
+                        method: 'post',
+                        body: JSON.stringify(body),
+                        headers: { "X-CSRFToken": '{{  csrf_token }}' },
+                        credentials: 'same-origin'
+                    }).then(res=>res.json())
+                        .then(res => {
+
+                            console.log(res)
+                            this.new_msg =''
+                            this.getChats()
+
+
+                        })
+                },
             }
-        }
-    })
+        })
 
-</script>
+    </script>
+{% endblock %}
 </body>
 </html>

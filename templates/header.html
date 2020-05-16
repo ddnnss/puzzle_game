@@ -4,15 +4,17 @@
             <div class="header-mobile-left visible-768" v-on:click="open_mobile_menu">
                 <img src="{% static 'images/header-mobile-left.svg' %}" alt="">
                 <div class="mobile-user-panel" v-bind:class="{ secondaryPanelActive: mobile_menu == true }"><!--notlogged user -->
+                    {% if request.user.is_authenticated %}
                     <div class="mobile-user-panel-info">
                         <div class="mobile-user-panel-name">
-                            <p class="mobile-user-panel-username">Lorem ipsum.</p>
-                            <p class="mobile-user-panel-balance">767777</p>
+                            <p class="mobile-user-panel-username">{{ request.user.name }}</p>
+                            <p class="mobile-user-panel-balance">{{ request.user.balance }}</p>
                         </div>
                         <div class="mobile-user-panel-avatar">
-                            <img src="http://placehold.it/60" alt="">
+                            <img src="{{ request.user.get_avatar }}" alt="">
                         </div>
                     </div>
+                    {% endif %}
                     <div class="mobile-user-panel-menu">
                         <ul>
                             <li class="header-user-menu-item"><span class="header-user-menu-link arrow-link" v-on:click="open_mobile_sub_menu('choose')">Game</span></li>
@@ -23,9 +25,11 @@
                             <li class="header-user-menu-item"><span class="header-user-menu-link theme-link-l" v-on:click="open_mobile_sub_menu('theme')">Switch theme</span></li>
                         </ul>
                     </div>
+                {% if not request.user.is_authenticated %}
                     <div class="mobile-user-panel-button">
-                        <span class="btn btn-blue btn-center">LOG IN / SIGN UP</span>
+                        <span  v-on:click="openRegModal" class="btn btn-blue btn-center">LOG IN / SIGN UP</span>
                     </div>
+                {% endif %}
                 </div>
                 <div class="mobile-user-panel secondary-panel " v-bind:class="{ secondaryPanelActive: mobile_sub_menu == 'choose' }"><!--Game switch secondaryPanelActive-->
                     <div v-on:click="close_mobile_sub_menu" class="mobile-user-panel-header">
@@ -43,7 +47,7 @@
                 </div>
                 <div class="mobile-user-panel secondary-panel " v-bind:class="{ secondaryPanelActive: mobile_sub_menu == 'rules' }"><!--Game rules -->
                     <div v-on:click="close_mobile_sub_menu" class="mobile-user-panel-header">
-                        <img src="images/side-bar-toggle.svg" alt="">
+                        <img src="{% static 'images/side-bar-toggle.svg' %}" alt="">
                         <p>Game rules</p>
                     </div>
                     <div class="mobile-user-panel-menu">
@@ -66,7 +70,7 @@
                 </div>
                 <div class="mobile-user-panel secondary-panel " v-bind:class="{ secondaryPanelActive: mobile_sub_menu == 'about' }"><!--About us & Contacts -->
                     <div v-on:click="close_mobile_sub_menu" class="mobile-user-panel-header">
-                        <img src="images/side-bar-toggle.svg" alt="">
+                        <img src="{% static 'images/side-bar-toggle.svg' %}" alt="">
                         <p>About us & Contacts</p>
                     </div>
                     <div class="mobile-user-panel-menu">
@@ -80,12 +84,12 @@
                 </div>
                 <div class="mobile-user-panel secondary-panel " v-bind:class="{ secondaryPanelActive: mobile_sub_menu == 'gameselect' }"><!--Level switch -->
                     <div v-on:click="close_mobile_sub_menu" class="mobile-user-panel-header">
-                        <img src="images/side-bar-toggle.svg" alt="">
+                        <img src="{% static 'images/side-bar-toggle.svg' %}" alt="">
                         <p>Level switch</p>
                     </div>
                     <div class="mobile-user-panel-menu">
                         <div class="mobile-user-panel-levels">
-                            <div class="mobile-user-panel-level-item level1 complexity_btn radio" data-type="radio" data-puzle="100" data-level="1">
+                            <div class="mobile-user-panel-level-item level1 complexity_btn radio" data-type="radio" data-puzle="150" data-level="1">
                                 <p class="mobile-user-panel-level-item-number">1</p>
                                 <p class="mobile-user-panel-level-item-text">4x4 | 16 elements <br>
                                     10 minutes to assembly<br>
@@ -114,7 +118,7 @@
                 </div>
                 <div class="mobile-user-panel secondary-panel " v-bind:class="{ secondaryPanelActive: mobile_sub_menu == 'lang' }"><!--Language switch secondaryPanelActive-->
                     <div v-on:click="close_mobile_sub_menu" class="mobile-user-panel-header">
-                        <img src="images/side-bar-toggle.svg" alt="">
+                        <img src="{% static 'images/side-bar-toggle.svg' %}" alt="">
                         <p>Language switch</p>
                     </div>
                     <div class="mobile-user-panel-menu">
@@ -128,7 +132,7 @@
                 </div>
                 <div class="mobile-user-panel secondary-panel " v-bind:class="{ secondaryPanelActive: mobile_sub_menu == 'theme' }"><!--Theme switch secondaryPanelActive-->
                     <div v-on:click="close_mobile_sub_menu" class="mobile-user-panel-header">
-                        <img src="images/side-bar-toggle.svg" alt="">
+                        <img src="{% static 'images/side-bar-toggle.svg' %}" alt="">
                         <p>Theme switch</p>
                     </div>
                     <div class="mobile-user-panel-menu">
@@ -250,6 +254,7 @@
                         <!--<li class="header-user-menu-item visible-1024"><a class="header-user-menu-link " href="">78 150.10 QR</a></li>-->
                         <!--<li class="header-user-menu-item visible-1320"><a class="header-user-menu-link " href="">THEME SELECT</a></li>-->
                         <!--<li class="header-user-menu-item visible-1500"><a class="header-user-menu-link " href="">LANG SELECT</a></li>-->
+                         <li class="header-user-menu-item"><a class="header-user-menu-link link-support" href="{% url 'lk' %}">Games</a></li>
                         <li class="header-user-menu-item has-dropdown " v-bind:class="{ dropDownActive:drop_down_menu == 'lang' }"> <!-- dropDownActive-->
                             <span class="header-user-menu-link lang-ru-link" v-on:click="openDropDown('lang')">Language</span>
                             <ul class="header-user-menu-dropdown ">
@@ -270,7 +275,7 @@
                         <li class="header-user-menu-item"><a class="header-user-menu-link link-support" href="">Support</a></li>
                         <li class="header-user-menu-item"><a class="header-user-menu-link link-cash" href="">Cash Flow</a></li>
                         <li class="header-user-menu-item"><a class="header-user-menu-link link-settings" href="">Settings</a></li>
-                        <li class="header-user-menu-item"><a class="header-user-menu-link link-logout" href="">Log out</a></li>
+                        <li class="header-user-menu-item"><a class="header-user-menu-link link-logout" href="{%  url 'logout_page' %}">Log out</a></li>
 
                     </ul>
                 </div>

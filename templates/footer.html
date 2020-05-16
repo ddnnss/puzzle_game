@@ -1,8 +1,28 @@
 {% load static%}
  <footer class="footer">
         <div class="footer-wrapper">
-            <div class="footer-timer"><p>00:30</p></div>
-            <div class="footer-button"><span class="btn btn-orange">CONCIDE</span></div>
+{#            <div class="time_block share dropdown message_block" class="" data-type="dropdown">#}
+{##}
+{#                    <div class="game_won_block">#}
+{#                        <div class="message-box message-top shadowed">#}
+{#                            <p>you won</p>#}
+{#                            <small class="rate">+40% to your balance</small>#}
+{#                        </div>#}
+{#                        <form name="MyForm">#}
+{#                            <input id="id_timer" name="stopwatch" value="00:00" class="time_game" disabled>#}
+{#                        </form>#}
+{#                    </div>#}
+{#                    <div class=" message_block hare">#}
+{#                        <div class="lose">You lose!</div>#}
+{#                        <button id="id_concide" onclick="concide()" class="concide concide_btn button-brd" disabled>concide</button>#}
+{#                    </div>#}
+{#                </div>#}
+            <div  class="footer-timer">
+                 <div class="result-label win-label"><p>You Win!</p></div>
+                <p id="id_timer">00:30</p></div>
+            <div class="footer-button">
+                <div class="result-label lose-label"><p>You LOSE!</p></div>
+                <span id="id_concide" onclick="concide()" class="btn btn-orange">CONCIDE</span></div>
         </div>
     </footer>
     <div  class="modal " v-bind:class="{ modalActive:reg_modal }">
@@ -19,14 +39,14 @@
                         <p  v-on:click="modal_login_body=false">SIGN UP</p>
                     </div>
                     <div class="form-row">
-                        <label>Username:</label>
-                        <input type="text">
+                        <label>Email:</label>
+                        <input type="text" v-model="login_email">
                     </div>
                     <div class="form-row mb-40">
                         <label>Password:</label>
-                        <input type="password">
+                        <input type="password" v-model="login_password">
                     </div>
-                    <span class="btn btn-blue btn-center">LOG IN</span>
+                    <span @click="sendLogin" class="btn btn-blue btn-center">LOG IN</span>
 
                 </div>
                 </div>
