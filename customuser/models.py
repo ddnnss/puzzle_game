@@ -47,7 +47,7 @@ class User(AbstractUser):
     avatar = models.ImageField('Аватар', upload_to='user/avatar', blank=True, null=True)
     balance = models.IntegerField('Баланс', default=0)
     rating = models.IntegerField('Рейтинг', default=0)
-
+    last_image = models.IntegerField(default=0)
     profile_ok = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'

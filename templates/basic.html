@@ -28,6 +28,7 @@
             delimiters: ['[[', ']]'],
             el: '#app',
             data: {
+                game_type:1,
                 current_game_id:0,
                 mobile_menu : false,
                 mobile_sub_menu : '',
@@ -168,7 +169,7 @@
                         })
                 },
                 getChats: function () {
-                    let msgDiv = document.getElementsByClassName('lk-support-messages')[0]
+
                     let body = {}
                     fetch('{% url 'get_chats' %}', {
                         method: 'post',
@@ -189,7 +190,10 @@
                             }
 
                         }).then(()=> {
-                        msgDiv.scrollTo(0,(msgDiv.scrollTop+2000))
+                            let msgDiv = document.getElementsByClassName('lk-support-messages')[0]
+                            msgDiv.scrollTo(0,(msgDiv.scrollTop+2000))
+
+
                     })
                 },
                 newMsg: function () {

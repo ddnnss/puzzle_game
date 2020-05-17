@@ -1,3 +1,5 @@
+import json
+
 from django.http import JsonResponse
 from django.shortcuts import render
 from .models import Game
@@ -14,16 +16,21 @@ def start(request):
     except:
         return JsonResponse({'code': 400, 'error': 'Invalid puzzle_length'})
     else:
-        game = Game()
+        if request.user.is_authenticated:
+            game = Game(player=request.user, game_type=int(request.POST.get('game_type')))
+        else:
+            game = Game(game_type=int(request.POST.get('game_type')))
         print('game',game)
         game.level = level
-        if request.user.is_authenticated:
-            game.player = request.user
         game.save()
         print('game info', game.id)
 
         return JsonResponse({'code': 200, 'image': game.image.url, 'game_id': game.id, 'level': level})
 
-
 def win(request):
-    pass
+    request_unicode = request.body.decode('utf-8')
+    request_body = json.loads(request_unicode)
+    game = Game.objects.get(id=request_body['game_id'])
+    game.result = True
+    game.save()
+    return JsonResponse({'result': 'success'})

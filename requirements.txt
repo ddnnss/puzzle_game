@@ -3,3 +3,4 @@ pillow
 pytils
 segno
 faker
+django-random-queryset

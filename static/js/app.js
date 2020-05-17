@@ -17,6 +17,7 @@ function init() {
 
 $('.complexity_btn').on('click', function(e){
   app.open_mobile_menu()
+  document.getElementsByClassName('win-label')[0].classList.remove('winLabelActive')
   e.preventDefault()
 
   $('.puzzle-group').remove() // for bug sometimes game not ended
@@ -37,7 +38,7 @@ $('.complexity_btn').on('click', function(e){
     method: "POST",
     url: "/game/start/",
     dataType: "json",
-    data: {'puzzle_length': lengthPuzle},
+    data: {'puzzle_length': lengthPuzle,'game_type':app.game_type},
     headers: { 'X-CSRFToken':document.getElementsByName('csrfmiddlewaretoken')[0].value },
     success: function(response) {
       if (response.code == 200)
@@ -51,6 +52,7 @@ $('.complexity_btn').on('click', function(e){
 
         sessionStorage.setItem('level', level);
         image_url = response.image
+        console.log(image_url)
 
         var scale = (screen.height / 1080).toFixed(1)
           console.log('scale',scale)

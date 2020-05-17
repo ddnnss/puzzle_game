@@ -38,9 +38,9 @@
                     </div>
                     <div class="mobile-user-panel-menu">
                         <ul>
-                            <li class="header-user-menu-item"><a class="header-user-menu-link game-select-link" href="">Game 1</a></li>
-                            <li class="header-user-menu-item"><a class="header-user-menu-link game-select-link" href="">Game 1</a></li>
-                            <li class="header-user-menu-item"><a class="header-user-menu-link game-select-link" href="">Game 1</a></li>
+                            <li class="header-user-menu-item"><span class="header-user-menu-link game-select-link" @click="game_type = 1">Game 1</span></li>
+                            <li class="header-user-menu-item"><span class="header-user-menu-link game-select-link" @click="game_type = 2">Game 2</span></li>
+                            <li class="header-user-menu-item"><span class="header-user-menu-link game-select-link" >Game 3</span></li>
                         </ul>
                     </div>
 
@@ -181,9 +181,10 @@
                              v-bind:class="{ subMenuActive: header_sub_menu == 'game' }"
                              v-on:mouseleave="openHeaderSubMenu('game')"><!-- subMenuActive-->
                             <ul class="header-sub-menu-wrapper">
-                                <li class="header-sub-menu-item"><a class="header-sub-menu-link" href="">GAME 1</a></li>
-                                <li class="header-sub-menu-item"><a class="header-sub-menu-link" href="">GAME 1</a></li>
-                                <li class="header-sub-menu-item"><a class="header-sub-menu-link" href="">GAME 1</a></li>
+
+                                <li class="header-sub-menu-item"><span class="header-sub-menu-link" @click="game_type = 1">GAME 1</span></li>
+                                <li class="header-sub-menu-item"><span class="header-sub-menu-link" @click="game_type = 2">GAME 2</span></li>
+                                <li class="header-sub-menu-item"><span class="header-sub-menu-link" @click="game_type = 3">GAME 3</span></li>
                             </ul>
                         </div>
                     </li>

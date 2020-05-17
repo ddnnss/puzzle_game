@@ -325,8 +325,8 @@ var jQuery = window.jQuery || require('jquery');
               pageX =  touch.pageX;
               pageY = touch.pageY;
             }
-   console.log('pageX=',pageX)
-        console.log('pageY=',pageY)
+  // console.log('pageX=',pageX)
+   //     console.log('pageY=',pageY)
       if (event.stopPropagation)
         event.stopPropagation();
       event.cancelBubble = true;
@@ -425,8 +425,23 @@ var jQuery = window.jQuery || require('jquery');
           $("#id_concide").attr("disabled", true)
           sessionStorage.setItem('is_win', 1); //set is_win to true if player win
           let level = sessionStorage.getItem('level');
-          $('.game_won_block > .message-box > .rate').text('+' + (level * 10) + '% to your balance')
-          $('.game_won_block > .message-box').css({'visibility':'visible', 'display': 'flex',  'opacity': '1'})
+          console.log('win')
+          //$('.game_won_block > .message-box > .rate').text('+' + (level * 10) + '% to your balance')
+
+          let body = {'game_id':app.current_game_id}
+                    fetch('/game/win/', {
+                        method: 'post',
+                        body: JSON.stringify(body),
+                        headers: { "X-CSRFToken": document.getElementsByName('csrfmiddlewaretoken')[0].value  },
+                        credentials: 'same-origin'
+                    }).then(res=>res.json())
+                        .then(res => {
+
+                            console.log(res)
+                            document.getElementsByClassName('win-label')[0].classList.add('winLabelActive')
+
+
+                        })
 
         }
     }
