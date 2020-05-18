@@ -42,12 +42,15 @@ class User(AbstractUser):
     username = None
     first_name = None
     last_name = None
-    email = models.EmailField('Эл. почта', unique=True)
-    name = models.CharField('ФИО', max_length=50, blank=True, null=True)
+    email = models.EmailField('Эл. почта', blank=False , null=True, unique=True)
+    nickname = models.CharField('Ник', max_length=50, blank=False, null=True)
     avatar = models.ImageField('Аватар', upload_to='user/avatar', blank=True, null=True)
     balance = models.IntegerField('Баланс', default=0)
     rating = models.IntegerField('Рейтинг', default=0)
+    age = models.IntegerField('Возраст', default=0)
     last_image = models.IntegerField(default=0)
+    region = models.CharField('Регион', max_length=50, blank=True, null=True)
+    study = models.CharField('Образование', max_length=50, blank=True, null=True)
     profile_ok = models.BooleanField(default=False)
 
     USERNAME_FIELD = 'email'

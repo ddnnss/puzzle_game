@@ -2,7 +2,7 @@
 <header class="header">
         <div class="header-wrapper">
             <div class="header-mobile-left visible-768" v-on:click="open_mobile_menu">
-                <img src="{% static 'images/header-mobile-left.svg' %}" alt="">
+                <img :src="[[main_logo]]" alt="">
                 <div class="mobile-user-panel" v-bind:class="{ secondaryPanelActive: mobile_menu == true }"><!--notlogged user -->
                     {% if request.user.is_authenticated %}
                     <div class="mobile-user-panel-info">
@@ -146,7 +146,10 @@
                 </div>
             </div>
             <div class="header-logo">
-                <img src="{% static 'images/logo.svg' %}" alt="">
+                <a href="{% url 'index' %}">
+                    <img :src="[[main_logo]]" alt="">
+                </a>
+
             </div>
             <div class="header-mobile-right visible-768">
                 <img src="{% static 'images/header-mobile-right.svg' %}" alt="">
@@ -182,14 +185,29 @@
                              v-on:mouseleave="openHeaderSubMenu('game')"><!-- subMenuActive-->
                             <ul class="header-sub-menu-wrapper">
 
-                                <li class="header-sub-menu-item"><span class="header-sub-menu-link" @click="game_type = 1">GAME 1</span></li>
-                                <li class="header-sub-menu-item"><span class="header-sub-menu-link" @click="game_type = 2">GAME 2</span></li>
-                                <li class="header-sub-menu-item"><span class="header-sub-menu-link" @click="game_type = 3">GAME 3</span></li>
+                                <li class="header-sub-menu-item"><span class="header-sub-menu-link" @click="game_type = 2">QR Puzzle</span></li>
+                                <li class="header-sub-menu-item"><span class="header-sub-menu-link" @click="game_type = 1">QArt</span></li>
+{#                                <li class="header-sub-menu-item"><span class="header-sub-menu-link" @click="game_type = 3">GAME 3</span></li>#}
                             </ul>
                         </div>
                     </li>
-                    <li class="header-nav-item has-sub-text"><a href="">GAME RULES</a>
-
+                    <li class="header-nav-item has-sub-text"><span v-on:click="openHeaderSubText('rules')">GAME RULES</span>
+                        <div class="header-nav-sub-text "
+                             v-bind:class="{ headerNavSubTextActive: header_sub_text == 'rules' }"
+                             v-on:mouseleave="openHeaderSubText('rules')"><!-- headerNavSubTextActive-->
+                            <h3 class="header-nav-sub-text-header header-about">Game Rules</h3>
+                            <p class="header-nav-sub-text-title"> 1.  Необходимо правильно собрать QR Puzzle одного из трех уровней. </p>
+                            <p class="header-nav-sub-text-info">
+                                - Выберите один из уровней, нажмите на него и получите разбросанные по полю элементы. <br>
+                                - Наведите курсор на любой элемент,  левой кнопкой мышки захватите элемент и, удерживая его, подведите к любому другому элементу, если какая либо из сторон этих элементов совпадает, то при отпускании кнопки мыши они сами соединятся друг с другом.   <br>
+                                - Методом последующего подбора элементов, при правильном варианте они все соединяются и образуют единый QR Puzzle. <br>
+                                - Для каждого уровня определено свое время на сбор - чем сложней уровень, тем больше дается времени на сбор. <br>
+                                - Если Вы правильно и вовремя собрали выбранный уровень, то появится надпись на игровом поле “YOU WON” и Вы получаете бонус  в RАTING и BALANCE, если не смогли вовремя собрать, то появится надпись “YOU LOSE”, тогда у Вас есть возможность собрать любой уровень заново, при этом вы ничего не теряете.  <br>
+                                - Имея на BALANCE любую сумму, Вы в любое время можете вывести ее на свой банковский счет, через личный кабинет, нажав кнопку SETTINGS. <br>
+                                - Каждый правильно собранный QR Puzzle, при сканировании любым устройством, несет в себе определенную информацию. <br>
+                            </p>
+                            <div class="header-nav-sub-text-buttons"><span class="btn btn-blue">DOCUMENTS</span><span class="btn btn-orange">SUPPORT</span></div>
+                        </div>
                     </li>
                     <li class="header-nav-item has-sub-text"><span v-on:click="openHeaderSubText('about')">ABOUT US  & CONTACTS</span>
                         <div class="header-nav-sub-text "
@@ -244,7 +262,7 @@
             <div  class="header-user not-visible-768">
                 <div class="header-user-wrapper">
                     <div class="header-user-info">
-                        <p class="header-user-info-name">{{ request.user.name }}</p>
+                        <p class="header-user-info-name">{{ request.user.nickname }}</p>
                         <p class="header-user-info-rating">Rating: {{ request.user.rating }}</p>
                     </div>
                     <div class="header-user-avatar" v-on:click="openUserMenu"><img src="http://placehold.it/50" alt=""></div>

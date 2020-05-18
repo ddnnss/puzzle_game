@@ -87,7 +87,7 @@ def get_chats(request):
             all_messages.append(
                 {'own_message': True if msg.isUserMessage else False,
                  'text': msg.message,
-                 'from': msg.chat.user.name if msg.isUserMessage else 'SUPPORT',
+                 'from': msg.chat.user.nickname if msg.isUserMessage else 'SUPPORT',
                  'date': msg.created.strftime("%d.%m.%Y,%H:%M:%S")}
             )
             msg.isRead = True

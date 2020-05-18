@@ -4,9 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>title</title>
+    <title>QR Puzzle</title>
 
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <style>
+        .btnDisabled{
+            opacity: 0.5;
+            pointer-events: none;
+            cursor: not-allowed;
+        }
+    </style>
 </head>
 <body style="background: #2A2E54">
 <div id="app" class="app">
@@ -28,7 +35,11 @@
             delimiters: ['[[', ']]'],
             el: '#app',
             data: {
-                game_type:1,
+
+                main_logo: '{% static 'images/logo.svg' %}',
+                result_image_modal:false,
+                result_image:'',
+                game_type:2,
                 current_game_id:0,
                 mobile_menu : false,
                 mobile_sub_menu : '',
@@ -40,7 +51,8 @@
                 reg_modal: false,
                 modal_login_body: true,
                 email:'',
-                name:'',
+                nickname:'',
+                is_login_agree:'',
                 password1:'',
                 password2:'',
                 login_email:'',
@@ -48,6 +60,7 @@
                 lk_tab: 'games',
                 chat_messages:[],
                 new_msg:'',
+                reg_error:''
 
             },
             watch: {
@@ -57,6 +70,19 @@
                         this.getChats()
                     }
                 },
+                game_type:function (val) {
+                    console.log(val)
+                    concide()
+                    if (val === 2){
+                        this.main_logo = '{% static 'images/logo.svg' %}'
+                        document.title = 'QR Puzzle'
+                    }
+                    if (val === 1){
+                        this.main_logo = '{% static 'images/logo2.png' %}'
+                        document.title = 'QArt'
+                    }
+
+                }
 
             },
             computed: {
@@ -131,9 +157,10 @@
                 },
                 sendSignUp: function () {
                     console.log(this.name,this.email,this.password1,this.password2)
-
-                    let body = {'email':this.email,
-                        'name':this.name,
+                    this.reg_error=''
+                    let body = {
+                        'email':this.email,
+                        'nickname':this.nickname,
                         'password1':this.password1,
                         'password2':this.password2}
 
@@ -146,7 +173,17 @@
                         .then(res => {
 
                             console.log(res)
+                            if(res['status']==='success'){
+                                window.location.reload()
+                            }else{
+                                if(res['errors']['email']){
+                             this.reg_error = this.reg_error + res['errors']['email'] + ' '
+                            }
+                            if(res['errors']['password2']){
+                                 this.reg_error = this.reg_error + res['errors']['password2'] + ' '
+                            }
 
+                            }
                         })
                 },
                 sendLogin: function () {
@@ -186,12 +223,12 @@
                                     console.log(x)
                                     this.chat_messages.push(x)
                                 }
-
+                                let msgDiv = document.getElementsByClassName('lk-support-messages')[0]
+                            msgDiv.scrollTo(0,(msgDiv.scrollTop+2000))
                             }
 
                         }).then(()=> {
-                            let msgDiv = document.getElementsByClassName('lk-support-messages')[0]
-                            msgDiv.scrollTo(0,(msgDiv.scrollTop+2000))
+
 
 
                     })

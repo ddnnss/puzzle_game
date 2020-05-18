@@ -18,6 +18,7 @@ function init() {
 $('.complexity_btn').on('click', function(e){
   app.open_mobile_menu()
   document.getElementsByClassName('win-label')[0].classList.remove('winLabelActive')
+  document.getElementsByClassName('lose-label')[0].classList.remove('loseLabelActive')
   e.preventDefault()
 
   $('.puzzle-group').remove() // for bug sometimes game not ended
@@ -45,7 +46,7 @@ $('.complexity_btn').on('click', function(e){
       {
         var level = response.level;
         app.current_game_id = response.game_id
-        var parAmt = level * 10;
+        var parAmt = level * 3;
         if (typeof timeloop !== 'undefined')
           if (timeloop)
             clearTimeout(timeloop)

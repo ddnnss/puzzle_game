@@ -156,7 +156,7 @@ var jQuery = window.jQuery || require('jquery');
 
 (function ($) {
   $.fn.puzzle = function (param) {
-
+    console.log(this)
     var $this = $(this[0]);
 
     var puzzles = {};
@@ -180,18 +180,22 @@ var jQuery = window.jQuery || require('jquery');
       var this_width = $('#game').width();
       var this_height = $('#game').height();
 
+      console.log('this_offset',this_offset)
+      console.log('this_width',this_width)
+      console.log('this_height',this_height)
 
       if (!this_height || !this_width) {
         var wnd = $(window);
         this_width = wnd.width();
-        this_height = wnd.height();
+        this_height = wnd.height()/3;
+        console.log('this_height_wnd',this_height)
       }
 
       for (var i = 0; i < puzzle_quantity.segments; i++) {
         var puzzle = createPuzzle(image, i + 1, param.size*param.scale, param.scale); // needs to multiply param.size by param.scale
 
         puzzle.puzzleOffset({
-          left: randomInteger(this_offset.left, this_offset.left + 0.5*this_width - param.size),
+          left: randomInteger(this_offset.left + 270, this_offset.left + 0.5 *this_width - param.size),
           top: randomInteger(this_offset.top, this_offset.top + 0.5*this_height - param.size)
         });
 
@@ -202,7 +206,7 @@ var jQuery = window.jQuery || require('jquery');
         $this.append(puzzle);
 
       }
-
+      // подготовка блоков к старту
       console.log('Puzzle quantity ' + i);
       $('#puzzle-board').css('display', 'block') // for showing board after concide
       $('.game_won_block > .message-box').css({'visibility':'hidden', 'display': 'none'})
@@ -926,14 +930,19 @@ function concide() {
     $('.img_end').remove()
     if (timeloop)
       clearTimeout(timeloop)
+    document.getElementsByClassName('lose-label')[0].classList.toggle('loseLabelActive')
+    app.result_image_modal = true
+    app.result_image = image_url
 
-    $('#puzzle-board').fadeOut(function(){
-        document.getElementsByClassName('lose-label')[0].classList.toggle('loseLabelActive')
-
-        // $('.lose').fadeIn();
-        let size = sessionStorage.getItem('puzzle_size')
-        $('#puzzle-board').before('<div id="concide_image" style="margin:auto"><img class="img_end" src="' + image_url + '"></div>')
-    })
+   // $('#result_img').html('<div id="concide_image" style="margin:auto"><img class="img_end" src="' + image_url + '"></div>')
+   // document.getElementById('puzzle-board').style.display='none'
+    // $('#puzzle-board').fadeOut(function(){
+    //     document.getElementsByClassName('lose-label')[0].classList.toggle('loseLabelActive')
+    //
+    //     // $('.lose').fadeIn();
+    //     let size = sessionStorage.getItem('puzzle_size')
+    //     // $('#result_img').html('<div id="concide_image" style="margin:auto"><img class="img_end" src="' + image_url + '"></div>')
+    // })
   }
 }
 

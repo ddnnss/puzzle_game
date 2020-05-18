@@ -1,36 +1,36 @@
 {% load static%}
- <footer class="footer">
-        <div class="footer-wrapper">
-{#            <div class="time_block share dropdown message_block" class="" data-type="dropdown">#}
-{##}
-{#                    <div class="game_won_block">#}
-{#                        <div class="message-box message-top shadowed">#}
-{#                            <p>you won</p>#}
-{#                            <small class="rate">+40% to your balance</small>#}
-{#                        </div>#}
-{#                        <form name="MyForm">#}
-{#                            <input id="id_timer" name="stopwatch" value="00:00" class="time_game" disabled>#}
-{#                        </form>#}
-{#                    </div>#}
-{#                    <div class=" message_block hare">#}
-{#                        <div class="lose">You lose!</div>#}
-{#                        <button id="id_concide" onclick="concide()" class="concide concide_btn button-brd" disabled>concide</button>#}
-{#                    </div>#}
-{#                </div>#}
-            <div  class="footer-timer">
-                 <div class="result-label win-label"><p>You Win!</p></div>
-                <p id="id_timer">00:30</p></div>
-            <div class="footer-button">
-                <div class="result-label lose-label"><p>You LOSE!</p></div>
-                <span id="id_concide" onclick="concide()" class="btn btn-orange">CONCIDE</span></div>
-        </div>
-    </footer>
-    <div  class="modal " v-bind:class="{ modalActive:reg_modal }">
-        <div class="modal-dialog" >
-            <div class="modal-content">
-                <div class="close"  v-on:click="openRegModal"><img src="{% static 'images/close-btn.svg' %}" alt=""></div>
-                <div v-if="modal_login_body" >
-                     <div class="modal-header">
+<footer class="footer">
+    <div class="footer-wrapper">
+        {#            <div class="time_block share dropdown message_block" class="" data-type="dropdown">#}
+        {##}
+        {#                    <div class="game_won_block">#}
+        {#                        <div class="message-box message-top shadowed">#}
+        {#                            <p>you won</p>#}
+        {#                            <small class="rate">+40% to your balance</small>#}
+        {#                        </div>#}
+        {#                        <form name="MyForm">#}
+        {#                            <input id="id_timer" name="stopwatch" value="00:00" class="time_game" disabled>#}
+        {#                        </form>#}
+        {#                    </div>#}
+        {#                    <div class=" message_block hare">#}
+        {#                        <div class="lose">You lose!</div>#}
+        {#                        <button id="id_concide" onclick="concide()" class="concide concide_btn button-brd" disabled>concide</button>#}
+        {#                    </div>#}
+        {#                </div>#}
+        <div  class="footer-timer">
+            <div class="result-label win-label"><p>You Win!</p></div>
+            <p id="id_timer">00:30</p></div>
+        <div class="footer-button">
+            <div class="result-label lose-label"><p>You LOSE!</p></div>
+            <span id="id_concide" onclick="concide()" class="btn btn-orange">CONCIDE</span></div>
+    </div>
+</footer>
+<div  class="modal " v-bind:class="{ modalActive:reg_modal }">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="close"  v-on:click="openRegModal"><img src="{% static 'images/close-btn.svg' %}" alt=""></div>
+            <div v-if="modal_login_body" >
+                <div class="modal-header">
                     <p>LOG IN</p>
                 </div>
                 <div class="modal-body">
@@ -46,12 +46,12 @@
                         <label>Password:</label>
                         <input type="password" v-model="login_password">
                     </div>
-                    <span @click="sendLogin" class="btn btn-blue btn-center">LOG IN</span>
+                    <span @click="sendLogin" class="btn btn-blue btn-center" :class="{btnDisabled : !login_email || !login_password}">LOG IN</span>
 
                 </div>
-                </div>
-                 <div v-else>
-                     <div class="modal-header">
+            </div>
+            <div v-else>
+                <div class="modal-header">
                     <p>SIGN UP</p>
                 </div>
                 <div class="modal-body">
@@ -64,21 +64,50 @@
                         <input type="text" v-model="email">
                     </div>
                     <div class="form-row">
-                        <label>Username:</label>
-                        <input type="text" v-model="name">
+                        <label>Nickname:</label>
+                        <input type="text" v-model="nickname">
                     </div>
                     <div class="form-row ">
                         <label>Password:</label>
                         <input type="password" v-model="password1">
                     </div>
-                    <div class="form-row mb-40">
+                    <div class="form-row ">
                         <label>Password:</label>
                         <input type="password" v-model="password2">
                     </div>
-                    <span class="btn btn-blue btn-center" v-on:click="sendSignUp">SIGN UP</span>
+                    <div class="form-row mb-40">
+                        <label>Agree?:</label>
+                        <input type="checkbox" v-model="is_login_agree">
+                    </div>
 
-                </div>
+                    <span class="btn btn-blue btn-center"
+                          @click="sendSignUp"
+                          :class="{btnDisabled : !email || !nickname ||  !password1 || !password2|| !is_login_agree}"
+
+                    >SIGN UP</span>
+                    <div class="">[[reg_error]]</div>
+
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<div  class="modal " v-bind:class="{ modalActive:result_image_modal }">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="close"  v-on:click="result_image_modal = false"><img src="{% static 'images/close-btn.svg' %}" alt=""></div>
+
+                <div class="modal-header">
+                    <p>YOU LOSE</p>
+                </div>
+                <div class="modal-body">
+                    <img :src=[[result_image]] alt="">
+
+
+                </div>
+
+
+        </div>
+    </div>
+</div>
