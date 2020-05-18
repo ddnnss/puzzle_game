@@ -469,6 +469,7 @@ svg {
   opacity: 1;
   pointer-events: all;
   top: 60px;
+  z-index: 100;
 }
 
 .header-sub-menu.button-sub-menu {
@@ -553,6 +554,7 @@ svg {
   opacity: 1;
   pointer-events: all;
   top: 80px;
+  z-index: 100;
 }
 
 .header-user-menu::before {
@@ -592,6 +594,7 @@ svg {
   max-height: 500px;
   overflow: unset;
   background: #383E6C;
+  z-index: 100;
 }
 
 .header-user-menu-link {
@@ -698,6 +701,7 @@ svg {
   opacity: 1;
   pointer-events: all;
   top: 75px;
+  z-index: 100;
 }
 
 .header-nav-sub-text::before {
@@ -949,6 +953,10 @@ svg {
   height: 100%;
 }
 
+.lk-support.settings-tab {
+  padding: 30px;
+}
+
 .lk-support-wrapper {
   padding: 40px;
 }
@@ -1065,6 +1073,12 @@ svg {
   line-height: 70px;
   text-align: center;
   border-bottom: 1px solid rgba(42, 46, 84, 0.75);
+}
+
+.profile-edit-wrapper {
+  max-width: 400px;
+  padding: 30px;
+  background: #2A2E54;
 }
 
 .game-area {
@@ -1383,7 +1397,8 @@ svg {
   flex-grow: 1;
 }
 
-.form-row input {
+.form-row input[type='text'],
+.form-row input[type='password'] {
   background: #2D325A;
   border: 1px solid #2B3053;
   -webkit-box-sizing: border-box;
@@ -1396,7 +1411,8 @@ svg {
   color: #7B7E9E;
 }
 
-.form-row input:focus {
+.form-row input[type='text']:focus,
+.form-row input[type='password']:focus {
   outline: none;
 }
 

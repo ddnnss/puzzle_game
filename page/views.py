@@ -5,5 +5,9 @@ def index(request):
     return render(request, 'page/index.html', locals())
 
 def lk(request):
-    allGames = Game.objects.filter(player=request.user)
-    return render(request, 'page/lk.html', locals())
+    if request.user.is_authenticated:
+        allGames = Game.objects.filter(player=request.user)
+        user = request.user
+        return render(request, 'page/lk.html', locals())
+    else:
+        return render(request, 'page/index.html', locals())

@@ -2,19 +2,19 @@
 {% load static %}
 
 {% block content %}
-   <div class="lk-area">
-    <div class="lk-area-wrapper">
-        <div class="lk-tab-links">
-            <ul class="lk-tab-links-wrapper">
-                <li class="lk-tab-link tab-link-games " :class="{ lkTabLinkActive:lk_tab == 'games' }" @click="lk_tab = 'games' ">Games</li>
-                <li class="lk-tab-link tab-link-support " @click="lk_tab = 'support' ">Support</li>
-                <li class="lk-tab-link tab-link-cash">Cash Flow</li>
-                <li class="lk-tab-link tab-link-settings">Settings</li>
-                <li class="lk-tab-link tab-link-logout">Log out</li>
+    <div class="lk-area">
+        <div class="lk-area-wrapper">
+            <div class="lk-tab-links">
+                <ul class="lk-tab-links-wrapper">
+                    <li class="lk-tab-link tab-link-games " :class="{ lkTabLinkActive:lk_tab == 'games' }" @click="lk_tab = 'games' ">Games</li>
+                    <li class="lk-tab-link tab-link-support " :class="{ lkTabLinkActive:lk_tab == 'support' }" @click="lk_tab = 'support' ">Support</li>
+                    <li class="lk-tab-link tab-link-cash">Cash Flow</li>
+                    <li class="lk-tab-link tab-link-settings" :class="{ lkTabLinkActive:lk_tab == 'settings' }" @click="lk_tab = 'settings' ">Settings</li>
+                    <li class="lk-tab-link tab-link-logout">Log out</li>
 
-            </ul>
-        </div>
-        <div v-if="lk_tab == 'games'" class="lk-info">
+                </ul>
+            </div>
+            <div v-if="lk_tab == 'games'" class="lk-info">
                 <div class="lk-games">
                     <div class="lk-games-wrapper">
                         <table class="lk-games-table">
@@ -26,45 +26,85 @@
                                 <td>RESULT</td>
                             </tr>
                             {% for game in allGames %}
-                             <tr class="lk-games-table-item">
-                                <td>{{ game.date | date }}</td>
-                                <td><a target="_blank" style="text-decoration: underline" href="{{ game.image.url }}">Game 1</a></td>
-                                <td>Level {{ game.level }}</td>
-                                <td>{{ game.player.name }}</td>
-                                <td>{{ game.get_result }}</td>
-                            </tr>
+                                <tr class="lk-games-table-item">
+                                    <td>{{ game.date | date }}</td>
+                                    <td><a target="_blank" style="text-decoration: underline" href="{{ game.image.url }}">Game 1</a></td>
+                                    <td>Level {{ game.level }}</td>
+                                    <td>{{ game.player.nickname }}</td>
+                                    <td>{{ game.get_result }}</td>
+                                </tr>
                             {% endfor %}
                         </table>
                     </div>
                 </div>
-        </div>
-         <div v-if="lk_tab == 'support'" class="lk-info">
+            </div>
+            <div v-if="lk_tab == 'support'" class="lk-info">
                 <div class="lk-support">
-                     <div class="lk-support-wrapper">
-                         <div ref='messageDisplay' class="lk-support-messages">
+                    <div class="lk-support-wrapper">
+                        <div ref='messageDisplay' class="lk-support-messages">
 
-                             <div v-for="message in chat_messages"  class="lk-support-message-item my-message" :class="{ toMeMessage : message.own_message , myMessage : !message.own_message }" >
-                                 <p class="lk-support-message-item-text">[[message.text]]</p>
-                                 <p class="lk-support-message-item-date">[[message.date]]</p>
-                                 <p class="lk-support-message-item-from">[[message.from]]</p>
-                             </div><!--toMeMessage myMessage-->
+                            <div v-for="message in chat_messages"  class="lk-support-message-item my-message" :class="{ toMeMessage : message.own_message , myMessage : !message.own_message }" >
+                                <p class="lk-support-message-item-text">[[message.text]]</p>
+                                <p class="lk-support-message-item-date">[[message.date]]</p>
+                                <p class="lk-support-message-item-from">[[message.from]]</p>
+                            </div><!--toMeMessage myMessage-->
 
-                         </div>
-                         <div class="lk-support-message">
-                             <input type="text" v-model="new_msg">
-                             <span class="btn btn-blue" @click="newMsg">SEND</span>
-                         </div>
+                        </div>
+                        <div class="lk-support-message">
+                            <input type="text" v-model="new_msg">
+                            <span class="btn btn-blue" @click="newMsg">SEND</span>
+                        </div>
 
 
+                    </div>
                 </div>
+            </div>
+            <div v-if="lk_tab == 'settings'" class="lk-info">
+                <div class="lk-support settings-tab">
+                    <div class="profile-edit-wrapper">
+                        <div class="form-row">
+                            <label>E-Mail:</label>
+                            <input type="text" v-model="email" >
+                        </div>
+                        <div class="form-row">
+                            <label>Nickname:</label>
+                            <input type="text" v-model="nickname">
+                        </div>
+                        <div class="form-row ">
+                            <label>Age:</label>
+                            <input type="text" v-model="age">
+                        </div>
+                        <div class="form-row ">
+                            <label>Education:</label>
+                            <input type="text" v-model="education">
+                        </div>
+                        <div class="form-row ">
+                            <label>Location:</label>
+                            <input type="text" v-model="location">
+                        </div>
+                         <div class="form-row ">
+                            <label>Current avatar:<br>
+                                <img :src="[[user_avatar]]" alt="">
+                            </label>
+                            <input type="file" v-on:change="changeAvatar">
+                        </div>
+
+
+                        <span class="btn btn-blue btn-center"
+{#                              @click="updateProfile"#}
+                              :class="{btnDisabled : !email || !nickname  }"
+
+                        >UPDATE PROFILE</span>
+                        <div class="">[[reg_error]]</div>
+                    </div>
                 </div>
+            </div>
         </div>
     </div>
-</div>
 
 {% endblock %}
- {% block js %}
-     {{ block.super }}
+{% block js %}
+    {{ block.super }}
 
 {% endblock %}
 

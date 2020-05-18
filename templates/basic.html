@@ -50,8 +50,13 @@
                 drop_down_menu: '',
                 reg_modal: false,
                 modal_login_body: true,
-                email:'',
-                nickname:'',
+                email:'{{ request.user.email }}',
+                nickname:'{{ request.user.email }}',
+                age:'{{ request.user.age }}',
+                education:'{{ request.user.study }}',
+                location:'{{ request.user.region }}',
+                user_avatar:'{{ request.user.get_user_avatar }}',
+                avatar:null,
                 is_login_agree:'',
                 password1:'',
                 password2:'',
@@ -63,9 +68,32 @@
                 reg_error:''
 
             },
+            mounted: function () {
+                this.$nextTick(function () {
+                    let uri = window.location.href.split('?');
+                    if (uri.length == 2)
+                    {
+                        let vars = uri[1].split('&');
+                        let getVars = {};
+                        let tmp = '';
+                        vars.forEach(function(v){
+                            tmp = v.split('=');
+                            if(tmp.length == 2)
+                                getVars[tmp[0]] = tmp[1];
+                        });
+                        console.log(getVars);
+                        if ('tab' in getVars){
+                            console.log(getVars['tab'])
+                            this.lk_tab=getVars['tab']
+                        }
+
+                    }
+                })
+            },
             watch: {
                 lk_tab: function (val) {
                     console.log(val)
+                    window.history.replaceState('','',`?tab=${val}`);
                     if (val==='support'){
                         this.getChats()
                     }
@@ -177,11 +205,11 @@
                                 window.location.reload()
                             }else{
                                 if(res['errors']['email']){
-                             this.reg_error = this.reg_error + res['errors']['email'] + ' '
-                            }
-                            if(res['errors']['password2']){
-                                 this.reg_error = this.reg_error + res['errors']['password2'] + ' '
-                            }
+                                    this.reg_error = this.reg_error + res['errors']['email'] + ' '
+                                }
+                                if(res['errors']['password2']){
+                                    this.reg_error = this.reg_error + res['errors']['password2'] + ' '
+                                }
 
                             }
                         })
@@ -223,12 +251,12 @@
                                     console.log(x)
                                     this.chat_messages.push(x)
                                 }
-                                let msgDiv = document.getElementsByClassName('lk-support-messages')[0]
-                            msgDiv.scrollTo(0,(msgDiv.scrollTop+2000))
+
                             }
 
                         }).then(()=> {
-
+                        let msgDiv = document.getElementsByClassName('lk-support-messages')[0]
+                        msgDiv.scrollTo(0,(msgDiv.scrollTop+2000))
 
 
                     })
@@ -253,6 +281,16 @@
 
 
                         })
+                },
+                changeAvatar(e) {
+                    var files = e.target.files || e.dataTransfer.files;
+                    if (!files.length)
+                        return;
+                   // this.avatar(files[0]);
+                    this.user_avatar = window.URL.createObjectURL(e.target.files[0])
+                    console.log(files[0])
+                    this.avatar = e.target.files[0]
+                    console.log(this.avatar)
                 },
             }
         })

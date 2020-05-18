@@ -2,7 +2,7 @@
 <header class="header">
         <div class="header-wrapper">
             <div class="header-mobile-left visible-768" v-on:click="open_mobile_menu">
-                <img :src="[[main_logo]]" alt="">
+                <img src="{% static 'images/header-mobile-left.svg' %}" alt="">
                 <div class="mobile-user-panel" v-bind:class="{ secondaryPanelActive: mobile_menu == true }"><!--notlogged user -->
                     {% if request.user.is_authenticated %}
                     <div class="mobile-user-panel-info">
@@ -231,34 +231,46 @@
             </div>
             <div class="header-buttons not-visible-768">
             <ul class="header-nav-wrapper">
-            <!--&lt;!&ndash;not-visible-1320 &ndash;&gt;                    <li class="header-nav-item-button has-sub-menu "><span><img src="images/theme-icon.svg" alt=""> DARK MODE <img src="images/settings-icon.svg" alt=""></span>-->
-            <!--<div class="header-sub-menu  button-sub-menu">-->
-            <!--<ul class="header-sub-menu-wrapper">-->
-            <!--<li class="header-sub-menu-item"><a class="header-sub-menu-link" href="">GAME 1</a></li>-->
-            <!--<li class="header-sub-menu-item"><a class="header-sub-menu-link" href="">GAME 1</a></li>-->
-            <!--<li class="header-sub-menu-item"><a class="header-sub-menu-link" href="">GAME 1</a></li>-->
-            <!--</ul>-->
-            <!--</div>-->
-            <!--</li>-->
-            <!--&lt;!&ndash;not-visible-1500 &ndash;&gt;-->
-            <!--<li class="header-nav-item-button has-sub-menu "><span><img src="images/lang-uk-icon.svg" alt=""> ENGLISH <img src="images/arrow_down.svg" alt=""></span>-->
-            <!--<div class="header-sub-menu  button-sub-menu">-->
-            <!--<form class="header-sub-menu-wrapper">-->
-            <!--<label class="header-sub-menu-item header-sub-menu-item-lang lang-uk"><input type="radio" name="l">ENGLISH</label>-->
-            <!--<label class="header-sub-menu-item header-sub-menu-item-lang lang-ch"><input type="radio" name="l">CHINESE</label>-->
-            <!--<label class="header-sub-menu-item header-sub-menu-item-lang lang-ru"><input type="radio" name="l">RUSSIAN</label>-->
-            <!--</form>-->
-            <!--</div>-->
-            <!--</li>-->
-            <!--<li class="header-nav-item-button not-visible-1024"><span><img src="images/wallet-icon.svg" alt=""> 78 150.10 QR </span></li>-->
+            <!--&lt;!&ndash;not-visible-1320 &ndash;&gt;  -->
+            <li class="header-nav-item-button has-sub-menu ">
+                <span v-on:click="openHeaderSubMenu('settings')">
+                    <img src="{% static 'images/theme-icon.svg' %}" alt=""> DARK MODE <img src="{% static 'images/settings-icon.svg' %}" alt="">
+                </span>
+            <div v-bind:class="{ subMenuActive: header_sub_menu == 'settings' }" class="header-sub-menu  button-sub-menu">
+            <ul class="header-sub-menu-wrapper">
+            <li class="header-sub-menu-item"><a class="header-sub-menu-item-lang " href="">LIGHT</a></li>
+            <li class="header-sub-menu-item"><a class="header-sub-menu-item-lang " href="">DARK</a></li>
+
+
+            </ul>
+            </div>
+            </li>
+{#            &lt;!&ndash;not-visible-1500 &ndash;&gt;-->#}
+            <li class="header-nav-item-button has-sub-menu ">
+                <span v-on:click="openHeaderSubMenu('lang')">
+                    <img src="{% static 'images/lang-uk-icon.svg' %}" alt=""> ENGLISH <img src="{% static 'images/arrow_down.svg' %}" alt="">
+                </span>
+            <div v-bind:class="{ subMenuActive: header_sub_menu == 'lang' }" class="header-sub-menu  button-sub-menu">
+            <form class="header-sub-menu-wrapper">
+            <label class="header-sub-menu-item header-sub-menu-item-lang lang-uk"><input type="radio" name="l">ENGLISH</label>
+            <label class="header-sub-menu-item header-sub-menu-item-lang lang-ch"><input type="radio" name="l">CHINESE</label>
+            <label class="header-sub-menu-item header-sub-menu-item-lang lang-ru"><input type="radio" name="l">RUSSIAN</label>
+            </form>
+            </div>
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="header-nav-item-button not-visible-1024"><span><img src="{% static 'images/wallet-icon.svg' %}" alt=""> 78 150.10 QR </span></li>
+            {% endif %}
                 {% if not request.user.is_authenticated %}
             <li class="header-nav-item-button"><span class="btn btn-blue" v-on:click="openRegModal">LOG IN / SIGN UP</span></li>
-                <li class="header-nav-item-toggle"> <div class="header-user-toggle"><img src="{% static 'images/user-menu-icon.svg' %}" alt=""></div></li>
+                <li class="header-nav-item-toggle"> <div class="header-user-toggle"><img src="{% static 'images/user-menu-icon.svg' %}" alt="">
+                </div></li>
                 {% endif %}
 
             </ul>
             </div>
             {% if request.user.is_authenticated %}
+
             <div  class="header-user not-visible-768">
                 <div class="header-user-wrapper">
                     <div class="header-user-info">
@@ -273,7 +285,7 @@
                         <!--<li class="header-user-menu-item visible-1024"><a class="header-user-menu-link " href="">78 150.10 QR</a></li>-->
                         <!--<li class="header-user-menu-item visible-1320"><a class="header-user-menu-link " href="">THEME SELECT</a></li>-->
                         <!--<li class="header-user-menu-item visible-1500"><a class="header-user-menu-link " href="">LANG SELECT</a></li>-->
-                         <li class="header-user-menu-item"><a class="header-user-menu-link link-support" href="{% url 'lk' %}">Games</a></li>
+                         <li class="header-user-menu-item"><a class="header-user-menu-link link-support" href="{% url 'lk' %}?tab=games">Games</a></li>
                         <li class="header-user-menu-item has-dropdown " v-bind:class="{ dropDownActive:drop_down_menu == 'lang' }"> <!-- dropDownActive-->
                             <span class="header-user-menu-link lang-ru-link" v-on:click="openDropDown('lang')">Language</span>
                             <ul class="header-user-menu-dropdown ">
@@ -291,9 +303,9 @@
                                 <li class="header-user-menu-item"><a class="header-user-menu-link theme-link-d" href="">DARK</a></li>
                             </ul>
                         </li>
-                        <li class="header-user-menu-item"><a class="header-user-menu-link link-support" href="">Support</a></li>
+                        <li class="header-user-menu-item"><a class="header-user-menu-link link-support" href="{% url 'lk' %}?tab=support">Support</a></li>
                         <li class="header-user-menu-item"><a class="header-user-menu-link link-cash" href="">Cash Flow</a></li>
-                        <li class="header-user-menu-item"><a class="header-user-menu-link link-settings" href="">Settings</a></li>
+                        <li class="header-user-menu-item"><a class="header-user-menu-link link-settings" href="{% url 'lk' %}?tab=settings">Settings</a></li>
                         <li class="header-user-menu-item"><a class="header-user-menu-link link-logout" href="{%  url 'logout_page' %}">Log out</a></li>
 
                     </ul>
