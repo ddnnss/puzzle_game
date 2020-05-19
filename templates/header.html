@@ -259,7 +259,7 @@
             </div>
             </li>
             {% if request.user.is_authenticated %}
-            <li class="header-nav-item-button not-visible-1024"><span><img src="{% static 'images/wallet-icon.svg' %}" alt=""> 78 150.10 QR </span></li>
+            <li class="header-nav-item-button not-visible-1024"><span><img src="{% static 'images/wallet-icon.svg' %}" alt=""> {{ request.user.balance }} QR </span></li>
             {% endif %}
                 {% if not request.user.is_authenticated %}
             <li class="header-nav-item-button"><span class="btn btn-blue" v-on:click="openRegModal">LOG IN / SIGN UP</span></li>
@@ -277,7 +277,7 @@
                         <p class="header-user-info-name">{{ request.user.nickname }}</p>
                         <p class="header-user-info-rating">Rating: {{ request.user.rating }}</p>
                     </div>
-                    <div class="header-user-avatar" v-on:click="openUserMenu"><img src="http://placehold.it/50" alt=""></div>
+                    <div class="header-user-avatar" v-on:click="openUserMenu"><img width="60" height="60" src="{{ request.user.get_user_avatar }}" alt=""></div>
 
                 </div>
                 <div class="header-user-menu " v-bind:class="{ headerUserMenuActive:desktop_user_menu }" v-on:mouseleave="closeUserMenu"><!-- headerUserMenuActive-->

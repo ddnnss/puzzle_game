@@ -10,12 +10,12 @@ class SignUpForm(UserCreationForm):
         model = User
         fields = ('email', 'nickname',  'password1', 'password2', )
 
-# class UpdateForm(UserChangeForm):
-#     class Meta:
-#         model = User
-#         fields = ('email', 'name', 'family', 'otchestvo', 'country', 'city', 'post_code', 'phone', 'address', 'is_allow_email')
-#
-#         error_messages = {
-#              'email': {
-#                  'unique': "Указанный адрес уже кем-то используется",
-#              },}
+class UpdateForm(UserChangeForm):
+    class Meta:
+        model = User
+        fields = ('email', 'nickname', 'age', 'study', 'region', 'avatar', )
+
+        error_messages = {
+             'email': {
+                 'unique': "Указанный адрес уже кем-то используется",
+             },}

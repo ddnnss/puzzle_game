@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import SignUpForm
+from .forms import *
 from django.http import JsonResponse, HttpResponseRedirect
 import json
 from django.contrib.auth import login, logout,authenticate
@@ -37,46 +37,42 @@ def logout_page(request):
     return HttpResponseRedirect('/')
 
 
-# def profile_edit(request):
-#     if request.user.is_authenticated:
-#         if request.POST:
-#             print(request.POST)
-#
-#             form = UpdateForm(request.POST, request.FILES, instance=request.user)
-#             print(form.errors)
-#             if form.is_valid():
-#                 user = form.save()
-#
-#                 if request.POST.get('old_password'):
-#                     if not user.is_social_reg:
-#                         success = user.check_password(request.POST['old_password'])
-#                     else:
-#                         success = True
-#                     if success:
-#                         print('Old pass is good')
-#                         if request.POST.get('password1') == request.POST.get('password2') and request.POST.get('password1') != '' and request.POST.get('password2') != '':
-#                             print('Change password')
-#                             user.set_password(request.POST.get('password1'))
-#                         else:
-#                             print('NOT Change password')
-#                     else:
-#                         print('Old pass is bad')
-#                         return HttpResponseRedirect("/user/profile/edit")
-#                 user.save()
-#                 return HttpResponseRedirect('/user/profile/edit')
-#             else:
-#                 form = UpdateForm()
-#             return HttpResponseRedirect("/user/profile/edit")
-#         dates = list(range(1, 31))
-#         months = Month.objects.all()
-#         years = list(range(1950, 2020))
-#         allCats = Category.objects.all()
-#
-#
-#         updateForm = UpdateForm()
-#         return render(request, 'user/profile-edit.html', locals())
-#     else:
-#         return HttpResponseRedirect('/')
+def profile_edit(request):
+    if request.user.is_authenticated:
+        if request.POST:
+            print(request.POST)
+
+            form = UpdateForm(request.POST, request.FILES, instance=request.user)
+            print(form.errors)
+            if form.is_valid():
+                user = form.save()
+
+                # if request.POST.get('old_password'):
+                #     if not user.is_social_reg:
+                #         success = user.check_password(request.POST['old_password'])
+                #     else:
+                #         success = True
+                #     if success:
+                #         print('Old pass is good')
+                #         if request.POST.get('password1') == request.POST.get('password2') and request.POST.get('password1') != '' and request.POST.get('password2') != '':
+                #             print('Change password')
+                #             user.set_password(request.POST.get('password1'))
+                #         else:
+                #             print('NOT Change password')
+                #     else:
+                #         print('Old pass is bad')
+                #         return HttpResponseRedirect("/user/profile/edit")
+                user.save()
+                return HttpResponseRedirect('/user/profile/edit')
+            else:
+                form = UpdateForm()
+            return HttpResponseRedirect("/lk?tab=settings")
+
+
+        updateForm = UpdateForm()
+        return HttpResponseRedirect("/lk?tab=settings")
+    else:
+        return HttpResponseRedirect('/')
 
 
 def get_chats(request):

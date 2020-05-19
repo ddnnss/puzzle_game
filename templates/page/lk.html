@@ -62,40 +62,43 @@
             <div v-if="lk_tab == 'settings'" class="lk-info">
                 <div class="lk-support settings-tab">
                     <div class="profile-edit-wrapper">
+                        <form action="{% url 'profile_edit' %}" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
                         <div class="form-row">
                             <label>E-Mail:</label>
-                            <input type="text" v-model="email" >
+                            <input type="text" v-model="email" name="email" >
                         </div>
                         <div class="form-row">
                             <label>Nickname:</label>
-                            <input type="text" v-model="nickname">
+                            <input type="text" v-model="nickname" name="nickname">
                         </div>
                         <div class="form-row ">
                             <label>Age:</label>
-                            <input type="text" v-model="age">
+                            <input type="text" v-model="age" name="age">
                         </div>
                         <div class="form-row ">
                             <label>Education:</label>
-                            <input type="text" v-model="education">
+                            <input type="text" v-model="education" name="study">
                         </div>
                         <div class="form-row ">
                             <label>Location:</label>
-                            <input type="text" v-model="location">
+                            <input type="text" v-model="location" name="region">
                         </div>
                          <div class="form-row ">
                             <label>Current avatar:<br>
                                 <img :src="[[user_avatar]]" alt="">
                             </label>
-                            <input type="file" v-on:change="changeAvatar">
+                            <input type="file" v-on:change="changeAvatar" name="avatar">
                         </div>
 
 
-                        <span class="btn btn-blue btn-center"
+                        <button class="btn btn-blue btn-center" type="submit"
 {#                              @click="updateProfile"#}
                               :class="{btnDisabled : !email || !nickname  }"
 
-                        >UPDATE PROFILE</span>
+                        >UPDATE PROFILE</button>
                         <div class="">[[reg_error]]</div>
+                            </form>
                     </div>
                 </div>
             </div>
