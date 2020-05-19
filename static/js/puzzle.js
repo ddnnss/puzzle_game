@@ -930,7 +930,7 @@ function concide() {
     $('.img_end').remove()
     if (timeloop)
       clearTimeout(timeloop)
-    document.getElementsByClassName('lose-label')[0].classList.toggle('loseLabelActive')
+    //document.getElementsByClassName('lose-label')[0].classList.toggle('loseLabelActive')
     app.result_image_modal = true
     app.result_image = image_url
 

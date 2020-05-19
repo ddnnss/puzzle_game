@@ -21,7 +21,73 @@
     {% include 'header.html' %}
     {% block content %}
     {% endblock %}
+<div  class="modal " v-bind:class="{ modalActive:reg_modal }">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="close"  v-on:click="openRegModal"><img src="{% static 'images/close-btn.svg' %}" alt=""></div>
+            <div v-if="modal_login_body" >
+                <div class="modal-header">
+                    <p>LOG IN</p>
+                </div>
+                <div class="modal-body">
+                    <div class="toggleButton">
+                        <p   v-bind:class="{ toggleButtonActiveLeft: modal_login_body }">LOG IN</p>
+                        <p  v-on:click="modal_login_body=false">SIGN UP</p>
+                    </div>
+                    <div class="form-row">
+                        <label>Email:</label>
+                        <input type="text" v-model="login_email">
+                    </div>
+                    <div class="form-row mb-40">
+                        <label>Password:</label>
+                        <input type="password" v-model="login_password">
+                    </div>
+                    <span @click="sendLogin" class="btn btn-blue btn-center" :class="{btnDisabled : !login_email || !login_password}">LOG IN</span>
 
+                </div>
+            </div>
+            <div v-else>
+                <div class="modal-header">
+                    <p>SIGN UP</p>
+                </div>
+                <div class="modal-body">
+                    <div class="toggleButton">
+                        <p  v-on:click="modal_login_body=true">LOG IN</p>
+                        <p  v-bind:class="{ toggleButtonActiveRight: !modal_login_body }">SIGN UP</p>
+                    </div>
+                    <div class="form-row">
+                        <label>E-Mail:</label>
+                        <input type="text" v-model="email">
+                    </div>
+                    <div class="form-row">
+                        <label>Nickname:</label>
+                        <input type="text" v-model="nickname">
+                    </div>
+                    <div class="form-row ">
+                        <label>Password:</label>
+                        <input type="password" v-model="password1">
+                    </div>
+                    <div class="form-row ">
+                        <label>Password:</label>
+                        <input type="password" v-model="password2">
+                    </div>
+                    <div class="form-row mb-40">
+                        <label>Agree?:</label>
+                        <input type="checkbox" v-model="is_login_agree">
+                    </div>
+
+                    <span class="btn btn-blue btn-center"
+                          @click="sendSignUp"
+                          :class="{btnDisabled : !email || !nickname ||  !password1 || !password2|| !is_login_agree}"
+
+                    >SIGN UP</span>
+                    <div class="">[[reg_error]]</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 {% block js %}
 
@@ -35,8 +101,8 @@
             delimiters: ['[[', ']]'],
             el: '#app',
             data: {
-
-                main_logo: '{% static 'images/logo.svg' %}',
+                mobile_menu_right: false,
+                main_logo: '{% static 'images/qp.jpg' %}',
                 result_image_modal:false,
                 result_image:'',
                 game_type:2,
@@ -86,6 +152,12 @@
                             console.log(getVars['tab'])
                             this.lk_tab=getVars['tab']
                         }
+                        if ('game' in getVars){
+                            console.log(getVars['game'])
+                            if(getVars['game'] === 'qrpuzzle' ){this.game_type = 2}
+                            if(getVars['game'] === 'qart' ){this.game_type = 1}
+
+                        }
 
                     }
                 })
@@ -102,11 +174,11 @@
                     console.log(val)
                     concide()
                     if (val === 2){
-                        this.main_logo = '{% static 'images/logo.svg' %}'
+                        this.main_logo = '{% static 'images/qp.jpg' %}'
                         document.title = 'QR Puzzle'
                     }
                     if (val === 1){
-                        this.main_logo = '{% static 'images/logo2.png' %}'
+                        this.main_logo = '{% static 'images/qa.jpg' %}'
                         document.title = 'QArt'
                     }
 
@@ -122,6 +194,13 @@
                         this.mobile_menu = false
                     }else (
                         this.mobile_menu = true
+                    )
+                },
+                open_mobile_menu_right: function (event) {
+                    if(this.mobile_menu_right ){
+                        this.mobile_menu_right = false
+                    }else (
+                        this.mobile_menu_right = true
                     )
                 },
                 open_mobile_sub_menu: function (event) {

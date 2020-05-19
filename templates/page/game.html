@@ -1,0 +1,43 @@
+{% extends 'basic.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="side-bar-open not-visible-768" v-on:click="openSideBarMenu">
+        <img draggable="false" src="{% static 'images/side-bar-toggle.svg' %}" alt="">
+    </div>
+    <div class="side-bar not-visible-768 " v-bind:class="{ sideBarActive:side_bar_menu }"><!-- sideBarActive-->
+        <span class="side-bar-toggle " v-on:click="openSideBarMenu"><img draggable="false" src="{% static 'images/side-bar-toggle.svg' %}" alt=""></span>
+        <div class="side-bar-wrapper">
+             {% if not request.user.is_authenticated %}
+                <p class="side-bar-demo"><a href="">DEMO</a></p>
+            {% endif %}
+            <div class="side-bar-games">
+                <div class="side-bar-game level-1 complexity_btn radio" data-type="radio" data-puzle="150" data-level="1">
+                    <p class="side-bar-game-level"><span>LEVEL</span> <span>1</span> </p>
+                    <p class="side-bar-game-info">4x4 | 16 elements</p>
+                    <p class="side-bar-game-info">3 minute to assembly</p>
+                    <p class="side-bar-game-info">5% to balance</p>
+                </div>
+                <div class="side-bar-game level-2 complexity_btn radio" data-type="radio" data-puzle="120" data-level="2">
+                    <p class="side-bar-game-level"><span>LEVEL</span> <span>2</span> </p>
+                    <p class="side-bar-game-info">5x5 | 25 elements</p>
+                    <p class="side-bar-game-info">6 minutes to assembly</p>
+                    <p class="side-bar-game-info">10% to balance</p>
+                </div>
+                <div class="side-bar-game level-3 complexity_btn radio" data-type="radio" data-puzle="100" data-level="3">
+                    <p class="side-bar-game-level"><span>LEVEL</span> <span>3</span> </p>
+                    <p class="side-bar-game-info">6x6 | 36 elements</p>
+                    <p class="side-bar-game-info">9 minutes to assembly</p>
+                    <p class="side-bar-game-info">20% to balance</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="game" class="game-main">
+{#        <div id="result_img"></div>#}
+        <div id="puzzle-board" class="game-area" @click="mobile_menu = false ; mobile_menu_right = false "></div>
+    </div>
+{% include 'footer.html' %}
+{% endblock %}
+

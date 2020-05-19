@@ -17,6 +17,7 @@ function init() {
 
 $('.complexity_btn').on('click', function(e){
   app.open_mobile_menu()
+  app.mobile_sub_menu = ''
   document.getElementsByClassName('win-label')[0].classList.remove('winLabelActive')
   document.getElementsByClassName('lose-label')[0].classList.remove('loseLabelActive')
   e.preventDefault()
