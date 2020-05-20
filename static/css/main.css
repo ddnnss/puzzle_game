@@ -1191,7 +1191,7 @@ svg {
   background: #202442;
   height: calc(100vh - 151px - 105px);
   position: absolute;
-  width: 270px;
+  width: 235px;
   top: 105px;
   -webkit-transform: translateX(-100%);
   -ms-transform: translateX(-100%);
@@ -1254,6 +1254,15 @@ svg {
   margin-bottom: 20px;
   cursor: pointer;
   border-radius: 4px;
+  -webkit-transition: all .2s linear;
+  -o-transition: all .2s linear;
+  transition: all .2s linear;
+}
+
+.side-bar-game:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .side-bar-game-level {
@@ -1285,11 +1294,19 @@ svg {
   box-shadow: 0px 0px 15px #4e7cff;
 }
 
+.side-bar-game.level-1.gameLevelActive {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-box-shadow: 0px 0px 15px #4e7cff;
+  box-shadow: 0px 0px 15px #4e7cff;
+}
+
 .side-bar-game.level-2 {
-  padding: 15px 20px;
+  padding: 15px 15px;
   background: url(../images/level2-bg.png);
-  width: 212px;
-  height: 157px;
+  width: 181px;
+  height: 144px;
 }
 
 .side-bar-game.level-2:hover {
@@ -1297,9 +1314,12 @@ svg {
   box-shadow: 0px 0px 15px #7033ff;
 }
 
-.side-bar-game.level-2 .side-bar-game-level {
-  font-size: 26px;
-  width: 130px;
+.side-bar-game.level-2.gameLevelActive {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  -webkit-box-shadow: 0px 0px 15px #7033ff;
+  box-shadow: 0px 0px 15px #7033ff;
 }
 
 .side-bar-game.level-3 {
@@ -1310,6 +1330,14 @@ svg {
 }
 
 .side-bar-game.level-3:hover {
+  -webkit-box-shadow: 0px 0px 15px #f65164;
+  box-shadow: 0px 0px 15px #f65164;
+}
+
+.side-bar-game.level-3.gameLevelActive {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
   -webkit-box-shadow: 0px 0px 15px #f65164;
   box-shadow: 0px 0px 15px #f65164;
 }

@@ -80,7 +80,7 @@ class Game(models.Model):
             image_bytes_stream = BytesIO()
             temp_image = PILImage.open(f'{settings.MEDIA_ROOT}\games\{name}.png')
             temp_image.seek(0)
-            temp_image = temp_image.resize((800, 800))
+            temp_image = temp_image.resize((600, 600))
             temp_image.save(image_bytes_stream, format='png', quality=100)
             default_storage.delete('games/{}.png'.format(name))
             image = File(image_bytes_stream, name='{}.png'.format(name))

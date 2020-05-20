@@ -195,7 +195,7 @@ var jQuery = window.jQuery || require('jquery');
         var puzzle = createPuzzle(image, i + 1, param.size*param.scale, param.scale); // needs to multiply param.size by param.scale
 
         puzzle.puzzleOffset({
-          left: randomInteger(this_offset.left + 270, this_offset.left + 0.5 *this_width - param.size),
+          left: randomInteger(this_offset.left + 230, this_offset.left + 0.5 *this_width - param.size),
           top: randomInteger(this_offset.top, this_offset.top + 0.5*this_height - param.size)
         });
 

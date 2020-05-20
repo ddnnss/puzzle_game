@@ -12,19 +12,28 @@
                 <p class="side-bar-demo"><a href="">DEMO</a></p>
             {% endif %}
             <div class="side-bar-games">
-                <div class="side-bar-game level-1 complexity_btn radio" data-type="radio" data-puzle="150" data-level="1">
+                <div class="side-bar-game level-1 complexity_btn radio "
+                     v-bind:class="{ gameLevelActive : game_level==1 }"
+                     v-on:click="game_level=1"
+                     data-type="radio" data-puzle="150" data-level="1">
                     <p class="side-bar-game-level"><span>LEVEL</span> <span>1</span> </p>
                     <p class="side-bar-game-info">4x4 | 16 elements</p>
                     <p class="side-bar-game-info">3 minute to assembly</p>
                     <p class="side-bar-game-info">5% to balance</p>
                 </div>
-                <div class="side-bar-game level-2 complexity_btn radio" data-type="radio" data-puzle="120" data-level="2">
+                <div class="side-bar-game level-2 complexity_btn radio"
+                     v-bind:class="{ gameLevelActive : game_level==2 }"
+                     v-on:click="game_level=2"
+                     data-type="radio" data-puzle="120" data-level="2">
                     <p class="side-bar-game-level"><span>LEVEL</span> <span>2</span> </p>
                     <p class="side-bar-game-info">5x5 | 25 elements</p>
                     <p class="side-bar-game-info">6 minutes to assembly</p>
                     <p class="side-bar-game-info">10% to balance</p>
                 </div>
-                <div class="side-bar-game level-3 complexity_btn radio" data-type="radio" data-puzle="100" data-level="3">
+                <div class="side-bar-game level-3 complexity_btn radio"
+                     v-bind:class="{ gameLevelActive : game_level==3 }"
+                     v-on:click="game_level=3"
+                     data-type="radio" data-puzle="100" data-level="3">
                     <p class="side-bar-game-level"><span>LEVEL</span> <span>3</span> </p>
                     <p class="side-bar-game-info">6x6 | 36 elements</p>
                     <p class="side-bar-game-info">9 minutes to assembly</p>
