@@ -2,6 +2,7 @@ from django.shortcuts import render
 from game.models import Game
 
 def index(request):
+    indexPage = True
     return render(request, 'page/index.html', locals())
 
 def game(request):
