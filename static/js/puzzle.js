@@ -426,6 +426,7 @@ var jQuery = window.jQuery || require('jquery');
         if(allPuzl == puzlEnded){
           //$('.text_before_end').text('Ура! пазл собран')
           clearTimeout(timeloop);
+          document.getElementById('id_concide').classList.add('btnDisabled')
           $("#id_concide").attr("disabled", true)
           sessionStorage.setItem('is_win', 1); //set is_win to true if player win
           let level = sessionStorage.getItem('level');
@@ -930,9 +931,11 @@ function concide() {
     $('.img_end').remove()
     if (timeloop)
       clearTimeout(timeloop)
-    //document.getElementsByClassName('lose-label')[0].classList.toggle('loseLabelActive')
+    document.getElementsByClassName('lose-label')[0].classList.add('loseLabelActive')
+      document.getElementById('id_concide').classList.add('btnDisabled')
     app.result_image_modal = true
     app.result_image = image_url
+      $('#puzzle-board svg').remove()
 
    // $('#result_img').html('<div id="concide_image" style="margin:auto"><img class="img_end" src="' + image_url + '"></div>')
    // document.getElementById('puzzle-board').style.display='none'

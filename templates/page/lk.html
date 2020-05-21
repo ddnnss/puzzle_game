@@ -20,17 +20,35 @@
                         <table class="lk-games-table">
                             <tr class="lk-games-table-head">
                                 <td>DATE</td>
-                                <td>GAME</td>
                                 <td>GAME LEVEL</td>
-                                <td>LOGIN</td>
+                                <td>IMAGE</td>
+                                <td>RATING</td>
+                                <td>BALANCE</td>
                                 <td>RESULT</td>
                             </tr>
                             {% for game in allGames %}
                                 <tr class="lk-games-table-item">
-                                    <td>{{ game.date | date }}</td>
-                                    <td><a target="_blank" style="text-decoration: underline" href="{{ game.image.url }}">Game 1</a></td>
+                                    <td>{{ game.date |date:'d.m.Y, H:i'  }}</td>
                                     <td>Level {{ game.level }}</td>
-                                    <td>{{ game.player.nickname }}</td>
+                                    <td><a target="_blank" style="text-decoration: underline" href="{{ game.image.url }}">Image</a></td>
+                                    <td>
+                                        {% if game.result %}
+                                            +10
+                                        {% else %}
+                                            +0
+                                        {% endif %}
+                                        </td>
+                                    <td>
+                                        {% if game.level == 1 and game.result %}
+                                            +5%
+                                        {% elif game.level == 2 and game.result %}
+                                            +10%
+                                        {% elif game.level == 3 and game.result %}
+                                            +20%
+                                            {% else %}
+                                            -
+                                        {% endif %}
+                                    </td>
                                     <td>{{ game.get_result }}</td>
                                 </tr>
                             {% endfor %}
@@ -113,6 +131,7 @@
                             <p   v-bind:class="{ toggleButtonActiveLeft: modal_login_body }">WITHDRAW</p>
                             <p  v-on:click="modal_login_body=false">DEPOSIT</p>
                         </div>
+                        <p style="color: red; text-align: center;margin-bottom: 20px">ATTENTION! 1 QR = 1EUR = 8 YUAN</p>
                         <div class="form-row">
                             <input style="width: 100%" type="text">
                         </div>

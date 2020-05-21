@@ -303,11 +303,11 @@ svg {
 }
 
 .result-label.lose-label {
-  background: #FF6340;
+  background: red;
 }
 
 .result-label.lose-label::before {
-  border-top-color: #FF6340;
+  border-top-color: red;
 }
 
 .result-label.loseLabelActive {

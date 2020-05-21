@@ -12,7 +12,7 @@
                 <p class="side-bar-demo"><a href="">DEMO</a></p>
             {% endif %}
             <div class="side-bar-games">
-                <div class="side-bar-game level-1 complexity_btn radio "
+                <div id="btn_level_1" class="side-bar-game level-1 complexity_btn radio "
                      v-bind:class="{ gameLevelActive : game_level==1 }"
                      v-on:click="game_level=1"
                      data-type="radio" data-puzle="150" data-level="1">
@@ -21,7 +21,7 @@
                     <p class="side-bar-game-info">3 minute to assembly</p>
                     <p class="side-bar-game-info">5% to balance</p>
                 </div>
-                <div class="side-bar-game level-2 complexity_btn radio"
+                <div id="btn_level_2" class="side-bar-game level-2 complexity_btn radio"
                      v-bind:class="{ gameLevelActive : game_level==2 }"
                      v-on:click="game_level=2"
                      data-type="radio" data-puzle="120" data-level="2">
@@ -30,7 +30,7 @@
                     <p class="side-bar-game-info">6 minutes to assembly</p>
                     <p class="side-bar-game-info">10% to balance</p>
                 </div>
-                <div class="side-bar-game level-3 complexity_btn radio"
+                <div id="btn_level_3" class="side-bar-game level-3 complexity_btn radio"
                      v-bind:class="{ gameLevelActive : game_level==3 }"
                      v-on:click="game_level=3"
                      data-type="radio" data-puzle="100" data-level="3">

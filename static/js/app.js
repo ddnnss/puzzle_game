@@ -18,6 +18,7 @@ function init() {
 $('.complexity_btn').on('click', function(e){
   app.open_mobile_menu()
   app.mobile_sub_menu = ''
+  document.getElementById('id_concide').classList.remove('btnDisabled')
   document.getElementsByClassName('win-label')[0].classList.remove('winLabelActive')
   document.getElementsByClassName('lose-label')[0].classList.remove('loseLabelActive')
   e.preventDefault()
@@ -34,6 +35,9 @@ $('.complexity_btn').on('click', function(e){
   $(this).addClass('active_complexity_btn')
 
   var lengthPuzle = $(this).data('puzle');
+  var level_id = $(this).data('level');
+  var levelBtn = document.getElementById(`btn_level_${level_id}`);
+  levelBtn.classList.add('btnDisabled')
   let data = sessionStorage.getItem('key');
 
   $.ajax({
@@ -68,6 +72,7 @@ $('.complexity_btn').on('click', function(e){
 
         totalAmount = parAmt * 60;
         timeSet();
+        levelBtn.classList.remove('btnDisabled')
       }
       else if (response.code == 400)
         alert(response.error)
