@@ -32,10 +32,14 @@
                                     <td>Level {{ game.level }}</td>
                                     <td><a target="_blank" style="text-decoration: underline" href="{{ game.image.url }}">Image</a></td>
                                     <td>
-                                        {% if game.result %}
+                                        {% if game.level == 1 and game.result %}
+                                            +5
+                                        {% elif game.level == 2 and game.result %}
                                             +10
-                                        {% else %}
-                                            +0
+                                        {% elif game.level == 3 and game.result %}
+                                            +20
+                                            {% else %}
+                                            -
                                         {% endif %}
                                         </td>
                                     <td>

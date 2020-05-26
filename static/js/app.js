@@ -18,6 +18,7 @@ function init() {
 $('.complexity_btn').on('click', function(e){
   app.open_mobile_menu()
   app.mobile_sub_menu = ''
+    app.loaderActive = true
   document.getElementById('id_concide').classList.remove('btnDisabled')
   document.getElementsByClassName('win-label')[0].classList.remove('winLabelActive')
   document.getElementsByClassName('lose-label')[0].classList.remove('loseLabelActive')
@@ -73,6 +74,7 @@ $('.complexity_btn').on('click', function(e){
         totalAmount = parAmt * 60;
         timeSet();
         levelBtn.classList.remove('btnDisabled')
+          app.loaderActive = false
       }
       else if (response.code == 400)
         alert(response.error)
