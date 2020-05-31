@@ -431,6 +431,12 @@ var jQuery = window.jQuery || require('jquery');
           sessionStorage.setItem('is_win', 1); //set is_win to true if player win
           let level = sessionStorage.getItem('level');
           console.log('win')
+            app.result_title = 'YOU WIN'
+                            app.result_image_modal = true
+                            app.result_image = image_url
+           $('.puzzle-group').remove() // for bug sometimes game not ended
+          $('.img_end').remove() // remove concide image
+          $('#concide_image').remove() // remove concide image div
           //$('.game_won_block > .message-box > .rate').text('+' + (level * 10) + '% to your balance')
 
           let body = {'game_id':app.current_game_id}
@@ -443,8 +449,7 @@ var jQuery = window.jQuery || require('jquery');
                         .then(res => {
 
                             console.log(res)
-                            document.getElementsByClassName('win-label')[0].classList.add('winLabelActive')
-
+                           // document.getElementsByClassName('win-label')[0].classList.add('winLabelActive')
 
                         })
 
@@ -931,8 +936,9 @@ function concide() {
     $('.img_end').remove()
     if (timeloop)
       clearTimeout(timeloop)
-    document.getElementsByClassName('lose-label')[0].classList.add('loseLabelActive')
+    //document.getElementsByClassName('lose-label')[0].classList.add('loseLabelActive')
       document.getElementById('id_concide').classList.add('btnDisabled')
+    app.result_title = 'YOU LOSE'
     app.result_image_modal = true
     app.result_image = image_url
       $('#puzzle-board svg').remove()

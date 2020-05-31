@@ -709,7 +709,8 @@ svg {
   opacity: 0;
   pointer-events: none;
   top: 85px;
-  width: 1130px;
+  width: 800px;
+  max-width: 800px;
   background: #383E6C;
   -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
@@ -1122,14 +1123,14 @@ svg {
 
 .game-area::before {
   position: absolute;
-  content: 'GAME AREA';
+  content: 'ASSEMBLY AREA';
   top: 40%;
   font: 100px 'Circe-ExtraBold',sans-serif;
   color: #7c7c7c;
   opacity: .1;
   right: 0;
   left: 0;
-  width: 590px;
+  width: 800px;
   margin: 0 auto;
 }
 
@@ -1600,7 +1601,7 @@ svg {
 
 .game-select {
   position: absolute;
-  max-width: 450px;
+  max-width: 650px;
   left: 0;
   right: 0;
   top: 40%;
@@ -1623,6 +1624,8 @@ svg {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
 }
 
 .game-select-item {
@@ -1633,6 +1636,7 @@ svg {
   width: 200px;
   height: 200px;
   padding: 20px;
+  margin-bottom: 20px;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   display: -webkit-box;
@@ -1684,7 +1688,7 @@ svg {
 }
 
 .side-bar-wrapper {
-  padding: 15px 25px 0 25px;
+  padding: 60px 25px 0 25px;
 }
 
 .side-bar-toggle {
@@ -2098,6 +2102,13 @@ svg {
   }
 }
 
+@media (max-width: 1270px) {
+  .header-nav-sub-text {
+    width: 600px;
+    max-width: 600px;
+  }
+}
+
 @media (max-width: 1024px) {
   .not-visible-1024 {
     display: none;
@@ -2187,11 +2198,16 @@ svg {
 
   .game-area::before {
     font-size: 60px !important;
-    width: 355px !important;
+    width: 480px !important;
   }
 
   .game-area::after {
     content: none;
+  }
+
+  .game-select-item {
+    width: 100px;
+    height: 100px;
   }
 
   .footer {

@@ -101,6 +101,8 @@
             delimiters: ['[[', ']]'],
             el: '#app',
             data: {
+                btnOff:true,
+                result_title:'',
                 loaderActive:false,
                 mobile_menu_right: false,
                 main_logo: '{% static 'images/qp.jpg' %}',
@@ -138,6 +140,9 @@
             },
             mounted: function () {
                 this.$nextTick(function () {
+                    {% if not indexPage %}
+                    this.mobile_sub_menu = 'gameselect'
+                    {% endif %}
                     let uri = window.location.href.split('?');
                     if (uri.length == 2)
                     {

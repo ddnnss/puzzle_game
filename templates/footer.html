@@ -12,9 +12,9 @@
 <div  class="modal " v-bind:class="{ modalActive:result_image_modal }">
     <div class="modal-dialog" >
         <div class="modal-content">
-            <div class="close"  v-on:click="result_image_modal = false"><img src="{% static 'images/close-btn.svg' %}" alt=""></div>
+            <div class="close"  v-on:click="result_image_modal = false, mobile_sub_menu = 'gameselect'"><img src="{% static 'images/close-btn.svg' %}" alt=""></div>
                 <div class="modal-header">
-                    <p>YOU LOSE</p>
+                    <p>[[result_title]]</p>
                 </div>
                 <div class="modal-body">
                     <img :src=[[result_image]] alt="">

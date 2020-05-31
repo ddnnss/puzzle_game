@@ -13,7 +13,8 @@
             {% endif %}
             <div class="side-bar-games">
                 <div id="btn_level_1" class="side-bar-game level-1 complexity_btn radio "
-                     v-bind:class="{ gameLevelActive : game_level==1 }"
+                     v-bind:class="{ gameLevelActive : game_level==1, btnDisabled : result_image_modal  }"
+
                      v-on:click="game_level=1"
                      data-type="radio" data-puzle="150" data-level="1">
                     <p class="side-bar-game-level"><span>LEVEL</span> <span>1</span> </p>
@@ -22,7 +23,7 @@
                     <p class="side-bar-game-info">5% to balance</p>
                 </div>
                 <div id="btn_level_2" class="side-bar-game level-2 complexity_btn radio"
-                     v-bind:class="{ gameLevelActive : game_level==2 }"
+                     v-bind:class="{ gameLevelActive : game_level==2, btnDisabled : result_image_modal }"
                      v-on:click="game_level=2"
                      data-type="radio" data-puzle="120" data-level="2">
                     <p class="side-bar-game-level"><span>LEVEL</span> <span>2</span> </p>
@@ -31,7 +32,7 @@
                     <p class="side-bar-game-info">10% to balance</p>
                 </div>
                 <div id="btn_level_3" class="side-bar-game level-3 complexity_btn radio"
-                     v-bind:class="{ gameLevelActive : game_level==3 }"
+                     v-bind:class="{ gameLevelActive : game_level==3, btnDisabled : result_image_modal }"
                      v-on:click="game_level=3"
                      data-type="radio" data-puzle="100" data-level="3">
                     <p class="side-bar-game-level"><span>LEVEL</span> <span>3</span> </p>

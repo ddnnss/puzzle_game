@@ -37,8 +37,12 @@ $('.complexity_btn').on('click', function(e){
 
   var lengthPuzle = $(this).data('puzle');
   var level_id = $(this).data('level');
-  var levelBtn = document.getElementById(`btn_level_${level_id}`);
-  levelBtn.classList.add('btnDisabled')
+  var levelBtn1 = document.getElementById(`btn_level_1`);
+  var levelBtn2 = document.getElementById(`btn_level_2`);
+  var levelBtn3 = document.getElementById(`btn_level_3`);
+  levelBtn1.classList.add('btnDisabled')
+  levelBtn2.classList.add('btnDisabled')
+  levelBtn3.classList.add('btnDisabled')
   let data = sessionStorage.getItem('key');
 
   $.ajax({
@@ -73,7 +77,9 @@ $('.complexity_btn').on('click', function(e){
 
         totalAmount = parAmt * 60;
         timeSet();
-        levelBtn.classList.remove('btnDisabled')
+        levelBtn1.classList.remove('btnDisabled')
+        levelBtn2.classList.remove('btnDisabled')
+        levelBtn3.classList.remove('btnDisabled')
           app.loaderActive = false
       }
       else if (response.code == 400)
