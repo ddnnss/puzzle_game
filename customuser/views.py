@@ -96,3 +96,10 @@ def new_msg(request):
     chat = Chat.objects.get(user=request.user)
     Message.objects.create(chat=chat, isUserMessage=True,message=request_body['text'])
     return JsonResponse({'status':'ok'}, safe=False)
+
+def new_deposit(request):
+    request_unicode = request.body.decode('utf-8')
+    request_body = json.loads(request_unicode)
+    request.user.balance += int(request_body['summ'])
+    request.user.save()
+    return JsonResponse({'status':'ok'}, safe=False)

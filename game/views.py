@@ -33,4 +33,6 @@ def win(request):
     game = Game.objects.get(id=request_body['game_id'])
     game.result = True
     game.save()
-    return JsonResponse({'result': 'success'})
+    game.player.rating += game.get_win_rating()
+    game.player.save()
+    return JsonResponse({'rating': game.player.rating})

@@ -169,10 +169,10 @@
                         </div>
                         <div class="form-row">
 
-                             <input style="width: 100%" type="text">
+                             <input style="width: 100%" v-model="deposit_summ" type="text">
                         </div>
 
-                        <span class="btn btn-blue btn-center">DEPOSIT</span>
+                        <span class="btn btn-blue btn-center" v-on:click="newDeposit" :class="{btnDisabled : !deposit_summ }">DEPOSIT</span>
 
                     </div>
                 </div>

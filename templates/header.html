@@ -393,7 +393,7 @@
                 <div class="header-user-wrapper">
                     <div class="header-user-info">
                         <p class="header-user-info-name">{{ request.user.nickname }}</p>
-                        <p class="header-user-info-rating">Rating: {{ request.user.rating }}</p>
+                        <p  class="header-user-info-rating">Rating: <span id="rating_desktop">{{ request.user.rating }}</span></p>
                     </div>
                     <div class="header-user-avatar" v-on:click="openUserMenu"><img width="60" height="60" src="{{ request.user.get_user_avatar }}" alt=""></div>
 

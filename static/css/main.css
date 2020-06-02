@@ -876,7 +876,7 @@ svg {
   position: absolute;
   content: url(../images/wallet-icon.svg);
   left: -30px;
-  top: -45px;
+  /*top: -45px;*/
 }
 
 .mobile-user-panel-avatar img {
@@ -1137,8 +1137,8 @@ svg {
 .game-area::after {
   position: absolute;
   content: '';
-  width: 1px;
-  right: 200px;
+  width: 200px;
+  right: 0px;
   top: 0;
   bottom: 0;
   background: #2D325A;

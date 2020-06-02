@@ -64,6 +64,14 @@ class Game(models.Model):
         else:
             return 'LOSE'
 
+    def get_win_rating(self):
+        if self.level == 1:
+            return 5
+        if self.level == 2:
+            return 10
+        if self.level == 3:
+            return 20
+
     def save(self, *args, **kwargs):
         if not self.image:
             self.image = self.create_qr()

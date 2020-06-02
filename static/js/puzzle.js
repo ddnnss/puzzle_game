@@ -450,6 +450,7 @@ var jQuery = window.jQuery || require('jquery');
 
                             console.log(res)
                            // document.getElementsByClassName('win-label')[0].classList.add('winLabelActive')
+                            document.getElementById('rating_desktop').innerText = res['rating']
 
                         })
 

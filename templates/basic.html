@@ -135,7 +135,8 @@
                 lk_tab: 'games',
                 chat_messages:[],
                 new_msg:'',
-                reg_error:''
+                reg_error:'',
+                deposit_summ:0
 
             },
             mounted: function () {
@@ -360,12 +361,24 @@
                         credentials: 'same-origin'
                     }).then(res=>res.json())
                         .then(res => {
-
                             console.log(res)
                             this.new_msg =''
                             this.getChats()
+                        })
+                },
+                newDeposit: function () {
 
-
+                    console.log('send new msg')
+                    let body = {'summ':this.deposit_summ}
+                    fetch('{% url 'new_deposit' %}', {
+                        method: 'post',
+                        body: JSON.stringify(body),
+                        headers: { "X-CSRFToken": '{{  csrf_token }}' },
+                        credentials: 'same-origin'
+                    }).then(res=>res.json())
+                        .then(res => {
+                            console.log(res)
+                            window.location.reload()
                         })
                 },
                 changeAvatar(e) {
