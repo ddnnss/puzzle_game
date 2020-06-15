@@ -17,13 +17,13 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 
 class Level(models.Model):
-    title = models.CharField(max_length=50)
-    size_x = models.IntegerField()
-    size_y = models.IntegerField()
-    time = models.IntegerField()
+    name = models.CharField('Название',max_length=50,null=True,blank=True)
+    timer = models.IntegerField('Таймер в минутах',default=0)
+    rating = models.IntegerField('+рейтинг',default=0)
+    balance = models.IntegerField('+баланс в %',default=0)
 
     def __str__(self):
-        return '{id}: {title}'.format(id=self.id, title=self.title)
+        return f'{self.id}: {self.name}'
 
 
 def game_images_dir(instance, filename):
@@ -48,7 +48,7 @@ class Game(models.Model):
     player = models.ForeignKey(User, blank=True, on_delete=models.CASCADE, null=True)
     # lev = models.ForeignKey(Level, on_delete=models.PROTECT, null=True, blank=True)
     # image = models.ForeignKey(Image, on_delete=models.PROTECT)
-    level = models.IntegerField(default=0)
+    level = models.ForeignKey(Level, blank=True, on_delete=models.CASCADE, null=True)
     game_type = models.IntegerField(blank=True,null=True)
     image = models.ImageField(blank=True, upload_to='games/')
     date = models.DateTimeField(auto_now_add=True, blank=True)
@@ -65,12 +65,7 @@ class Game(models.Model):
             return 'LOSE'
 
     def get_win_rating(self):
-        if self.level == 1:
-            return 5
-        if self.level == 2:
-            return 10
-        if self.level == 3:
-            return 20
+        return self.level.rating
 
     def save(self, *args, **kwargs):
         if not self.image:
@@ -94,18 +89,18 @@ class Game(models.Model):
             image = File(image_bytes_stream, name='{}.png'.format(name))
         elif self.game_type == 1:
             if self.player:
-                print(self.player)
-                images = GameImage.objects.all()
-                for img in images:
-                    if self.player.last_image != img.id :
-                        temp_image = img
-                        self.player.last_image = img.id
-                        self.player.save()
-                        break
-                    else:
-                        temp_image = GameImage.objects.random(1).first()
-                        self.player.last_image = temp_image.id
-                        self.player.save()
+                # print(self.player)
+                # images = GameImage.objects.all()
+                # for img in images:
+                #     if self.player.last_image != img.id :
+                #         temp_image = img
+                #         self.player.last_image = img.id
+                #         self.player.save()
+                #         break
+                #     else:
+                temp_image = GameImage.objects.random(1).first()
+                self.player.last_image = temp_image.id
+                self.player.save()
             else:
                 temp_image = GameImage.objects.random(1).first()
 

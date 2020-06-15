@@ -432,6 +432,7 @@ var jQuery = window.jQuery || require('jquery');
           let level = sessionStorage.getItem('level');
           console.log('win')
             app.result_title = 'YOU WIN'
+            app.result = true
                             app.result_image_modal = true
                             app.result_image = image_url
            $('.puzzle-group').remove() // for bug sometimes game not ended
@@ -940,6 +941,7 @@ function concide() {
     //document.getElementsByClassName('lose-label')[0].classList.add('loseLabelActive')
       document.getElementById('id_concide').classList.add('btnDisabled')
     app.result_title = 'YOU LOSE'
+      app.result=false
     app.result_image_modal = true
     app.result_image = image_url
       $('#puzzle-board svg').remove()

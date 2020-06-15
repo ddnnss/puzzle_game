@@ -19,8 +19,8 @@
                      data-type="radio" data-puzle="150" data-level="1">
                     <p class="side-bar-game-level"><span>LEVEL</span> <span>1</span> </p>
                     <p class="side-bar-game-info">4x4 | 16 elements</p>
-                    <p class="side-bar-game-info">3 minute to assembly</p>
-                    <p class="side-bar-game-info">5% to balance</p>
+                    <p class="side-bar-game-info">{{ level1.timer }} minute to assembly</p>
+                    <p class="side-bar-game-info">{{ level1.balance }}% to balance</p>
                 </div>
                 <div id="btn_level_2" class="side-bar-game level-2 complexity_btn radio"
                      v-bind:class="{ gameLevelActive : game_level==2, btnDisabled : result_image_modal }"
@@ -28,8 +28,8 @@
                      data-type="radio" data-puzle="120" data-level="2">
                     <p class="side-bar-game-level"><span>LEVEL</span> <span>2</span> </p>
                     <p class="side-bar-game-info">5x5 | 25 elements</p>
-                    <p class="side-bar-game-info">6 minutes to assembly</p>
-                    <p class="side-bar-game-info">10% to balance</p>
+                    <p class="side-bar-game-info">{{ level2.timer }} minutes to assembly</p>
+                    <p class="side-bar-game-info">{{ level2.balance }}% to balance</p>
                 </div>
                 <div id="btn_level_3" class="side-bar-game level-3 complexity_btn radio"
                      v-bind:class="{ gameLevelActive : game_level==3, btnDisabled : result_image_modal }"
@@ -37,15 +37,21 @@
                      data-type="radio" data-puzle="100" data-level="3">
                     <p class="side-bar-game-level"><span>LEVEL</span> <span>3</span> </p>
                     <p class="side-bar-game-info">6x6 | 36 elements</p>
-                    <p class="side-bar-game-info">9 minutes to assembly</p>
-                    <p class="side-bar-game-info">20% to balance</p>
+                    <p class="side-bar-game-info">{{ level3.timer }} minutes to assembly</p>
+                    <p class="side-bar-game-info">{{ level3.balance }}% to balance</p>
                 </div>
             </div>
 
         </div>
     </div>
+    <div style="z-index: 80" class="counter">
+            <div class="footer-timer">
+                <p id="id_timer">00:00</p></div>
+            <span style="display: inline-block;    width: 150px;    text-align: center;    cursor: pointer;" id="id_concide" onclick="concide()">CONCIDE</span>
+        </div>
     <div id="game" class="game-main">
         {#        <div id="result_img"></div>#}
+
         <div id="puzzle-board" class="game-area" @click="mobile_menu = false ; mobile_menu_right = false ">
             <div class="game-area-loader " v-bind:class="{ loaderActive : loaderActive }">
                 <div class="containerrr">
@@ -57,6 +63,6 @@
             </div>
         </div>
     </div>
-    {% include 'footer.html' %}
+{#    {% include 'footer.html' %}#}
 {% endblock %}
 

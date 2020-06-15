@@ -20,8 +20,8 @@ $('.complexity_btn').on('click', function(e){
   app.mobile_sub_menu = ''
     app.loaderActive = true
   document.getElementById('id_concide').classList.remove('btnDisabled')
-  document.getElementsByClassName('win-label')[0].classList.remove('winLabelActive')
-  document.getElementsByClassName('lose-label')[0].classList.remove('loseLabelActive')
+  // document.getElementsByClassName('win-label')[0].classList.remove('winLabelActive')
+  // document.getElementsByClassName('lose-label')[0].classList.remove('loseLabelActive')
   e.preventDefault()
 
   $('.puzzle-group').remove() // for bug sometimes game not ended
@@ -56,7 +56,7 @@ $('.complexity_btn').on('click', function(e){
       {
         var level = response.level;
         app.current_game_id = response.game_id
-        var parAmt = level * 3;
+        var parAmt = response.timer;
         if (typeof timeloop !== 'undefined')
           if (timeloop)
             clearTimeout(timeloop)

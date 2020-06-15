@@ -88,6 +88,19 @@
         </div>
     </div>
 </div>
+<div  class="modal " v-bind:class="{ modalActive:result_image_modal }">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="close"  v-on:click="result_image_modal = false, mobile_sub_menu = 'gameselect'"><img src="{% static 'images/close-btn.svg' %}" alt=""></div>
+                <div class="modal-header">
+                    <p :class="{colorRed : !result}">[[result_title]]</p>
+                </div>
+                <div class="modal-body">
+                    <img :src=[[result_image]] alt="">
+                </div>
+        </div>
+    </div>
+</div>
 </div>
 {% block js %}
 
@@ -136,7 +149,8 @@
                 chat_messages:[],
                 new_msg:'',
                 reg_error:'',
-                deposit_summ:0
+                deposit_summ:0,
+                result:false
 
             },
             mounted: function () {

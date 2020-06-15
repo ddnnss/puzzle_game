@@ -167,7 +167,7 @@ body {
   -ms-scroll-chaining: none;
   overscroll-behavior: contain;
   overflow: hidden;
-  background: #2D325A;
+  background: #2A2E54;
 }
 
 a {
@@ -190,17 +190,11 @@ a {
 
 .app {
   overflow: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
   height: 100vh;
+}
+
+.colorRed {
+  color: red !important;
 }
 
 #concide_image {
@@ -215,7 +209,7 @@ a {
 .game-main {
   overflow: hidden;
   width: 100vw;
-  padding-left: 235px;
+  padding-right: 200px;
   position: relative;
 }
 
@@ -876,7 +870,7 @@ svg {
   position: absolute;
   content: url(../images/wallet-icon.svg);
   left: -30px;
-  /*top: -45px;*/
+  top: -2px;
 }
 
 .mobile-user-panel-avatar img {
@@ -1118,30 +1112,45 @@ svg {
 .game-area {
   position: relative;
   background: #2A2E54;
-  height: calc(100vh - 151px - 105px);
+  height: 100vh;
 }
 
 .game-area::before {
   position: absolute;
   content: 'ASSEMBLY AREA';
   top: 40%;
+  width: 114%;
   font: 100px 'Circe-ExtraBold',sans-serif;
-  color: #7c7c7c;
-  opacity: .1;
+  color: #282C51;
   right: 0;
   left: 0;
-  width: 800px;
-  margin: 0 auto;
+  text-align: center;
 }
 
 .game-area::after {
   position: absolute;
   content: '';
   width: 200px;
-  right: 0px;
+  right: -200px;
   top: 0;
   bottom: 0;
   background: #2D325A;
+}
+
+.counter {
+  margin: 0 auto;
+  max-width: 150px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 99px;
+  z-index: 110;
+  padding-bottom: 5px;
+  background: #2d325a;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
 }
 
 .game-area-loader {
@@ -1151,8 +1160,7 @@ svg {
   padding: 0px;
   margin: 0px;
   position: absolute;
-  left: -235px;
-  height: calc(100vh - 151px - 105px);
+  height: 100vh;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
@@ -1749,12 +1757,12 @@ svg {
   -ms-flex-pack: justify;
   justify-content: space-between;
   width: 120px;
-  font: 20px 'Circe-ExtraBold',sans-serif;
+  font: 20px 'Circe-Regular',sans-serif;
   margin-bottom: 15px;
 }
 
 .side-bar-game-info {
-  font: 14px 'Circle-Bold',sans-serif;
+  font: 14px 'Circe-Regular',sans-serif;
   margin-bottom: 5px;
 }
 
@@ -1831,11 +1839,22 @@ svg {
 
 .footer-timer {
   position: relative;
-  margin-right: 80px;
 }
 
 .footer-timer p {
   font: 48px 'Circe-ExtraBold',sans-serif;
+  text-align: center;
+}
+
+.footer-timer span {
+  display: inline-block;
+  width: 150px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.footer-timer span:hover {
+  font-weight: bold;
 }
 
 .footer-button {
@@ -2059,6 +2078,22 @@ svg {
   border-radius: 0 26px 26px 0;
 }
 
+@media (max-width: 1600px) {
+  .side-bar-game {
+    height: calc(144px /1.4);
+  }
+
+  .side-bar-game-level {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  .side-bar-game-info {
+    font-size: 12px;
+    margin-bottom: 0;
+  }
+}
+
 @media (max-width: 1500px) {
   .not-visible-1500 {
     display: none;
@@ -2121,27 +2156,23 @@ svg {
   .game-area::after {
     content: none;
   }
+}
 
-  .side-bar-game {
-    height: calc(144px /1.4);
+@media (max-width: 1000px) {
+  .game-main {
+    padding-right: 0;
   }
 
-  .side-bar-game-level {
-    font-size: 16px;
-    margin-bottom: 5px;
+  .game-area {
+    height: 100vh;
   }
 
-  .side-bar-game-info {
-    font-size: 12px;
-    margin-bottom: 0;
+  .game-area::before {
+    font-size: 80px !important;
   }
 }
 
 @media (max-width: 812px) {
-  .game-main {
-    padding-left: 0;
-  }
-
   .img_end {
     height: auto;
   }
@@ -2193,29 +2224,28 @@ svg {
   }
 
   .game-area {
-    height: calc(100vh - 105px - 110px);
+    height: 100vh;
   }
 
   .game-area::before {
     font-size: 60px !important;
-    width: 480px !important;
   }
 
   .game-area::after {
     content: none;
   }
 
+  .game-select {
+    max-width: 500px;
+  }
+
   .game-select-item {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
   }
 
   .footer {
     padding: 30px 0;
-  }
-
-  .footer-timer {
-    margin-right: 35px;
   }
 
   .footer-timer p {
@@ -2247,7 +2277,17 @@ svg {
   }
 
   .game-area {
-    height: calc(100vh - 77px - 80px);
+    height: 100vh;
+  }
+
+  .game-area::before {
+    font-size: 46px !important;
+    width: 370px !important;
+  }
+
+  .game-select {
+    max-width: 350px;
+    top: 25%;
   }
 
   .footer {
