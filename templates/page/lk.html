@@ -29,27 +29,19 @@
                             {% for game in allGames %}
                                 <tr class="lk-games-table-item">
                                     <td>{{ game.date |date:'d.m.Y, H:i'  }}</td>
-                                    <td>Level {{ game.level }}</td>
+                                    <td>Level {{ game.level.id }}</td>
                                     <td><a target="_blank" style="text-decoration: underline" href="{{ game.image.url }}">Image</a></td>
                                     <td>
-                                        {% if game.level == 1 and game.result %}
-                                            +5
-                                        {% elif game.level == 2 and game.result %}
-                                            +10
-                                        {% elif game.level == 3 and game.result %}
-                                            +20
-                                            {% else %}
+                                        {% if game.result %}
+                                            {{ game.level.rating }}
+                                        {% else %}
                                             -
                                         {% endif %}
                                         </td>
                                     <td>
-                                        {% if game.level == 1 and game.result %}
-                                            +5%
-                                        {% elif game.level == 2 and game.result %}
-                                            +10%
-                                        {% elif game.level == 3 and game.result %}
-                                            +20%
-                                            {% else %}
+                                        {% if game.result %}
+                                            {{ game.level.balance }}
+                                        {% else %}
                                             -
                                         {% endif %}
                                     </td>
