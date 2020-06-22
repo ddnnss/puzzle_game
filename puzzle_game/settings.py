@@ -18,6 +18,7 @@ CKEDITOR_UPLOAD_PATH = "uploads/"
 # Application definition
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -27,19 +28,25 @@ INSTALLED_APPS = [
     'ckeditor',
     'customuser.apps.CustomuserConfig',
     'game',
-    'chat'
+    'chat',
+    'page'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+LANGUAGES = (
+    ('en', 'English'),
+    ('ru', 'Russian'),
+    ('zh-hans', 'Chineese'),
+)
 ROOT_URLCONF = 'puzzle_game.urls'
 
 TEMPLATES = [
@@ -54,11 +61,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
 ]
 
+LOCALE_PATHS = (
+    os.path.join(BASE_DIR, 'locale'),
+)
 WSGI_APPLICATION = 'puzzle_game.wsgi.application'
 
 

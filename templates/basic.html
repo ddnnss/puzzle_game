@@ -1,4 +1,6 @@
 {% load static %}
+{% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,52 +29,52 @@
             <div class="close"  v-on:click="openRegModal"><img src="{% static 'images/close-btn.svg' %}" alt=""></div>
             <div v-if="modal_login_body" >
                 <div class="modal-header">
-                    <p>LOG IN</p>
+                    <p>{% trans 'Вход' %}</p>
                 </div>
                 <div class="modal-body">
                     <div class="toggleButton">
-                        <p   v-bind:class="{ toggleButtonActiveLeft: modal_login_body }">LOG IN</p>
-                        <p  v-on:click="modal_login_body=false">SIGN UP</p>
+                        <p   v-bind:class="{ toggleButtonActiveLeft: modal_login_body }">{% trans 'Вход' %}</p>
+                        <p  v-on:click="modal_login_body=false">{% trans 'Регистрация' %}</p>
                     </div>
                     <div class="form-row">
-                        <label>Email:</label>
+                        <label>{% trans 'Почта' %}:</label>
                         <input type="text" v-model="login_email">
                     </div>
                     <div class="form-row mb-40">
-                        <label>Password:</label>
+                        <label>{% trans 'Пароль' %}:</label>
                         <input type="password" v-model="login_password">
                     </div>
-                    <span @click="sendLogin" class="btn btn-blue btn-center" :class="{btnDisabled : !login_email || !login_password}">LOG IN</span>
+                    <span @click="sendLogin" class="btn btn-blue btn-center" :class="{btnDisabled : !login_email || !login_password}">{% trans 'Вход' %}</span>
 
                 </div>
             </div>
             <div v-else>
                 <div class="modal-header">
-                    <p>SIGN UP</p>
+                    <p>{% trans 'Регистрация' %}</p>
                 </div>
                 <div class="modal-body">
                     <div class="toggleButton">
-                        <p  v-on:click="modal_login_body=true">LOG IN</p>
-                        <p  v-bind:class="{ toggleButtonActiveRight: !modal_login_body }">SIGN UP</p>
+                        <p  v-on:click="modal_login_body=true">{% trans 'Вход' %}</p>
+                        <p  v-bind:class="{ toggleButtonActiveRight: !modal_login_body }">{% trans 'Регистрация' %}</p>
                     </div>
                     <div class="form-row">
-                        <label>E-Mail:</label>
+                        <label>{% trans 'Почта' %}:</label>
                         <input type="text" v-model="email">
                     </div>
                     <div class="form-row">
-                        <label>Nickname:</label>
+                        <label>{% trans 'Ник' %}:</label>
                         <input type="text" v-model="nickname">
                     </div>
                     <div class="form-row ">
-                        <label>Password:</label>
+                        <label>{% trans 'Пароль' %}:</label>
                         <input type="password" v-model="password1">
                     </div>
                     <div class="form-row ">
-                        <label>Password:</label>
+                        <label>{% trans 'Пароль повтор' %}:</label>
                         <input type="password" v-model="password2">
                     </div>
                     <div class="form-row mb-40">
-                        <label>Agree with <a style="text-decoration: underline" href="{% static 'policy.docx' %}">Privacy policy</a> ?</label>
+                        <label>{% trans 'Вы согласны с' %} <a style="text-decoration: underline" href="{% static 'policy.docx' %}">{% trans 'политикой конфидициальности' %}</a> ?</label>
                         <input type="checkbox" v-model="is_login_agree">
                     </div>
 
@@ -80,7 +82,7 @@
                           @click="sendSignUp"
                           :class="{btnDisabled : !email || !nickname ||  !password1 || !password2|| !is_login_agree}"
 
-                    >SIGN UP</span>
+                    >{% trans 'Вход' %}</span>
                     <div class="">[[reg_error]]</div>
 
                 </div>

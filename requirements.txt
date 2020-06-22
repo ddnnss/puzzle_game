@@ -4,3 +4,4 @@ pytils
 segno
 faker
 django-random-queryset
+django-modeltranslation

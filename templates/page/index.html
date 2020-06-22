@@ -1,9 +1,9 @@
 {% extends 'basic.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block content %}
     <div style="background: none" class="game-select">
-        <p style="text-align: center">Заработок онлайн</p>
+        <p style="text-align: center">{% trans 'Заработок онлайн' %}</p>
         <div class="game-select-wrapper">
             <a href="{% url 'game'%}?game=qrpuzzle">
               <div class="game-select-item">

@@ -1,16 +1,16 @@
 {% extends 'basic.html' %}
 {% load static %}
-
+{% load i18n %}
 {% block content %}
     <div class="lk-area" @click="mobile_menu = false ; mobile_menu_right = false ">
         <div class="lk-area-wrapper">
             <div class="lk-tab-links">
                 <ul class="lk-tab-links-wrapper">
-                    <li class="lk-tab-link tab-link-games " :class="{ lkTabLinkActive:lk_tab == 'games' }" @click="lk_tab = 'games' ">Assembly</li>
-                    <li class="lk-tab-link tab-link-support " :class="{ lkTabLinkActive:lk_tab == 'support' }" @click="lk_tab = 'support' ">Support</li>
-                    <li class="lk-tab-link tab-link-cash" :class="{ lkTabLinkActive:lk_tab == 'cash' }" @click="lk_tab = 'cash' ">Cash Flow</li>
-                    <li class="lk-tab-link tab-link-settings" :class="{ lkTabLinkActive:lk_tab == 'settings' }" @click="lk_tab = 'settings' ">Settings</li>
-                    <li class="lk-tab-link tab-link-logout"><a href="{% url 'logout_page' %}">Log out</a></li>
+                    <li class="lk-tab-link tab-link-games " :class="{ lkTabLinkActive:lk_tab == 'games' }" @click="lk_tab = 'games' ">{% trans 'Cтатистика игр' %}</li>
+                    <li class="lk-tab-link tab-link-support " :class="{ lkTabLinkActive:lk_tab == 'support' }" @click="lk_tab = 'support' ">{% trans 'Чат поддержки' %}</li>
+                    <li class="lk-tab-link tab-link-cash" :class="{ lkTabLinkActive:lk_tab == 'cash' }" @click="lk_tab = 'cash' ">{% trans 'Баланс' %}</li>
+                    <li class="lk-tab-link tab-link-settings" :class="{ lkTabLinkActive:lk_tab == 'settings' }" @click="lk_tab = 'settings' ">{% trans 'Натройки' %}</li>
+                    <li class="lk-tab-link tab-link-logout"><a href="{% url 'logout_page' %}">{% trans 'Выход' %}</a></li>
 
                 </ul>
             </div>
@@ -19,12 +19,12 @@
                     <div class="lk-games-wrapper">
                         <table class="lk-games-table">
                             <tr class="lk-games-table-head">
-                                <td>DATE</td>
-                                <td>GAME LEVEL</td>
-                                <td>IMAGE</td>
-                                <td>RATING</td>
-                                <td>BALANCE</td>
-                                <td>RESULT</td>
+                                <td>{% trans 'Дата' %}</td>
+                                <td>{% trans 'Уровень' %}</td>
+                                <td>{% trans 'Картинка' %}</td>
+                                <td>{% trans 'Рейтинг' %}</td>
+                                <td>{% trans 'Баланс' %}</td>
+                                <td>{% trans 'Результат' %}</td>
                             </tr>
                             {% for game in allGames %}
                                 <tr class="lk-games-table-item">
@@ -66,7 +66,7 @@
                         </div>
                         <div class="lk-support-message">
                             <input type="text" v-model="new_msg">
-                            <span class="btn btn-blue" @click="newMsg">SEND</span>
+                            <span class="btn btn-blue" @click="newMsg">{% trans 'Отправить' %}</span>
                         </div>
 
 
@@ -79,27 +79,27 @@
                         <form action="{% url 'profile_edit' %}" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
                         <div class="form-row">
-                            <label>E-Mail:</label>
+                            <label>{% trans 'Почта' %}:</label>
                             <input type="text" v-model="email" name="email" >
                         </div>
                         <div class="form-row">
-                            <label>Nickname:</label>
+                            <label>{% trans 'Ник' %}:</label>
                             <input type="text" v-model="nickname" name="nickname">
                         </div>
                         <div class="form-row ">
-                            <label>Age:</label>
+                            <label>{% trans 'Возраст' %}:</label>
                             <input type="text" v-model="age" name="age">
                         </div>
                         <div class="form-row ">
-                            <label>Education:</label>
+                            <label>{% trans 'Образование' %}:</label>
                             <input type="text" v-model="education" name="study">
                         </div>
                         <div class="form-row ">
-                            <label>Location:</label>
+                            <label>{% trans 'Расположение' %}:</label>
                             <input type="text" v-model="location" name="region">
                         </div>
                          <div class="form-row ">
-                            <label>Current avatar:<br>
+                            <label>{% trans 'Аватар' %}:<br>
                                 <img :src="[[user_avatar]]" alt="">
                             </label>
                             <input type="file" v-on:change="changeAvatar" name="avatar">
@@ -110,7 +110,7 @@
 {#                              @click="updateProfile"#}
                               :class="{btnDisabled : !email || !nickname  }"
 
-                        >UPDATE PROFILE</button>
+                        >{% trans 'Обновить профиль' %}</button>
                         <div class="">[[reg_error]]</div>
                             </form>
                     </div>
