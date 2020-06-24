@@ -19,7 +19,7 @@
                      data-type="radio" data-puzle="150" data-level="1">
                     <p class="side-bar-game-level"><span>LEVEL</span> <span>1</span> </p>
                     <p class="side-bar-game-info">4x4 | 16 {% trans 'элементов' %}</p>
-                    <p class="side-bar-game-info">{{ level1.timer }}{% trans 'минут на сборку' %}</p>
+                    <p class="side-bar-game-info">{{ level1.timer }} {% trans 'минут на сбор' %}</p>
                     <p class="side-bar-game-info">{{ level1.balance }}% {% trans 'на баланс' %}</p>
                 </div>
                 <div id="btn_level_2" class="side-bar-game level-2 complexity_btn radio"
@@ -28,7 +28,7 @@
                      data-type="radio" data-puzle="120" data-level="2">
                     <p class="side-bar-game-level"><span>LEVEL</span> <span>2</span> </p>
                     <p class="side-bar-game-info">5x5 | 25 {% trans 'элементов' %}</p>
-                    <p class="side-bar-game-info">{{ level2.timer }} {% trans 'минут на сборку' %}</p>
+                    <p class="side-bar-game-info">{{ level2.timer }} {% trans 'минут на сбор' %}</p>
                     <p class="side-bar-game-info">{{ level2.balance }}% {% trans 'на баланс' %}</p>
                 </div>
                 <div id="btn_level_3" class="side-bar-game level-3 complexity_btn radio"
@@ -37,7 +37,7 @@
                      data-type="radio" data-puzle="100" data-level="3">
                     <p class="side-bar-game-level"><span>LEVEL</span> <span>3</span> </p>
                     <p class="side-bar-game-info">6x6 | 36 {% trans 'элементов' %}</p>
-                    <p class="side-bar-game-info">{{ level3.timer }} {% trans 'минут на сборку' %}</p>
+                    <p class="side-bar-game-info">{{ level3.timer }} {% trans 'минут на сбор' %}</p>
                     <p class="side-bar-game-info">{{ level3.balance }}% {% trans 'на баланс' %}</p>
                 </div>
             </div>
@@ -47,7 +47,7 @@
     <div style="z-index: 80" class="counter">
             <div class="footer-timer">
                 <p id="id_timer">00:00</p></div>
-            <span style="display: inline-block;    width: 150px;    text-align: center;    cursor: pointer;" id="id_concide" onclick="concide()">{% trans 'Решить'%}</span>
+            <span style="display: inline-block;    width: 150px;    text-align: center;    cursor: pointer;" id="id_concide" onclick="concide()">{% trans 'СБРОС'%}</span>
         </div>
     <div id="game" class="game-main">
         {#        <div id="result_img"></div>#}

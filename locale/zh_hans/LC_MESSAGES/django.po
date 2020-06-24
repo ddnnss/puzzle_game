@@ -55,7 +55,7 @@ msgstr "隐私政策"
 
 #: .\templates\header.html:16 .\templates\header.html:228
 #: .\templates\header.html:350 .\templates\page\lk.html:9
-msgid "Cтатистика игр"
+msgid "Cтатистика"
 msgstr "游戏统计"
 
 #: .\templates\header.html:17 .\templates\header.html:43
@@ -95,7 +95,7 @@ msgstr "元素"
 
 #: .\templates\header.html:142 .\templates\header.html:150
 #: .\templates\header.html:157
-msgid "минут на сборку"
+msgid "минут на сбор"
 msgstr "分钟建立"
 
 #: .\templates\header.html:143 .\templates\header.html:151
@@ -104,7 +104,7 @@ msgid "на баланс"
 msgstr "平衡"
 
 #: .\templates\page\game.html:50
-msgid "Решить"
+msgid "СБРОС"
 msgstr "解决"
 
 #: .\templates\header.html:170
@@ -124,8 +124,8 @@ msgstr "平衡"
 msgid "Настройки"
 msgstr "设定值"
 
-#: .\templates\header.html:231 .\templates\header.html:368
-#: .\templates\page\lk.html:10
+#: .\templates\header.html:191 .\templates\header.html:231
+#: .\templates\header.html:348 .\templates\page\lk.html:10
 msgid "Чат поддержки"
 msgstr "支持聊天"
 
@@ -137,6 +137,10 @@ msgstr "输出量"
 #: .\templates\header.html:258
 msgid "Главная"
 msgstr "家"
+
+#: .\templates\header.html:231
+msgid "Документы"
+msgstr "文件资料"
 
 #: .\templates\header.html:294 .\templates\header.html:299
 msgid "Темный"

@@ -231,6 +231,7 @@ svg {
   font: 14px 'Circe-ExtraBold',sans-serif;
   cursor: pointer;
   height: 50px;
+  text-transform: uppercase;
 }
 
 .btn-center {
@@ -365,6 +366,11 @@ svg {
 .header-nav-item {
   cursor: pointer;
   margin-right: 50px;
+  text-transform: uppercase;
+}
+
+.header-nav-item span {
+  text-transform: uppercase;
 }
 
 .header-nav-item:last-child {
@@ -409,6 +415,14 @@ svg {
   transition: all .2s linear;
 }
 
+.header-sub-menu.lang-button {
+  width: 85px;
+}
+
+.header-sub-menu.lang-button::before {
+  right: 35px;
+}
+
 .header-sub-menu::before {
   position: absolute;
   content: url(../images/sub-menu-before-arrow.svg);
@@ -423,6 +437,15 @@ svg {
   -webkit-transition: all .2s linear;
   -o-transition: all .2s linear;
   transition: all .2s linear;
+}
+
+.header-sub-menu-item a {
+  text-transform: uppercase;
+}
+
+.header-sub-menu-item.iconMenu {
+  text-align: center;
+  padding-left: 0;
 }
 
 .header-sub-menu-item:last-child {
@@ -484,6 +507,15 @@ svg {
 .header-sub-menu.button-sub-menu {
   top: 76px;
   left: -5%;
+}
+
+.header-sub-menu.button-sub-menu.lang-button {
+  left: 0;
+}
+
+.header-nav-item-button.lang-button span {
+  width: 85px;
+  height: 56px;
 }
 
 .header-nav-item-button.has-sub-menu {
@@ -585,6 +617,7 @@ svg {
   -o-transition: all .2s linear;
   transition: all .2s linear;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 .header-user-menu-item:last-child {
@@ -762,6 +795,10 @@ svg {
 
 .header-nav-sub-text-buttons span {
   width: 170px;
+}
+
+.lang-select-input {
+  display: none;
 }
 
 .header-mobile-right {
@@ -942,6 +979,7 @@ svg {
   -webkit-transition: all .2s linear;
   -o-transition: all .2s linear;
   transition: all .2s linear;
+  text-transform: uppercase;
 }
 
 .lk-tab-link.lkTabLinkActive {
@@ -1953,6 +1991,7 @@ svg {
 .modal-header p {
   color: #4E7CFF;
   font: 32px "Circe-ExtraBold",sans-serif;
+  text-transform: uppercase;
 }
 
 .modal-title {
@@ -2036,7 +2075,7 @@ svg {
 }
 
 .modal-body {
-  width: 330px;
+  width: 400px;
   margin: 0 auto;
 }
 
@@ -2045,7 +2084,7 @@ svg {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   border-radius: 36px;
-  max-width: 160px;
+  max-width: 200px;
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2058,6 +2097,7 @@ svg {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  text-transform: uppercase;
 }
 
 .toggleButton p {
@@ -2066,6 +2106,7 @@ svg {
   text-align: center;
   line-height: 27px;
   cursor: pointer;
+  padding: 0 10px;
 }
 
 .toggleButtonActiveLeft {

@@ -13,11 +13,19 @@
 
                 <div class="mobile-user-panel-menu">
                     <ul>
-                        <li class="header-user-menu-item"><span class="header-user-menu-link arrow-link" v-on:click="open_mobile_sub_menu('choose')">{% trans 'Cтатистика игр' %}</span></li>
+                        <li class="header-user-menu-item"><span class="header-user-menu-link arrow-link" v-on:click="open_mobile_sub_menu('choose')">{% trans 'Cтатистика' %}</span></li>
                         <li class="header-user-menu-item"><span class="header-user-menu-link arrow-link" v-on:click="open_mobile_sub_menu('rules')">{% trans 'Правила' %}</span></li>
                         <li class="header-user-menu-item"><span class="header-user-menu-link arrow-link" v-on:click="open_mobile_sub_menu('about')">{% trans 'О нас' %}</span></li>
                         <li class="header-user-menu-item"><span class="header-user-menu-link arrow-link" v-on:click="open_mobile_sub_menu('gameselect')">{% trans 'Выбор уровня' %}</span></li>
-                        <li class="header-user-menu-item"><span class="header-user-menu-link lang-ru-link" v-on:click="open_mobile_sub_menu('lang')">{% trans 'Смена языка' %}</span></li>
+                        <li class="header-user-menu-item"><span class="header-user-menu-link
+                        {% if LANGUAGE_CODE == 'en' %}
+                             lang-uk-link
+                        {% elif LANGUAGE_CODE == 'ru' %}
+                           lang-ru-link
+                        {% elif LANGUAGE_CODE == 'zh-hans' %}
+                           lang-ch-link
+                        {% endif %}"
+                                                                v-on:click="open_mobile_sub_menu('lang')">{% trans 'Смена языка' %}</span></li>
                         <li class="header-user-menu-item"><span class="header-user-menu-link theme-link-l" v-on:click="open_mobile_sub_menu('theme')">{% trans 'Смена темы' %}</span></li>
                     </ul>
                 </div>
@@ -46,33 +54,9 @@
                     <div class="mobile-user-panel-text-wrapper">
                         <p class="mobile-user-panel-text-header"></p>
                         <p class="mobile-user-panel-text">
+                            {{ rulesText | safe}}
+                        </p>
 
-                            1. Необходимо правильно собрать QR-ART Puzzle одного из трех уровней.<br>
-                            - Выберите один из уровней, нажмите на него и получите разбросанные по полю элементы.<br>
-                            - Наведите курсор на любой элемент,  левой кнопкой мышки захватите элемент и, удерживая его,
-                            подведите к любому другому элементу, если какая либо из сторон этих элементов совпадает, то при отпускании кнопки мыши они сами соединятся друг с другом.  <br>
-                            - Методом последующего подбора элементов, при правильном варианте они все соединяются и образуют единый QRART Puzzle.<br>
-                            - Для каждого уровня определено свое время на сбор - чем сложней уровень, тем больше дается времени.<br>
-                            - Если Вы правильно и вовремя собрали выбранный уровень, то появится надпись на игровом поле “YOU WON” и Вы получаете бонус в
-                            RАTING и BALANCE, если не смогли вовремя собрать, то появится надпись “YOU LOSE”, тогда у Вас есть возможность собрать любой уровень заново, при этом вы ничего не теряете. <br>
-                            - Имея на BALANCE любую сумму, Вы в любое время можете вывести ее на свой банковский счет, через личный кабинет, нажав кнопку SETTINGS.
-                        <p>
-                        <p class="mobile-user-panel-text">
-                            2. Весь расчет внутри данной игры ведется во внутренней валюте – QR (1 QR = 1 EURO = 8 YUAN), то есть, все перечисленные Вами средства,
-                            будут конвертироваться в QR-валюту, а при выводе средств на Ваш счет  конвертироваться обратно. Это необходимо, чтобы не путаться в разных валютах мира.
-                        </p>
-                        <p class="mobile-user-panel-text">
-                            3. <span style="text-decoration: underline;font-size: 18px;" >Без регистрации</span>  можно играть на всех трех уровнях в DEMO, но при правильном сборе QRART Puzzle  Ваш RATING и BALANCE  пополняться не будут.<br>
-                            <span style="text-decoration: underline;font-size: 18px;">При только регистрации</span> , за каждый правильный сбор QRART Puzzle будет зачислено от {{ level1.rating }} до {{ level3.rating }} QR в RATING, которые при сумме  300 QR перейдут на BALANCE и
-                            с него можно вывести на Вашу банковскую карту реальные деньги.<br>
-
-                            <span style="text-decoration: underline;font-size: 18px;">При регистрации и пополнении BALANCE</span>  на любую сумму от 10 до 10 000 EURO, при правильном сборе QR-ART Puzzle любого уровня,
-                            Ваш RATING получит от {{ level1.rating }} до {{ level3.rating }} QR и BALANCE будет увеличен на {{ level1.balance }}% - {{ level3.balance }}% от суммы, это стимулирует наших клиентов на активные действия.<br>
-                            Набор в RATING 300 QR  обнуляется каждый 30 дней (1 числа нового месяца)
-                        </p>
-                        <p class="mobile-user-panel-text">
-                            4. Все полученные в процессе игры средства, по письменному поручению от Вас, будут переведены Вам на счет, без ограничений и комиссий.
-                        </p>
                     </div>
 
                 </div>
@@ -87,42 +71,7 @@
                     <div class="mobile-user-panel-text-wrapper">
                         <p class="mobile-user-panel-text-header"></p>
                         <p class="mobile-user-panel-text"></p>
-                        <p>
-                            Наша компания <a style="text-decoration: underline; font-weight: bold; font-size: 18px;" href=" https://fetopen.easme-web.eu/?b=925586805#">QRlevel</a> следуя рекомендациям
-                            <a style="text-decoration: underline; font-weight: bold; font-size: 18px;"  href="https://ec.europa.eu/easme/">Евро Комиссии</a>, использует Гранты программы <a style="text-decoration: underline; font-weight: bold; font-size: 18px;" href="https://ec.europa.eu/programmes/horizon2020/what-horizon-2020"> Горизонт 2020</a>
-                        </p><br>
-                        <p>Мы создали и внедрили головоломку QR-ART Puzzle, которая позволяет исследовать уровень логического мышления у людей разных народов, разного возраста и пола, а нашим клиентам дает возможность хорошо заработать online.
-                        </p><br>
-                        <p>В текущих условиях интернет – заработок становится спасительным кругом, который позволяет поддержать экономику и сохранить достойный уровень жизни многим людям.
-                        </p><br>
-                        <p>Цель нашего проекта - организовать международное исследование, экспериментирующее с технологиями BNCI и связать его с научным сообществом. Мы сосредоточили нашу деятельность вокруг серии расширенных  хакатонов с программой поддержки  исследователей и клиентов.
-                        </p><br>
-                        <p>Мы стараемся максимально использовать возможности Грантов. Все выделенные средства расходуются исключительно для поддержания и продвижения этого ресурса. Гранты застрахованы в <a style="text-decoration: underline; font-weight: bold; font-size: 18px;" href="https://explore.allianz.com/">ALLIANZ</a>  .
-                        </p><br>
-                        <p>QR-ART Puzzle - это головоломка, где требуется навык и умение быстро решать логические задания, она является отличным стимулятором для развития логического мышления.
-                        </p><br>
-                        <p>Вся наша работа анализируется, систематизируется и на основании этих данных составляется общая картина о развитии логического мышления по разным регионам и типам людей.
-                        </p><br>
-                        <p>Благодаря выделенным Грантам мы материально стимулируем наших клиентов для активных действий. </p><br>
-                        <p>Какие либо денежные потери клиентов исключены!</p><br>
-                        <p>QR-ART PUZZLE, это не игра, это работа.</p><br>
-                        <p>Для нас это исследовательская деятельность, на основании которой маркетологи, экономисты, производители, будут делать заключения о целесообразности внедрения тех, или иных технологий в работе с потребителем.
-                        </p><br>
-                        <p>Логическое мышление людей это основополагающий механизм выбора того, или иного продукта.
-                        </p><br>
-                        <p>Наша программа QR-ART PUZZLE и анализ ее результатов упрощает работу специалистов в области маркетинга и продвижения товаров и услуг.</p><br>
-                        <p>Благодаря выделенным под это Грантам, мы в состоянии привлечь большое количество потенциальных клиентов, и стимулировать их на решение головоломки, которую мы создали.</p><br>
-                        <p>Нашим клиентам мы предлагаем работу в решении QR-ART PUZZLE и эту работу мы готовы оплачивать из средств выделенных Грантов.
-                        </p><br>
-                        <p>На первый взгляд все покажется сложно и не реально, но с терпением и опытом эта задача решается и дает возможность хорошо зарабатывать.
-                        </p><br>
-                        <p>С переходом на каждый новый уровень вы будете улучшать свои результаты, и увеличивать свой BALANCE.
-                        </p><br>
-                        <p>Уделите решению данной головоломки больше времени, и вы поймете, что заработок онлайн это выгодно и интересно.
-                        </p><br>
-                        <p>Со следующего года Евро Комиссия значительно увеличивает субсидии на исследовательскую, научно-образовательную деятельность компаний из Евросоюза. Мы рассчитываем и дальше использовать выделенные ресурсы и предлагаем вам поучаствовать в данной программе.
-                        </p><br>
-                        <p>Удачи!</p>
+                      {{ aboutText | safe}}
 
                     </div>
 
@@ -139,7 +88,7 @@
                         <div class="mobile-user-panel-level-item level1 complexity_btn radio" data-type="radio" data-puzle="150" data-level="1">
                             <p class="mobile-user-panel-level-item-number">1</p>
                             <p class="mobile-user-panel-level-item-text">4x4 | 16 {% trans 'элементов' %} <br>
-                                {{ level1.timer }} {% trans 'минут на сборку' %}<br>
+                                {{ level1.timer }} {% trans 'минут на сбор' %}<br>
                                 {{ level1.balance }}% {% trans 'на баланс' %}</p>
 
 
@@ -147,14 +96,14 @@
                         <div class="mobile-user-panel-level-item level2 complexity_btn radio" data-type="radio" data-puzle="120" data-level="2">
                             <p class="mobile-user-panel-level-item-number">2</p>
                             <p class="mobile-user-panel-level-item-text">5x5 | 25 {% trans 'элементов' %}<br>
-                                {{ level2.timer }} {% trans 'минут на сборку' %}<br>
+                                {{ level2.timer }} {% trans 'минут на сбор' %}<br>
                                 {{ level2.balance }}% {% trans 'на баланс' %}</p>
 
                         </div>
                         <div class="mobile-user-panel-level-item level3 complexity_btn radio" data-type="radio" data-puzle="100" data-level="3">
                             <p class="mobile-user-panel-level-item-number">3</p>
                             <p class="mobile-user-panel-level-item-text">6x6 | 36 {% trans 'элементов' %}<br>
-                                {{ level3.timer }} {% trans 'минут на сборку' %}<br>
+                                {{ level3.timer }} {% trans 'минут на сбор' %}<br>
                                 {{ level3.balance }}% {% trans 'на баланс' %}</p>
 
                         </div>
@@ -174,7 +123,18 @@
                         <ul>
 
                             {% for language in languages %}
-                                <li><label  class="lang-select-label {% if language.code == LANGUAGE_CODE %}lang-select-label-selected{% endif %}" for="lang_{{ language.code }}"><input class="lang-select-input" id="lang_{{ language.code }}" type="radio" name="language" value="{{ language.code }}" onchange="this.form.submit()"> {{ language.code }}</label></li>
+                                <li class="header-sub-menu-item ">
+                                    <label  class="lang-select-label {% if language.code == LANGUAGE_CODE %}lang-select-label-selected{% endif %}" for="lang_{{ language.code }}">
+                                        <input class="lang-select-input" id="lang_{{ language.code }}" type="radio" name="language" value="{{ language.code }}" onchange="this.form.submit()">
+                                        {% if language.code == 'en' %}
+                                                <img src=" {% static 'images/lang-uk-icon.svg' %}" alt="">
+                                            {% elif language.code == 'ru' %}
+                                                <img src="{% static 'images/lang-ru-icon.svg' %}" alt="">
+                                            {% elif language.code == 'zh-hans' %}
+                                                <img src="{% static 'images/lang-ch-icon.svg' %}" alt="">
+                                            {% endif %}
+                                    </label>
+                                </li>
                             {% endfor %}
                         </ul>
                         </ul>
@@ -256,6 +216,21 @@
                 {#                        </div>#}
                 {#                    </li>#}
                 <li class="header-nav-item"><a href="{% url 'index' %}">{% trans 'Главная' %}</a>
+                 <li class="header-nav-item has-sub-text"><span v-on:click="openHeaderSubText('about')">{% trans 'О нас' %}</span>
+                    <div class="header-nav-sub-text "
+                         v-bind:class="{ headerNavSubTextActive: header_sub_text == 'about' }"
+                         v-on:mouseleave="openHeaderSubText('about')"><!-- headerNavSubTextActive-->
+                        <div style="height: 380px; overflow-y: auto;margin-bottom: 40px">
+                            <h3 class="header-nav-sub-text-header header-about">{% trans 'О нас' %}</h3>
+                            <p class="header-nav-sub-text-title"></p>
+                            <p class="header-nav-sub-text-info"></p>
+
+                            {{ aboutText | safe}}
+
+                        </div>
+                        <div class="header-nav-sub-text-buttons"><a target="_blank" style="width: 150px;" href="https://ec.europa.eu/programmes/horizon2020/what-horizon-2020" class="btn btn-blue">{% trans 'Документы' %}</a><a target="_blank" style="width: 150px;" href="{% url 'lk' %}?tab=support" class="btn btn-orange">{% trans 'Чат поддержки' %}</a></div>
+                    </div>
+                </li>
                 <li class="header-nav-item has-sub-text"><span v-on:click="openHeaderSubText('rules')">{% trans 'Правила' %}</span>
                     <div class="header-nav-sub-text "
                          v-bind:class="{ headerNavSubTextActive: header_sub_text == 'rules' }"
@@ -269,50 +244,55 @@
                         {#                            <div class="header-nav-sub-text-buttons"><span class="btn btn-blue">DOCUMENTS</span><span class="btn btn-orange">SUPPORT</span></div>#}
                     </div>
                 </li>
-                <li class="header-nav-item has-sub-text"><span v-on:click="openHeaderSubText('about')">{% trans 'О нас' %}</span>
-                    <div class="header-nav-sub-text "
-                         v-bind:class="{ headerNavSubTextActive: header_sub_text == 'about' }"
-                         v-on:mouseleave="openHeaderSubText('about')"><!-- headerNavSubTextActive-->
-                        <div style="height: 380px; overflow-y: auto;margin-bottom: 40px">
-                            <h3 class="header-nav-sub-text-header header-about">{% trans 'О нас' %}</h3>
-                            <p class="header-nav-sub-text-title"></p>
-                            <p class="header-nav-sub-text-info"></p>
 
-                            {{ aboutText | safe}}
-
-                        </div>
-                        <div class="header-nav-sub-text-buttons"><a target="_blank" style="width: 150px;" href="https://ec.europa.eu/programmes/horizon2020/what-horizon-2020" class="btn btn-blue">DOCUMENTS</a><a target="_blank" style="width: 150px;" href="{% url 'lk' %}?tab=support" class="btn btn-orange">SUPPORT</a></div>
-                    </div>
-                </li>
             </ul>
         </div>
         <div class="header-buttons not-visible-768">
             <ul class="header-nav-wrapper">
                 <!--&lt;!&ndash;not-visible-1320 &ndash;&gt;  -->
-                <li class="header-nav-item-button has-sub-menu ">
+                <li class="header-nav-item-button has-sub-menu lang-button">
                 <span v-on:click="openHeaderSubMenu('settings')">
-                    <img src="{% static 'images/theme-icon.svg' %}" alt=""> {% trans 'Темный' %} <img src="{% static 'images/settings-icon.svg' %}" alt="">
+                    <img src="{% static 'images/theme-icon.svg' %}" alt=""> <img src="{% static 'images/arrow_down.svg' %}" alt="">
                 </span>
-                    <div v-bind:class="{ subMenuActive: header_sub_menu == 'settings' }" class="header-sub-menu  button-sub-menu">
+                    <div v-bind:class="{ subMenuActive: header_sub_menu == 'settings' }" class="header-sub-menu  button-sub-menu lang-button">
                         <ul class="header-sub-menu-wrapper">
-                            <li class="header-sub-menu-item"><a class="header-sub-menu-item-lang " href="">{% trans 'Светлый' %}</a></li>
-                            <li class="header-sub-menu-item"><a class="header-sub-menu-item-lang " href="">{% trans 'Темный' %}</a></li>
-
-
+                            <li class="header-sub-menu-item iconMenu"><a class="header-sub-menu-item-lang " href=""><img src="{% static 'images/theme-icon-l.svg' %}" alt=""></a></li>
+                            <li class="header-sub-menu-item iconMenu"><a class="header-sub-menu-item-lang " href=""><img src="{% static 'images/theme-icon.svg' %}" alt=""></a></li>
                         </ul>
                     </div>
                 </li>
                 {#            &lt;!&ndash;not-visible-1500 &ndash;&gt;-->#}
-                <li class="header-nav-item-button has-sub-menu ">
+                <li class="header-nav-item-button has-sub-menu lang-button">
                 <span v-on:click="openHeaderSubMenu('lang')">
-                    <img src="{% static 'images/lang-uk-icon.svg' %}" alt=""> {{ LANGUAGE_CODE }} <img src="{% static 'images/arrow_down.svg' %}" alt="">
+                     {% if LANGUAGE_CODE == 'en' %}
+                        <img src=" {% static 'images/lang-uk-icon.svg' %}" alt="">
+                    {% elif LANGUAGE_CODE == 'ru' %}
+                        <img src="{% static 'images/lang-ru-icon.svg' %}" alt="">
+                    {% elif LANGUAGE_CODE == 'zh-hans' %}
+                        <img src="{% static 'images/lang-ch-icon.svg' %}" alt="">
+                    {% endif %}
+
+                    <img src="{% static 'images/arrow_down.svg' %}" alt="">
                 </span>
-                    <div v-bind:class="{ subMenuActive: header_sub_menu == 'lang' }" class="header-sub-menu  button-sub-menu">
+                    <div v-bind:class="{ subMenuActive: header_sub_menu == 'lang' }" class="header-sub-menu  button-sub-menu lang-button">
                         <form action="{% url 'set_language' %}" method="post">{% csrf_token %}
                             <ul>
 
                                 {% for language in languages %}
-                                    <li><label  class="lang-select-label {% if language.code == LANGUAGE_CODE %}lang-select-label-selected{% endif %}" for="lang_{{ language.code }}"><input class="lang-select-input" id="lang_{{ language.code }}" type="radio" name="language" value="{{ language.code }}" onchange="this.form.submit()"> {{ language.code }}</label></li>
+                                    <li class="header-sub-menu-item iconMenu">
+                                        <label  class="lang-select-label
+                                            {% if language.code == LANGUAGE_CODE %}lang-select-label-selected{% endif %}"
+                                                for="lang_{{ language.code }}">
+                                            <input class="lang-select-input" id="lang_{{ language.code }}" type="radio" name="language" value="{{ language.code }}" onchange="this.form.submit()">
+                                            {% if language.code == 'en' %}
+                                                <img src=" {% static 'images/lang-uk-icon.svg' %}" alt="">
+                                            {% elif language.code == 'ru' %}
+                                                <img src="{% static 'images/lang-ru-icon.svg' %}" alt="">
+                                            {% elif language.code == 'zh-hans' %}
+                                                <img src="{% static 'images/lang-ch-icon.svg' %}" alt="">
+                                            {% endif %}
+                                        </label>
+                                    </li>
                                 {% endfor %}
                             </ul>
 
