@@ -50,6 +50,7 @@ class User(AbstractUser):
     age = models.IntegerField('Возраст', default=0)
     last_image = models.IntegerField(default=0)
     region = models.CharField('Регион', max_length=50, blank=True, null=True)
+    sex = models.CharField('Пол', max_length=50, blank=True, null=True)
     study = models.CharField('Образование', max_length=50, blank=True, null=True)
     profile_ok = models.BooleanField(default=False)
 

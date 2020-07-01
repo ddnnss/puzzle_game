@@ -2,26 +2,38 @@
 {% load static %}
 {% load i18n %}
 {% block content %}
-    <div style="background: none" class="game-select">
-        <p style="text-align: center">{% trans 'Заработок онлайн' %}</p>
+    <div style="background: none;max-width: 430px" class="game-select">
+        <p style="text-align: center">{% trans 'Выберите' %}</p>
         <div class="game-select-wrapper">
             <a href="{% url 'game'%}?game=qrpuzzle">
               <div class="game-select-item">
-               <img style="margin-bottom: 0;" src="{% static 'images/qp_i.jpg' %}" alt="">
+                  {% if request.session.theme  == 'light' %}
+                    <img style="margin-bottom: 0;" src="{% static 'images/qrpuzzle-dark.png' %}" alt="">
+                  {% else %}
+                     <img style="margin-bottom: 0;" src="{% static 'images/qp_i.jpg' %}" alt="">
+                  {% endif %}
 
            </div>
             </a>
              <a href="{% url 'game'%}?game=qart">
             <div class="game-select-item">
+                {% if request.session.theme  == 'light' %}
+                    <img style="margin-bottom: 0;"  src="{% static 'images/qa_black_logo.png' %}" alt="">
+                {% else %}
                <img style="margin-bottom: 0;"  src="{% static 'images/qa_i.png' %}" alt="">
-
+                {% endif %}
             </div>
              </a>
               <a href="#">
-            <div class="game-select-item">
-               <img style="margin-bottom: 0;"  src="{% static 'images/slider_puzzle_logo.png' %}" alt="">
-
-            </div>
+{#            <div class="game-select-item">#}
+{#                 {% if request.session.theme  == 'light' %}#}
+{#                    <img style="margin-bottom: 0;"  src="{% static 'images/slider_puzzle_logo_black.png' %}" alt="">#}
+{#                {% else %}#}
+{#                <img style="margin-bottom: 0;"  src="{% static 'images/slider_puzzle_logo.png' %}" alt="">#}
+{#                {% endif %}#}
+{##}
+{##}
+{#            </div>#}
              </a>
         </div>
 

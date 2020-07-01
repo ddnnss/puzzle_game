@@ -256,8 +256,7 @@
                             {{ infoText | safe}}
 
                         </div>
-                        <div class="header-nav-sub-text-buttons"><a target="_blank" style="width: 150px;" href="https://ec.europa.eu/programmes/horizon2020/what-horizon-2020" class="btn btn-blue">{% trans 'Документы' %}</a><a target="_blank" style="width: 150px;" href="{% url 'lk' %}?tab=support" class="btn btn-orange">{% trans 'Чат поддержки' %}</a></div>
-                    </div>
+                     </div>
                 </li>
 
             </ul>
@@ -268,10 +267,11 @@
                 <li class="header-nav-item-button has-sub-menu lang-button">
                 <span v-on:click="openHeaderSubMenu('settings')">
                     <img
-                            {% if request.session.theme  == 'dark' %}
-                            src="{% static 'images/theme-icon.svg' %}"
+                            {% if request.session.theme  == 'light' %}
+                            src="{% static 'images/theme-icon-l.svg' %}"
+
                             {% else %}
-                             src="{% static 'images/theme-icon-l.svg' %}"
+                              src="{% static 'images/theme-icon.svg' %}"
                             {% endif %}
                             alt=""> <img src="{% static 'images/arrow_down.svg' %}" alt="">
                 </span>
@@ -324,7 +324,7 @@
                     <li class="header-nav-item-button not-visible-1024"><span><img src="{% static 'images/wallet-icon.svg' %}" alt=""> {{ request.user.balance }} QR </span></li>
                 {% endif %}
                 {% if not request.user.is_authenticated %}
-                    <li class="header-nav-item-button"><span class="btn btn-blue" v-on:click="openRegModal">{% trans 'Вход / Регистрация' %}</span></li>
+                    <li class="header-nav-item-button"><span style="height: 57px" class="btn btn-blue" v-on:click="openRegModal">{% trans 'Вход / Регистрация' %}</span></li>
                     {#                <li class="header-nav-item-toggle">#}
                     {#                    <div class="header-user-toggle"><img src="{% static 'images/user-menu-icon.svg' %}" alt=""> </div>#}
                     {#                </li>#}
@@ -348,7 +348,7 @@
                         <!--<li class="header-user-menu-item visible-1024"><a class="header-user-menu-link " href="">78 150.10 QR</a></li>-->
                         <!--<li class="header-user-menu-item visible-1320"><a class="header-user-menu-link " href="">THEME SELECT</a></li>-->
                         <!--<li class="header-user-menu-item visible-1500"><a class="header-user-menu-link " href="">LANG SELECT</a></li>-->
-                        <li class="header-user-menu-item"><a class="header-user-menu-link link-games" href="{% url 'lk' %}?tab=games">{% trans 'Cтатистика игр' %}</a></li>
+                        <li class="header-user-menu-item"><a class="header-user-menu-link link-games" href="{% url 'lk' %}?tab=games">{% trans 'Cтатистика' %}</a></li>
                         {#                        <li class="header-user-menu-item has-dropdown " v-bind:class="{ dropDownActive:drop_down_menu == 'lang' }"> <!-- dropDownActive-->#}
                         {#                            <span class="header-user-menu-link lang-ru-link" v-on:click="openDropDown('lang')">Language</span>#}
                         {#                            <ul class="header-user-menu-dropdown ">#}
