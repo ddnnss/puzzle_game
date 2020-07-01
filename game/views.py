@@ -1,6 +1,6 @@
 import json
 
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponseRedirect
 from django.shortcuts import render
 from .models import Game, Level
 
@@ -43,3 +43,11 @@ def win(request):
         return JsonResponse({'rating': game.player.rating})
     else:
         return JsonResponse({'rating': 0})
+
+
+def theme_light(request):
+    request.session['theme']  = 'light'
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
+def theme_dark(request):
+    request.session['theme'] = 'dark'
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))

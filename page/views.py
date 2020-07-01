@@ -2,10 +2,11 @@ from django.shortcuts import render
 from game.models import Game,Level
 from .models import *
 def index(request):
-
+    style = 'dark'
     indexPage = True
     aboutText = Settings.objects.first().about
     rulesText = Settings.objects.first().rules
+    indoText = Settings.objects.first().info
     level1 = Level.objects.get(id=1)
     level2 = Level.objects.get(id=2)
     level3 = Level.objects.get(id=3)
@@ -15,6 +16,7 @@ def index(request):
 def game(request):
     aboutText = Settings.objects.first().about
     rulesText = Settings.objects.first().rules
+    indoText = Settings.objects.first().info
     level1 = Level.objects.get(id=1)
     level2 = Level.objects.get(id=2)
     level3 = Level.objects.get(id=3)
@@ -24,6 +26,7 @@ def game(request):
 def lk(request):
     aboutText = Settings.objects.first().about
     rulesText = Settings.objects.first().rules
+    indoText = Settings.objects.first().info
     level1 = Level.objects.get(id=1)
     level2 = Level.objects.get(id=2)
     level3 = Level.objects.get(id=3)

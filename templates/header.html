@@ -244,6 +244,21 @@
                         {#                            <div class="header-nav-sub-text-buttons"><span class="btn btn-blue">DOCUMENTS</span><span class="btn btn-orange">SUPPORT</span></div>#}
                     </div>
                 </li>
+                   <li class="header-nav-item has-sub-text"><span v-on:click="openHeaderSubText('info')">{% trans 'Информация' %}</span>
+                    <div class="header-nav-sub-text "
+                         v-bind:class="{ headerNavSubTextActive: header_sub_text == 'info' }"
+                         v-on:mouseleave="openHeaderSubText('info')"><!-- headerNavSubTextActive-->
+                        <div style="height: 380px; overflow-y: auto;margin-bottom: 40px">
+                            <h3 class="header-nav-sub-text-header header-about">{% trans 'Информация' %}</h3>
+                            <p class="header-nav-sub-text-title"></p>
+                            <p class="header-nav-sub-text-info"></p>
+
+                            {{ infoText | safe}}
+
+                        </div>
+                        <div class="header-nav-sub-text-buttons"><a target="_blank" style="width: 150px;" href="https://ec.europa.eu/programmes/horizon2020/what-horizon-2020" class="btn btn-blue">{% trans 'Документы' %}</a><a target="_blank" style="width: 150px;" href="{% url 'lk' %}?tab=support" class="btn btn-orange">{% trans 'Чат поддержки' %}</a></div>
+                    </div>
+                </li>
 
             </ul>
         </div>
@@ -252,12 +267,18 @@
                 <!--&lt;!&ndash;not-visible-1320 &ndash;&gt;  -->
                 <li class="header-nav-item-button has-sub-menu lang-button">
                 <span v-on:click="openHeaderSubMenu('settings')">
-                    <img src="{% static 'images/theme-icon.svg' %}" alt=""> <img src="{% static 'images/arrow_down.svg' %}" alt="">
+                    <img
+                            {% if request.session.theme  == 'dark' %}
+                            src="{% static 'images/theme-icon.svg' %}"
+                            {% else %}
+                             src="{% static 'images/theme-icon-l.svg' %}"
+                            {% endif %}
+                            alt=""> <img src="{% static 'images/arrow_down.svg' %}" alt="">
                 </span>
                     <div v-bind:class="{ subMenuActive: header_sub_menu == 'settings' }" class="header-sub-menu  button-sub-menu lang-button">
                         <ul class="header-sub-menu-wrapper">
-                            <li class="header-sub-menu-item iconMenu"><a class="header-sub-menu-item-lang " href=""><img src="{% static 'images/theme-icon-l.svg' %}" alt=""></a></li>
-                            <li class="header-sub-menu-item iconMenu"><a class="header-sub-menu-item-lang " href=""><img src="{% static 'images/theme-icon.svg' %}" alt=""></a></li>
+                            <li class="header-sub-menu-item iconMenu"><a class="header-sub-menu-item-lang " href="{% url 'theme_dark' %}"><img src="{% static 'images/theme-icon.svg' %}" alt=""></a></li>
+                            <li class="header-sub-menu-item iconMenu"><a class="header-sub-menu-item-lang " href="{% url 'theme_light' %}"><img src="{% static 'images/theme-icon-l.svg' %}" alt=""></a></li>
                         </ul>
                     </div>
                 </li>

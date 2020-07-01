@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-24 23:24+0300\n"
+"POT-Creation-Date: 2020-06-28 21:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,39 +18,39 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\templates\basic.html:32 .\templates\basic.html:36
-#: .\templates\basic.html:47 .\templates\basic.html:57
-#: .\templates\basic.html:85
+#: .\templates\basic.html:39 .\templates\basic.html:43
+#: .\templates\basic.html:54 .\templates\basic.html:64
+#: .\templates\basic.html:92
 msgid "Вход"
 msgstr "Log in"
 
-#: .\templates\basic.html:37 .\templates\basic.html:53
-#: .\templates\basic.html:58
+#: .\templates\basic.html:44 .\templates\basic.html:60
+#: .\templates\basic.html:65
 msgid "Регистрация"
 msgstr "Sign up"
 
-#: .\templates\basic.html:40 .\templates\basic.html:61
+#: .\templates\basic.html:47 .\templates\basic.html:68
 #: .\templates\page\lk.html:82
 msgid "Почта"
 msgstr "E-Mail"
 
-#: .\templates\basic.html:44 .\templates\basic.html:69
+#: .\templates\basic.html:51 .\templates\basic.html:76
 msgid "Пароль"
 msgstr "Password"
 
-#: .\templates\basic.html:65 .\templates\page\lk.html:86
+#: .\templates\basic.html:72 .\templates\page\lk.html:86
 msgid "Ник"
 msgstr "Nickname"
 
-#: .\templates\basic.html:73
+#: .\templates\basic.html:80
 msgid "Пароль повтор"
 msgstr "Repeat password"
 
-#: .\templates\basic.html:77
+#: .\templates\basic.html:84
 msgid "Вы согласны с"
 msgstr "Agree with"
 
-#: .\templates\basic.html:77
+#: .\templates\basic.html:84
 msgid "политикой конфидициальности"
 msgstr "privacy policy"
 
@@ -114,22 +114,28 @@ msgstr "Change language"
 msgid "Изменить тему"
 msgstr "Change theme"
 
+#: .\templates\header.html:188 .\templates\header.html:345
+#, fuzzy
+#| msgid "Cтатистика"
+msgid "Cтатистика игр"
+msgstr "Assembly"
 
-#: .\templates\header.html:189 .\templates\header.html:349
+#: .\templates\header.html:189 .\templates\header.html:364
 #: .\templates\page\lk.html:11 .\templates\page\lk.html:26
 msgid "Баланс"
 msgstr "Cash Flow"
 
-#: .\templates\header.html:190 .\templates\header.html:350
+#: .\templates\header.html:190 .\templates\header.html:365
 msgid "Настройки"
 msgstr "Settings"
 
 #: .\templates\header.html:191 .\templates\header.html:231
-#: .\templates\header.html:348 .\templates\page\lk.html:10
+#: .\templates\header.html:259 .\templates\header.html:363
+#: .\templates\page\lk.html:10
 msgid "Чат поддержки"
 msgstr "Support"
 
-#: .\templates\header.html:192 .\templates\header.html:351
+#: .\templates\header.html:192 .\templates\header.html:366
 #: .\templates\page\lk.html:13
 msgid "Выход"
 msgstr "Log out"
@@ -138,11 +144,15 @@ msgstr "Log out"
 msgid "Главная"
 msgstr "Main"
 
-#: .\templates\header.html:231
+#: .\templates\header.html:231 .\templates\header.html:259
 msgid "Документы"
 msgstr "Documents"
 
-#: .\templates\header.html:306
+#: .\templates\header.html:247 .\templates\header.html:252
+msgid "Информация"
+msgstr "Info"
+
+#: .\templates\header.html:321
 msgid "Вход / Регистрация"
 msgstr "Log in / Sign up"
 

@@ -4,7 +4,7 @@ from .models import *
 
 @register(Settings)
 class SeoTagTranslationOptions(TranslationOptions):
-    fields = ( 'rules','about',)
+    fields = ( 'rules','about','info',)
 
 
 
