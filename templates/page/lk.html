@@ -98,6 +98,22 @@
                             <label>{% trans 'Расположение' %}:</label>
                             <input type="text" v-model="location" name="region">
                         </div>
+                            <div class="form-row ">
+                            <label>{% trans 'Пол' %}:</label>
+                                <select style="background: #2D325A;
+    border: 1px solid #2B3053;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-box-shadow: inset 2px 4px 6px rgba(0, 0, 0, 0.13);
+    box-shadow: inset 2px 4px 6px rgba(0, 0, 0, 0.13);
+    border-radius: 4px;
+    height: 50px;
+    padding: 0 20px;
+    color: #7B7E9E;"  name="sex" v-model="sex">
+                                    <option value="m">&#9794;</option>
+                                    <option value="f">&#9792;</option>
+                                </select>
+                        </div>
                          <div class="form-row ">
                             <label>{% trans 'Аватар' %}:<br>
                                 <img :src="[[user_avatar]]" alt="">

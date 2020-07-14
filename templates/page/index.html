@@ -7,21 +7,17 @@
         <div class="game-select-wrapper">
             <a href="{% url 'game'%}?game=qrpuzzle">
               <div class="game-select-item">
-                  {% if request.session.theme  == 'light' %}
-                    <img style="margin-bottom: 0;" src="{% static 'images/qrpuzzle-dark.png' %}" alt="">
-                  {% else %}
+
                      <img style="margin-bottom: 0;" src="{% static 'images/qp_i.jpg' %}" alt="">
-                  {% endif %}
+
 
            </div>
             </a>
              <a href="{% url 'game'%}?game=qart">
             <div class="game-select-item">
-                {% if request.session.theme  == 'light' %}
-                    <img style="margin-bottom: 0;"  src="{% static 'images/qa_black_logo.png' %}" alt="">
-                {% else %}
+
                <img style="margin-bottom: 0;"  src="{% static 'images/qa_i.png' %}" alt="">
-                {% endif %}
+
             </div>
              </a>
               <a href="#">

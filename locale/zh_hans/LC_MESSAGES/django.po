@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-01 22:31+0300\n"
+"POT-Creation-Date: 2020-07-02 16:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -153,8 +153,6 @@ msgid "Вход / Регистрация"
 msgstr "登录注册"
 
 #: .\templates\page\game.html:22 .\templates\page\game.html:31
-#, fuzzy
-#| msgid "минут на сбор"
 msgid "минуты на сбор"
 msgstr "分钟建立"
 
@@ -167,8 +165,6 @@ msgid "Выберите"
 msgstr "选择"
 
 #: .\templates\page\lk.html:12
-#, fuzzy
-#| msgid "Натройки"
 msgid "Наcтройки"
 msgstr "设定值"
 
@@ -209,10 +205,14 @@ msgid "Расположение"
 msgstr "位置"
 
 #: .\templates\page\lk.html:102
+msgid "Пол"
+msgstr "地板"
+
+#: .\templates\page\lk.html:118
 msgid "Аватар"
 msgstr "头像"
 
-#: .\templates\page\lk.html:113
+#: .\templates\page\lk.html:129
 msgid "Обновить профиль"
 msgstr "更新个人信息"
 

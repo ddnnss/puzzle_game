@@ -135,11 +135,7 @@
                 result_title:'',
                 loaderActive:false,
                 mobile_menu_right: false,
-                {% if request.session.theme  == 'light' %}
-                main_logo: '{% static 'images/qrlevel-dark.png' %}',
-                    {% else %}
                   main_logo: '{% static 'images/qrlevel-white.png' %}',
-        {% endif %}
                 result_image_modal:false,
                 result_image:'',
                 game_level:0,
@@ -158,6 +154,7 @@
                 nickname:'{{ request.user.email }}',
                 age:'{{ request.user.age }}',
                 education:'{{ request.user.study }}',
+                sex:'{{ request.user.sex }}',
                 location:'{{ request.user.region }}',
                 user_avatar:'{{ request.user.get_user_avatar }}',
                 avatar:null,
@@ -197,7 +194,10 @@
                         }
                         if ('game' in getVars){
                             console.log(getVars['game'])
-                            if(getVars['game'] === 'qrpuzzle' ){this.game_type = 2}
+                            if(getVars['game'] === 'qrpuzzle' ){
+                                console.log('ttt')
+                                this.game_type = 2
+                            }
                             if(getVars['game'] === 'qart' ){this.game_type = 1}
 
                         }
@@ -216,17 +216,9 @@
                 game_type:function (val) {
                     console.log(val)
                     concide()
-                     {% if request.session.theme  == 'light' %}
-                  if (val === 2){
-                        this.main_logo = '{% static 'images/qrpuzzle-dark.png' %}'
-                        document.title = 'QR Puzzle'
-                    }
-                    if (val === 1){
-                        this.main_logo = '{% static 'images/qp.jpg' %}'
-                        document.title = 'QArt'
-                    }
-                {% else %}
+
                 if (val === 2){
+                        console.log('2222')
                         this.main_logo = '{% static 'images/qa_black_logo.png' %}'
                         document.title = 'QR Puzzle'
                     }
@@ -234,7 +226,7 @@
                         this.main_logo = '{% static 'images/qa_i.png' %}'
                         document.title = 'QArt'
                     }
-                {% endif %}
+
 
 
                 }

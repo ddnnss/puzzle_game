@@ -163,11 +163,11 @@ html {
 
 body {
   font: 16px 'Circe-Regular', sans-serif;
-  color: #ffffff;
+  color:  #1b1b1b;
   -ms-scroll-chaining: none;
   overscroll-behavior: contain;
   overflow: hidden;
-  background: #2A2E54;
+  background: #f9f9f9;
 }
 
 a {
@@ -232,6 +232,8 @@ svg {
   cursor: pointer;
   height: 50px;
   text-transform: uppercase;
+  color: #ffffff !important;
+  text-decoration: none !important;
 }
 
 .btn-center {
@@ -245,6 +247,7 @@ svg {
   background: linear-gradient(180deg, #4E7CFF 0%, rgba(78, 124, 255, 0) 182.35%);
   -webkit-box-shadow: 0px 2px 0px #334CCE;
   box-shadow: 0px 2px 0px #334CCE;
+  color: #ffffff;
 }
 
 .btn-orange {
@@ -253,6 +256,7 @@ svg {
   background: linear-gradient(180deg, #FF6542 0%, #FF5D38 100%);
   -webkit-box-shadow: 0px 2px 0px #E24A28;
   box-shadow: 0px 2px 0px #E24A28;
+  color: #ffffff;
 }
 
 .mb-40 {
@@ -334,7 +338,7 @@ svg {
 }
 
 .header {
-  background: #2D325A;
+  background: #efefef;
   padding: 20px 25px;
 }
 
@@ -584,7 +588,7 @@ svg {
   opacity: 0;
   pointer-events: none;
   position: absolute;
-  background: #383E6C;
+  background: #efefef;
   -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
   border-radius: 4px;
@@ -626,7 +630,7 @@ svg {
 
 .header-user-menu-item:hover {
   border-radius: 4px;
-  background: rgba(68, 75, 125, 0.76);
+  background: #ffffff;
 }
 
 .header-user-menu-item.has-dropdown {
@@ -646,6 +650,7 @@ svg {
 
 .header-user-menu-link {
   position: relative;
+  color: #1b1b1b;
   display: block;
   padding: 0 30px;
 }
@@ -738,11 +743,14 @@ svg {
   top: 85px;
   width: 800px;
   max-width: 800px;
-  background: #383E6C;
+  background: #f9f9f9;
   -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
   border-radius: 4px;
   padding: 50px 45px;
+}
+.header-nav-sub-text a{
+  color: #1b1b1b;
 }
 
 .header-nav-sub-text.headerNavSubTextActive {
@@ -968,7 +976,7 @@ svg {
 }
 
 .lk-tab-links {
-  background: #202442;
+  background: #efefef;
 }
 
 .lk-tab-link {
@@ -983,13 +991,13 @@ svg {
 }
 
 .lk-tab-link.lkTabLinkActive {
-  background: #383E6C;
+  background: #f9f9f9;
   -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
 }
 
 .lk-tab-link:hover {
-  background: #383E6C;
+  background: #f9f9f9;
   -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
 }
@@ -1021,14 +1029,14 @@ svg {
 }
 
 .lk-info {
-  background: #2A2E54;
+  background: #efefef;
   padding: 50px;
   height: 85vh;
   overflow-y: auto;
 }
 
 .lk-support {
-  background: #202442;
+  background: #f9f9f9;
   height: 80vh;
   overflow-y: auto;
 }
@@ -1052,7 +1060,8 @@ svg {
 }
 
 .lk-support-message input {
-  background: #2D325A;
+  background: #ffffff;
+  color: #1b1b1b;
   border: 1px solid #2B3053;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -1095,12 +1104,14 @@ svg {
   font-size: 18px;
   -ms-flex-preferred-size: 80%;
   flex-basis: 80%;
+  color: #ffffff;
 }
 
 .lk-support-message-item-date {
   font-size: 14px;
   -ms-flex-item-align: start;
   align-self: flex-start;
+  color: #ffffff;
 }
 
 .lk-support-message-item-from {
@@ -1120,7 +1131,7 @@ svg {
 }
 
 .lk-games-wrapper {
-  background: #202442;
+  background: #f9f9f9;
   padding: 30px 50px;
 }
 
@@ -1144,7 +1155,7 @@ svg {
 .profile-edit-wrapper {
   max-width: 400px;
   padding: 30px;
-  background: #2A2E54;
+  background: #ffffff;
 }
 
 .game-area {
@@ -1172,7 +1183,7 @@ svg {
   right: -200px;
   top: 0;
   bottom: 0;
-   background: #efefef;
+  background: #efefef;
 }
 
 .counter {
@@ -1184,7 +1195,7 @@ svg {
   top: 99px;
   z-index: 110;
   padding-bottom: 5px;
-  background: #2d325a;
+  background: #efefef;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
@@ -1678,7 +1689,7 @@ svg {
   cursor: pointer;
   -webkit-box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.06);
-  background: #2D325A;
+  background: #efefef;
   width: 200px;
   height: 200px;
   padding: 20px;
@@ -1710,7 +1721,7 @@ svg {
 }
 
 .side-bar {
-  background: #202442;
+  background: #efefef;
   height: calc(100vh - 105px);
   position: absolute;
   width: 235px;
@@ -1780,7 +1791,12 @@ svg {
   width: 181px;
   height: 144px;
 }
-
+.side-bar-game p{
+  color: #ffffff;
+}
+.side-bar-demo a{
+  color: #1b1b1b;
+}
 .side-bar-game:hover {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
@@ -1957,7 +1973,7 @@ svg {
   -ms-flex-direction: column;
   flex-direction: column;
   background-clip: padding-box;
-  background: #383E6C;
+  background: #f9f9f9;
   border-radius: 4px;
   outline: 0;
   padding: 55px 0;
@@ -2057,8 +2073,9 @@ svg {
 
 .form-row input[type='text'],
 .form-row input[type='password'] {
-  background: #2D325A;
-  border: 1px solid #2B3053;
+  background: #ffffff;
+  border: 1px solid rgba(27, 27, 27, 0.56);
+  color: #1b1b1b;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-box-shadow: inset 2px 4px 6px rgba(0, 0, 0, 0.13);
@@ -2080,7 +2097,7 @@ svg {
 }
 
 .toggleButton {
-  border: 2px solid #434B8C;
+  border: 2px solid rgba(27, 27, 27, 0.51);
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   border-radius: 36px;
@@ -2104,18 +2121,20 @@ svg {
   -ms-flex-preferred-size: 100%;
   flex-basis: 100%;
   text-align: center;
-  line-height: 27px;
+  line-height: 26px;
   cursor: pointer;
   padding: 0 10px;
 }
 
 .toggleButtonActiveLeft {
-  background: #434B8C;
+  background: #efefef;
+  color: #1b1b1b;
   border-radius: 26px 0px 0px 26px;
 }
 
 .toggleButtonActiveRight {
-  background: #434B8C;
+  background: #efefef;
+  color: #1b1b1b;
   border-radius: 0 26px 26px 0;
 }
 
