@@ -23,6 +23,11 @@ def game(request):
 
     return render(request, 'page/game.html', locals())
 
+
+def slider(request):
+    return render(request, 'page/slider.html', locals())
+
+
 def lk(request):
     aboutText = Settings.objects.first().about
     rulesText = Settings.objects.first().rules

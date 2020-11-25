@@ -144,26 +144,29 @@
                             <p   v-bind:class="{ toggleButtonActiveLeft: modal_login_body }">WITHDRAW</p>
                             <p  v-on:click="modal_login_body=false">DEPOSIT</p>
                         </div>
-                        <p style="color: red; text-align: center;margin-bottom: 20px">ATTENTION! 1 QR = 1EUR = 8 YUAN</p>
+                        <p style="color: red; text-align: center;margin-bottom: 20px"> ATTENTION! 1 QR = 1EUR = 8 YUAN = 80 RUB</p>
                         <div class="form-row">
                             <input style="width: 100%" type="text">
                         </div>
                         <div class="form-row">
-                            <input id="w1" type="radio" name="withdraw_type" v-model="is_login_agree">
-                            <label for="w1"> Bank card</label>
+
+                            <label class="cash_label" for="w1"><input class="cash_input" id="w1" type="radio" name="withdraw_type" v-model="is_login_agree"> <img style="width: 150px" src="{% static 'images/mc.png' %}" alt=""> <img style="width: 150px" src="{% static 'images/vv.png' %}" alt=""></label>
                         </div>
                         <div class="form-row">
-                            <input id="w2" type="radio" name="withdraw_type" v-model="is_login_agree">
-                            <label for="w2"> Webmoney</label>
+                            <label class="cash_label" for="w2"><input class="cash_input" id="w2" type="radio" name="withdraw_type" v-model="is_login_agree"> <img style="width: 150px" src="{% static 'images/qw.png' %}" alt=""></label>
                         </div>
                         <div class="form-row">
-                            <input id="w3" type="radio" name="withdraw_type" v-model="is_login_agree">
-                            <label for="w3"> Qiwi</label>
+                            <label class="cash_label" for="w3"><input class="cash_input" id="w3" type="radio" name="withdraw_type" v-model="is_login_agree"> <img style="width: 150px" src="{% static 'images/wm.png' %}" alt=""></label>
                         </div>
+                            <div class="form-row">
+                            <label class="cash_label" for="w4"><input class="cash_input" id="w4" type="radio" name="withdraw_type" v-model="is_login_agree"> <img style="width: 150px" src="{% static 'images/we.png' %}" alt=""></label>
+                        </div>
+
 
                         <span class="btn btn-blue btn-center">WITHDRAW </span>
 
                     </div>
+
                 </div>
                 <div v-else>
                     <div class="modal-header">
@@ -183,6 +186,7 @@
                         <span class="btn btn-blue btn-center" v-on:click="newDeposit" :class="{btnDisabled : !deposit_summ }">DEPOSIT</span>
 
                     </div>
+                 
                 </div>
                 </div>
             </div>

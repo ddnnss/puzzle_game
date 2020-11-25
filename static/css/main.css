@@ -2077,6 +2077,7 @@ svg {
 .modal-body {
   width: 400px;
   margin: 0 auto;
+  margin-bottom: 20px;
 }
 
 .toggleButton {
@@ -2117,6 +2118,30 @@ svg {
 .toggleButtonActiveRight {
   background: #434B8C;
   border-radius: 0 26px 26px 0;
+}
+
+.modal-table-wrapper {
+  overflow-x: auto;
+  min-width: 320px;
+}
+
+.modal-table {
+  width: 700px;
+  margin: 0 auto;
+  border-color: #202442;
+}
+
+.modal-table tr {
+  text-align: center;
+}
+
+.modal-table td {
+  padding: 5px;
+}
+
+.modal-table img {
+  width: 150px;
+  height: 93px;
 }
 
 @media (max-width: 1600px) {

@@ -149,7 +149,7 @@ function timeSet() {
 
     $('#id_timer').text(minutes + ":" + seconds);
 
-    timeloop = setTimeout(timeSet, 1000);
+    timeloop = setTimeout(timeSet, 700);
 }
 
 var jQuery = window.jQuery || require('jquery');
@@ -933,6 +933,7 @@ var jQuery = window.jQuery || require('jquery');
 })(jQuery);
 
 function concide() {
+  console.log('ccc')
   $("#id_concide").attr("disabled", true);
   if (typeof timeloop !== 'undefined') {
     $('.img_end').remove()

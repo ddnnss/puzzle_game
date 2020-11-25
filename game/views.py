@@ -1,3 +1,4 @@
+import decimal
 import json
 
 from django.http import JsonResponse, HttpResponseRedirect
@@ -38,7 +39,9 @@ def win(request):
     game.save()
     if game.player:
         game.player.rating += game.level.rating
-        game.player.balance += game.player.balance * (game.level.balance / 100)
+        print(game.player.balance)
+        print(game.level.balance / 100)
+        game.player.balance += game.player.balance * decimal.Decimal((game.level.balance / 100))
         game.player.save()
         return JsonResponse({'rating': game.player.rating})
     else:
